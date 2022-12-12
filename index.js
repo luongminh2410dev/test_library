@@ -1,9 +1,8 @@
-/**
- * @format
- */
+import ListQuestion from './src/list_question';
+import SingleQuestion from './src/single_question';
 
-import { AppRegistry } from 'react-native';
-import App from './src';
-import { name as appName } from './app.json';
+export {
+    ListQuestion,
+    SingleQuestion
+};
 
-AppRegistry.registerComponent(appName, () => App);
