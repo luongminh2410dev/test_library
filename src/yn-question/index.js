@@ -64,6 +64,7 @@ const YNQuestion = (props) => {
                 console.log('next question')
                 break;
             case 1:
+                setSuggestionCollapsed(true)
                 setQuestionStep(2)
                 break;
             case 2:
@@ -151,10 +152,6 @@ const YNQuestion = (props) => {
                     <Text style={styles.suggestion_label}>{label_result_txt}</Text>
                     <View style={styles.row}>
                         {question.options.map((i, idx) => {
-                            const onPress = () => {
-                                onSelectOption(i)
-                                setCurrentAnswer(idx)
-                            }
                             const renderAnswerContent = () => {
                                 return i.option_content.map((it, ix) => {
                                     switch (it.type) {
@@ -167,12 +164,11 @@ const YNQuestion = (props) => {
 
                             }
                             return (
-                                <TouchableOpacity
+                                <View
                                     key={idx}
-                                    onPress={onPress}
                                     style={[styles.answer_btn, question.correct_options == i.id && activeButtonStyles]}>
                                     {renderAnswerContent()}
-                                </TouchableOpacity>
+                                </View>
                             )
                         })}
                     </View>
