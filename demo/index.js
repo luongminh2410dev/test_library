@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text, ScrollView } from 'react-native'
 import React from 'react'
 import YNQuestion from '../src/yn-question'
 
@@ -29,19 +29,28 @@ const data = {
     // user_answers: ['cky9uzxte000g396xj4la4mp1'] ,
     spec_question: 1
 }
+
+const CustomView = () => {
+    // HANDLE SOMETHING
+    return (
+        <View style={{ width: '100%', height: 100, backgroundColor: 'red' }} />
+    )
+}
+
 const Demo = () => {
 
     return (
-        <View style={{ flex: 1, paddingTop: 100, alignItems: 'center', backgroundColor: 'white' }}>
-            <Text style={{ fontSize: 26, fontWeight: 'bold' }}>Demo App</Text>
+        <ScrollView style={{ flex: 1, paddingTop: 80, backgroundColor: 'white' }}>
+            <Text style={{ fontSize: 26, fontWeight: 'bold', width: '100%', textAlign: 'center' }}>Demo App</Text>
             <YNQuestion
                 question={data}
                 customConfig={{
                     label_suggestion: 'Phương pháp',
                     label_solution_detail: 'Lời giải của GV Loigiaihay.com',
+                    btn_skip_text: 'Câu tiếp theo',
                 }}
             />
-        </View>
+        </ScrollView>
     )
 }
 

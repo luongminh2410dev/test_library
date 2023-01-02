@@ -11,6 +11,10 @@ const styles = StyleSheet.create({
     question_label: {
         width: '100%',
         paddingHorizontal: 12,
+        flexDirection: 'row'
+    },
+    question_label_txt: {
+        flex: 1,
         textAlign: 'left',
         fontWeight: "bold"
     },
