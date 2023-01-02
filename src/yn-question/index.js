@@ -12,9 +12,8 @@ const { width, height } = Dimensions.get('window');
 const YNQuestion = (props) => {
     const {
         question, customConfig, customStyles, displayMode,
-        getTopComponent, getMiddleComponent, getBottomComponent,
-        getCornerComponent,
-        onSelectOption
+        getTopComponent, getMiddleComponent, getBottomComponent, getCornerComponent,
+        onSelectOption, onToggleSuggestion, onSkipQuestion, onFinishQuestion, onToggleSolutionDetail
     } = props;
 
     const {
@@ -75,11 +74,15 @@ const YNQuestion = (props) => {
             console.log('xem li thuyet');
         }
         else {
+            onToggleSuggestion({ isShow: suggestionCollapsed })
             setSuggestionCollapsed(!suggestionCollapsed)
         }
     }
 
-    const toggleSolutionDetail = () => setSolutionCollapsed(!solutionCollapsed)
+    const toggleSolutionDetail = () => {
+        onToggleSolutionDetail({ isShow: solutionCollapsed })
+        setSolutionCollapsed(!solutionCollapsed)
+    }
 
     const onNextButtonPress = () => {
         const {
@@ -90,11 +93,16 @@ const YNQuestion = (props) => {
         } = popup_confirm_skip;
         switch (questionStep) {
             case 0:
+                if (displayMode == 'result') {
+                    return console.log('next question');;
+                }
                 Alert.alert(title, content, [
                     {
                         style: 'default',
                         text: btn_ok,
-                        onPress: () => { console.log('next question'); }
+                        onPress: () => {
+                            onSkipQuestion()
+                        }
                     },
                     {
                         style: 'destructive',
@@ -107,10 +115,88 @@ const YNQuestion = (props) => {
                 setQuestionStep(2)
                 break;
             case 2:
-                console.log('next question')
+                onFinishQuestion();
                 break;
             default:
                 break;
+        }
+    }
+
+    const _renderQuestion = (i, idx) => {
+        switch (i.type) {
+            case 'html':
+                return <RenderHtml key={idx} source={{ html: i.content }} contentWidth={width} />
+            case 'image':
+                return <Image key={idx} style={{ width: 200, height: 150 }} source={{ uri: i.content }} />
+        }
+    }
+
+    const _renderOptionItem = (i, idx) => {
+        const onPress = () => {
+            onSelectOption(i)
+            setCurrentAnswer(idx)
+            setQuestionStep(1)
+        }
+        return (
+            <TouchableOpacity
+                key={idx}
+                onPress={onPress}
+                disabled={questionStep >= 2}
+                style={[styles.answer_btn, defaultOptionButtonStyles, currentAnswer == idx && activeButtonStyles]}>
+                {i.option_content.map((it, ix) => {
+                    switch (it.type) {
+                        case 'html':
+                            return (
+                                <Text
+                                    key={ix}
+                                    style={[
+                                        styles.answer_btn_txt,
+                                        defaultOptionTitleStyles,
+                                        currentAnswer == idx && activeTxtStyles
+                                    ]}>
+                                    {it.content}
+                                </Text>
+                            )
+                        case 'image':
+                            return <Image key={ix} style={{ width: 200, height: 150 }} source={{ uri: it.content }} />
+                    }
+                })}
+            </TouchableOpacity>
+        )
+    }
+
+    const _renderSuggestion = (i, idx) => {
+        switch (i.type) {
+            case 'html':
+                return <RenderHtml key={idx} source={{ html: i.content }} contentWidth={width} />
+            case 'image':
+                return <Image key={idx} style={{ width: 200, height: 150 }} source={{ uri: i.content }} />
+        }
+    }
+
+    const _renderOptionUnaccesible = (i, idx) => {
+        return (
+            <View
+                key={idx}
+                style={[styles.answer_btn, correct_options == i.id && activeButtonStyles]}>
+                {i.option_content.map((it, ix) => {
+                    switch (it.type) {
+                        case 'html':
+                            return <Text key={ix} style={[styles.answer_btn_txt, correct_options == i.id && activeTxtStyles]}>{it.content}</Text>
+                        case 'image':
+                            return <Image key={ix} style={{ width: 200, height: 150 }} source={{ uri: it.content }} />
+                    }
+                })}
+            </View>
+        )
+    }
+
+    const _renderSolutionDetail = (i, idx) => {
+        switch (i.type) {
+            case 'html':
+                return <RenderHtml key={idx} source={{ html: i.content }} contentWidth={width} />
+            case 'image':
+                return <Image key={idx} style={{ width: 200, height: 150 }} source={{ uri: i.content }} />
         }
     }
 
@@ -124,69 +210,22 @@ const YNQuestion = (props) => {
             {getTopComponent()}
             <Text style={[styles.guide_label, questionTypeStyles]}>{guide_touch}</Text>
             <View style={[styles.question_view, questionTitleStyles]}>
-                {_question.map((i, idx) => {
-                    switch (i.type) {
-                        case 'html':
-                            return <RenderHtml key={idx} source={{ html: i.content }} contentWidth={width} />
-                        case 'image':
-                            return <Image key={idx} style={{ width: 200, height: 150 }} source={{ uri: i.content }} />
-                    }
-                })}
+                {_question.map(_renderQuestion)}
             </View>
-            <View style={[styles.row, optionContainerStyles]}>
-                {options.map((i, idx) => {
-                    const onPress = () => {
-                        onSelectOption(i)
-                        setCurrentAnswer(idx)
-                        setQuestionStep(1)
-                    }
-                    const renderAnswerContent = () => {
-                        return i.option_content.map((it, ix) => {
-                            switch (it.type) {
-                                case 'html':
-                                    return (
-                                        <Text
-                                            key={ix}
-                                            style={[
-                                                styles.answer_btn_txt,
-                                                defaultOptionTitleStyles,
-                                                currentAnswer == idx && activeTxtStyles
-                                            ]}>
-                                            {it.content}
-                                        </Text>
-                                    )
-                                case 'image':
-                                    return <Image key={ix} style={{ width: 200, height: 150 }} source={{ uri: it.content }} />
-                            }
-                        })
-
-                    }
-                    return (
-                        <TouchableOpacity
-                            key={idx}
-                            onPress={onPress}
-                            disabled={questionStep >= 2}
-                            style={[styles.answer_btn, defaultOptionButtonStyles, currentAnswer == idx && activeButtonStyles]}>
-                            {renderAnswerContent()}
-                        </TouchableOpacity>
-                    )
-                })}
+            <View style={[styles.row, optionContainerStyles]} pointerEvents={displayMode == 'result' ? 'none' : 'auto'}>
+                {options.map(_renderOptionItem)}
             </View>
             <Collapsible
                 style={styles.suggestion_collapsible}
                 collapsed={suggestionCollapsed}>
                 <Text style={styles.suggestion_label}>{label_suggestion}</Text>
-                {solution_suggestion.map((i, idx) => {
-                    switch (i.type) {
-                        case 'html':
-                            return <RenderHtml key={idx} source={{ html: i.content }} contentWidth={width} />
-                        case 'image':
-                            return <Image key={idx} style={{ width: 200, height: 150 }} source={{ uri: i.content }} />
-                    }
-                })}
+                {solution_suggestion.map(_renderSuggestion)}
             </Collapsible>
             <View style={styles.row}>
-                <TouchableOpacity onPress={toggleSuggestionVisible} style={styles.suggestion_btn}>
+                <TouchableOpacity
+                    disabled={displayMode == 'result'}
+                    onPress={toggleSuggestionVisible}
+                    style={styles.suggestion_btn}>
                     {
                         questionStep != 2 && <View style={{ marginRight: 8 }}>
                             <Feather name='sun' size={20} color='#419e01' />
@@ -205,26 +244,7 @@ const YNQuestion = (props) => {
                 <View style={[styles.result_container, resultContainerStyles]}>
                     <Text style={styles.suggestion_label}>{label_result_txt}</Text>
                     <View style={styles.row}>
-                        {options.map((i, idx) => {
-                            const renderAnswerContent = () => {
-                                return i.option_content.map((it, ix) => {
-                                    switch (it.type) {
-                                        case 'html':
-                                            return <Text key={ix} style={[styles.answer_btn_txt, correct_options == i.id && activeTxtStyles]}>{it.content}</Text>
-                                        case 'image':
-                                            return <Image key={ix} style={{ width: 200, height: 150 }} source={{ uri: it.content }} />
-                                    }
-                                })
-
-                            }
-                            return (
-                                <View
-                                    key={idx}
-                                    style={[styles.answer_btn, correct_options == i.id && activeButtonStyles]}>
-                                    {renderAnswerContent()}
-                                </View>
-                            )
-                        })}
+                        {options.map(_renderOptionUnaccesible)}
                     </View>
                     <View style={styles.solution_detail_view}>
                         <TouchableOpacity onPress={toggleSolutionDetail} style={styles.solution_detail_btn}>
@@ -235,26 +255,12 @@ const YNQuestion = (props) => {
                     <Collapsible collapsed={solutionCollapsed} >
                         <View style={solutionSuggestionStyles}>
                             <Text style={styles.suggestion_label}>{label_suggestion}</Text>
-                            {solution_suggestion.map((i, idx) => {
-                                switch (i.type) {
-                                    case 'html':
-                                        return <RenderHtml key={idx} source={{ html: i.content }} contentWidth={width} />
-                                    case 'image':
-                                        return <Image key={idx} style={{ width: 200, height: 150 }} source={{ uri: i.content }} />
-                                }
-                            })}
+                            {solution_suggestion.map(_renderSuggestion)}
                         </View>
                         <View style={solutionDetailStyles}>
                             <Text style={styles.suggestion_label}>{label_solution_detail}</Text>
                             <View style={{ marginTop: 12 }}>
-                                {solution_detail.map((i, idx) => {
-                                    switch (i.type) {
-                                        case 'html':
-                                            return <RenderHtml key={idx} source={{ html: i.content }} contentWidth={width} />
-                                        case 'image':
-                                            return <Image key={idx} style={{ width: 200, height: 150 }} source={{ uri: i.content }} />
-                                    }
-                                })}
+                                {solution_detail.map(_renderSolutionDetail)}
                             </View>
                         </View>
                     </Collapsible>
@@ -293,6 +299,10 @@ YNQuestion.propTypes = {
     getBottomComponent: PropTypes.func,
     getCornerComponent: PropTypes.func,
     onSelectOption: PropTypes.func,
+    onToggleSuggestion: PropTypes.func,
+    onSkipQuestion: PropTypes.func,
+    onFinishQuestion: PropTypes.func,
+    onToggleSolutionDetail: PropTypes.func,
 }
 
 YNQuestion.defaultProps = {
@@ -304,7 +314,11 @@ YNQuestion.defaultProps = {
     getMiddleComponent: () => null,
     getBottomComponent: () => null,
     getCornerComponent: () => null,
-    onSelectOption: () => { }
+    onSelectOption: () => { },
+    onToggleSuggestion: () => { },
+    onSkipQuestion: () => { },
+    onFinishQuestion: () => { },
+    onToggleSolutionDetail: () => { },
 }
 
 export default YNQuestion

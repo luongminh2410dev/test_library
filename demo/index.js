@@ -45,10 +45,25 @@ const Demo = () => {
             <YNQuestion
                 question={data}
                 customConfig={{
-                    label_suggestion: 'Phương pháp',
+                    label_suggestion: 'Phương pháp giải abc',
                     label_solution_detail: 'Lời giải của GV Loigiaihay.com',
                     btn_skip_text: 'Câu tiếp theo',
                 }}
+            // onSelectOption={(e) => {
+            //     console.log(e)
+            // }}
+            // onToggleSuggestion={(e) => {
+            //     console.log('suggestion state: ' + e.isShow)
+            // }}
+            // onSkipQuestion={() => {
+            //     console.log('skip question')
+            // }}
+            // onFinishQuestion={() => {
+            //     console.log('finish question')
+            // }}
+            // onToggleSolutionDetail={(e) => {
+            //     console.log('solution detail state: ' + e.isShow)
+            // }}
             />
         </ScrollView>
     )
