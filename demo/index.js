@@ -8,8 +8,8 @@ const data = {
     guide_touch: "Em hãy chọn đáp án đúng hoặc sai",
     content_format: "array",
     question: [
-        { type: 'html', content: '<p>Nội dung sau về tác giả Nguyển Du đúng hay sai?<p>' },
-        { type: 'html', content: '<p>Nguyễn Du chỉ sáng tác bằng chữ hán</p>' }
+        { type: 'html', content: '<span style="margin-top: 8px; font-size: 16px;">Nội dung sau về tác giả Nguyển Du đúng hay sai?<span>' },
+        { type: 'html', content: '<span style="margin-top: 8px; font-size: 16px;">Nguyễn Du chỉ sáng tác bằng chữ hán</span>' }
     ],
     solution_suggestion: [
         { type: 'html', content: '<p>Vài nét về tác giả Nguyễn Du - <a href="#">Xem chi tiết</a></p>' }

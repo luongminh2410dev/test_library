@@ -9,9 +9,9 @@ import styles from './styles';
 const { width, height } = Dimensions.get('window');
 
 const HtmlContent = (props) => {
-    const { content } = props;
+    const { content, color } = props;
     return (
-        <RenderHtml source={{ html: content }} contentWidth={width} />
+        <RenderHtml source={{ html: content }} contentWidth={width} baseStyle={{ color }} />
     )
 }
 
@@ -37,6 +37,7 @@ const YNQuestion = (props) => {
     const {
         primaryColor = '#419e01',
         subColor = '#e7a22b',
+        textColor = '#000000',
         container: containerStyles = {},
         question_type: questionTypeStyles = {},
         question_title: questionTitleStyles = {},
@@ -138,7 +139,7 @@ const YNQuestion = (props) => {
     const _renderQuestion = (i, idx) => {
         switch (i.type) {
             case 'html':
-                return <RenderHtml key={idx} source={{ html: i.content }} contentWidth={width} />
+                return <HtmlContent key={idx} content={i.content} color={textColor} />
             case 'image':
                 return <Image key={idx} style={{ width: 200, height: 150 }} source={{ uri: i.content }} />
         }
@@ -181,7 +182,7 @@ const YNQuestion = (props) => {
     const _renderSuggestion = (i, idx) => {
         switch (i.type) {
             case 'html':
-                return <RenderHtml key={idx} source={{ html: i.content }} contentWidth={width} />
+                return <HtmlContent key={idx} content={i.content} color={textColor} />
             case 'image':
                 return <Image key={idx} style={{ width: 200, height: 150 }} source={{ uri: i.content }} />
         }
@@ -207,7 +208,7 @@ const YNQuestion = (props) => {
     const _renderSolutionDetail = (i, idx) => {
         switch (i.type) {
             case 'html':
-                return <RenderHtml key={idx} source={{ html: i.content }} contentWidth={width} />
+                return <HtmlContent key={idx} content={i.content} color={textColor} />
             case 'image':
                 return <Image key={idx} style={{ width: 200, height: 150 }} source={{ uri: i.content }} />
         }
@@ -218,7 +219,7 @@ const YNQuestion = (props) => {
         <View style={[styles.container, containerStyles]} pointerEvents={displayMode == 'preview' ? 'none' : 'auto'}>
             <View style={[styles.row, { paddingHorizontal: 12 }]}>
                 <View style={styles.question_label}>
-                    <Text style={styles.question_label_txt}>{label_question}: </Text>
+                    <Text style={[styles.question_label_txt, { color: textColor }]}>{label_question}: </Text>
                     {customLevelComponent(difficult_level) || getDifficultQuestion()}
                 </View>
                 {getCornerComponent()}
@@ -301,6 +302,7 @@ YNQuestion.propTypes = {
     customStyles: PropTypes.shape({
         primaryColor: PropTypes.string,
         subColor: PropTypes.string,
+        textColor: PropTypes.string,
         container: PropTypes.object,
         question_type: PropTypes.object,
         question_title: PropTypes.object,
