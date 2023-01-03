@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-import { Dimensions, Image, Text, TouchableOpacity, View, Alert } from 'react-native';
+import { Alert, Dimensions, Image, Text, TouchableOpacity, View } from 'react-native';
 import Collapsible from 'react-native-collapsible';
 import RenderHtml from 'react-native-render-html';
 import Feather from 'react-native-vector-icons/Feather';
@@ -8,15 +8,24 @@ import styles from './styles';
 
 const { width, height } = Dimensions.get('window');
 
+const HtmlContent = (props) => {
+    const { content } = props;
+    return (
+        <RenderHtml source={{ html: content }} contentWidth={width} />
+    )
+}
+
 // nextBtnState: 0 - chua chon dap an, 1 - da chon dap an, 2 - da hoan thanh cau hoi
 const YNQuestion = (props) => {
     const {
         question, customConfig, customStyles, displayMode,
         getTopComponent, getMiddleComponent, getBottomComponent, getCornerComponent,
+        customLevelComponent,
         onSelectOption, onToggleSuggestion, onSkipQuestion, onFinishQuestion, onToggleSolutionDetail
     } = props;
 
     const {
+        label_question = 'Câu 1',
         label_suggestion = 'Phương pháp giải',
         label_solution_detail = 'Lời giải của GV Vungoi.vn',
         label_result_txt = 'Đáp án của GV Vungoi.vn',
@@ -26,6 +35,8 @@ const YNQuestion = (props) => {
     } = customConfig;
 
     const {
+        primaryColor = '#419e01',
+        subColor = '#e7a22b',
         container: containerStyles = {},
         question_type: questionTypeStyles = {},
         question_title: questionTitleStyles = {},
@@ -37,10 +48,12 @@ const YNQuestion = (props) => {
         result_container: resultContainerStyles = {},
         solution_detail: solutionDetailStyles = {},
         solution_suggestion: solutionSuggestionStyles = {},
+        solution_detail_btn: solutionDetailBtnStyles = {},
+        solution_detail_btn_title: solutionDetailBtnTitleStyles = {},
     } = customStyles;
 
     const {
-        text_label, guide_touch, question: _question,
+        guide_touch, question: _question,
         difficult_level, solution_suggestion,
         options, correct_options, solution_detail
     } = question;
@@ -53,7 +66,7 @@ const YNQuestion = (props) => {
     const nextButtonLabel = questionStep == 1 ? 'Kiểm tra' : btn_skip_text;
     const suggestButtonLabel = questionStep == 2 ? 'Xem lại lý thuyết' : btn_suggestion_text;
 
-    const activeButtonStyles = Object.assign({}, styles.active_answer_btn, actived_option_btn);
+    const activeButtonStyles = Object.assign({}, { borderColor: primaryColor, backgroundColor: primaryColor }, actived_option_btn);
     const activeTxtStyles = Object.assign({}, styles.active_answer_btn_txt, actived_option_title);
 
     const getDifficultQuestion = () => {
@@ -203,12 +216,15 @@ const YNQuestion = (props) => {
     if (!question) return null;
     return (
         <View style={[styles.container, containerStyles]} pointerEvents={displayMode == 'preview' ? 'none' : 'auto'}>
-            <View style={styles.question_label}>
-                <Text style={styles.question_label_txt}>{text_label}: {getDifficultQuestion()}</Text>
+            <View style={[styles.row, { paddingHorizontal: 12 }]}>
+                <View style={styles.question_label}>
+                    <Text style={styles.question_label_txt}>{label_question}: </Text>
+                    {customLevelComponent(difficult_level) || getDifficultQuestion()}
+                </View>
                 {getCornerComponent()}
             </View>
             {getTopComponent()}
-            <Text style={[styles.guide_label, questionTypeStyles]}>{guide_touch}</Text>
+            <Text style={[styles.guide_label, { color: primaryColor }, questionTypeStyles]}>{guide_touch}</Text>
             <View style={[styles.question_view, questionTitleStyles]}>
                 {_question.map(_renderQuestion)}
             </View>
@@ -218,22 +234,22 @@ const YNQuestion = (props) => {
             <Collapsible
                 style={styles.suggestion_collapsible}
                 collapsed={suggestionCollapsed}>
-                <Text style={styles.suggestion_label}>{label_suggestion}</Text>
+                <Text style={[styles.suggestion_label, { color: subColor }]}>{label_suggestion}</Text>
                 {solution_suggestion.map(_renderSuggestion)}
             </Collapsible>
             <View style={styles.row}>
                 <TouchableOpacity
                     disabled={displayMode == 'result'}
                     onPress={toggleSuggestionVisible}
-                    style={styles.suggestion_btn}>
+                    style={[styles.suggestion_btn, { borderColor: primaryColor }]}>
                     {
                         questionStep != 2 && <View style={{ marginRight: 8 }}>
-                            <Feather name='sun' size={20} color='#419e01' />
+                            <Feather name='sun' size={20} color={primaryColor} />
                         </View>
                     }
-                    <Text style={styles.suggestion_txt}>{suggestButtonLabel}</Text>
+                    <Text style={[styles.suggestion_txt, { color: primaryColor }]}>{suggestButtonLabel}</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={onNextButtonPress} style={styles.next_question_btn}>
+                <TouchableOpacity onPress={onNextButtonPress} style={[styles.next_question_btn, { backgroundColor: primaryColor }]}>
                     <Text style={styles.next_question_txt}>{nextButtonLabel}</Text>
                     <Feather name='chevrons-right' size={20} color='white' />
                 </TouchableOpacity>
@@ -242,23 +258,23 @@ const YNQuestion = (props) => {
             {
                 questionStep == 2 &&
                 <View style={[styles.result_container, resultContainerStyles]}>
-                    <Text style={styles.suggestion_label}>{label_result_txt}</Text>
+                    <Text style={[styles.suggestion_label, { color: subColor }]}>{label_result_txt}</Text>
                     <View style={styles.row}>
                         {options.map(_renderOptionUnaccesible)}
                     </View>
                     <View style={styles.solution_detail_view}>
-                        <TouchableOpacity onPress={toggleSolutionDetail} style={styles.solution_detail_btn}>
-                            <Text style={{ fontSize: 15, }}>Xem lời giải</Text>
+                        <TouchableOpacity onPress={toggleSolutionDetail} style={[styles.solution_detail_btn, solutionDetailBtnStyles]}>
+                            <Text style={[{ fontSize: 15, }, solutionDetailBtnTitleStyles]}>Xem lời giải</Text>
                         </TouchableOpacity>
                     </View>
                     {getBottomComponent()}
                     <Collapsible collapsed={solutionCollapsed} >
                         <View style={solutionSuggestionStyles}>
-                            <Text style={styles.suggestion_label}>{label_suggestion}</Text>
+                            <Text style={[styles.suggestion_label, { color: subColor }]}>{label_suggestion}</Text>
                             {solution_suggestion.map(_renderSuggestion)}
                         </View>
                         <View style={solutionDetailStyles}>
-                            <Text style={styles.suggestion_label}>{label_solution_detail}</Text>
+                            <Text style={[styles.suggestion_label, { color: subColor }]}>{label_solution_detail}</Text>
                             <View style={{ marginTop: 12 }}>
                                 {solution_detail.map(_renderSolutionDetail)}
                             </View>
@@ -272,7 +288,9 @@ const YNQuestion = (props) => {
 
 YNQuestion.propTypes = {
     question: PropTypes.object.isRequired,
+    primaryColor: PropTypes.string,
     customConfig: PropTypes.shape({
+        label_question: PropTypes.string,
         label_suggestion: PropTypes.string,
         label_solution_detail: PropTypes.string,
         label_result_txt: PropTypes.string,
@@ -281,6 +299,8 @@ YNQuestion.propTypes = {
         popup_confirm_skip: PropTypes.string,
     }),
     customStyles: PropTypes.shape({
+        primaryColor: PropTypes.string,
+        subColor: PropTypes.string,
         container: PropTypes.object,
         question_type: PropTypes.object,
         question_title: PropTypes.object,
@@ -292,12 +312,15 @@ YNQuestion.propTypes = {
         result_container: PropTypes.object,
         solution_detail: PropTypes.object,
         solution_suggestion: PropTypes.object,
+        solution_detail_btn: PropTypes.object,
+        solution_detail_btn_title: PropTypes.object,
     }),
     displayMode: PropTypes.oneOf(['default', 'result', 'preview']),
     getTopComponent: PropTypes.func,
     getMiddleComponent: PropTypes.func,
     getBottomComponent: PropTypes.func,
     getCornerComponent: PropTypes.func,
+    customLevelComponent: PropTypes.func,
     onSelectOption: PropTypes.func,
     onToggleSuggestion: PropTypes.func,
     onSkipQuestion: PropTypes.func,
@@ -314,6 +337,7 @@ YNQuestion.defaultProps = {
     getMiddleComponent: () => null,
     getBottomComponent: () => null,
     getCornerComponent: () => null,
+    customLevelComponent: () => null,
     onSelectOption: () => { },
     onToggleSuggestion: () => { },
     onSkipQuestion: () => { },

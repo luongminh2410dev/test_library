@@ -49,6 +49,20 @@ const Demo = () => {
                     label_solution_detail: 'Lời giải của GV Loigiaihay.com',
                     btn_skip_text: 'Câu tiếp theo',
                 }}
+                customStyles={{
+                    // primaryColor: 'red',
+                    // subColor: 'blue'
+                }}
+            // customLevelComponent={(level) => {
+            //     return (
+            //         <View style={{ flex: 1, alignItems: 'flex-end' }}>
+            //             <Text style={{ color: 'red', }}>{level}</Text>
+            //         </View>
+            //     )
+            // }}
+            // getCornerComponent={() => (
+            //     <View style={{ width: 50, height: 30, backgroundColor: 'red' }} />
+            // )}
             // onSelectOption={(e) => {
             //     console.log(e)
             // }}
@@ -65,7 +79,7 @@ const Demo = () => {
             //     console.log('solution detail state: ' + e.isShow)
             // }}
             />
-        </ScrollView>
+        </ScrollView >
     )
 }
 

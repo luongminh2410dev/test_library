@@ -9,18 +9,15 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     question_label: {
-        width: '100%',
-        paddingHorizontal: 12,
+        flex: 1,
         flexDirection: 'row'
     },
     question_label_txt: {
-        flex: 1,
         textAlign: 'left',
         fontWeight: "bold"
     },
     guide_label: {
         fontSize: 17,
-        color: '#419e01',
         fontWeight: 'bold',
         marginTop: 12,
     },
@@ -76,7 +73,6 @@ const styles = StyleSheet.create({
     suggestion_label: {
         width: '100%',
         fontSize: 15,
-        color: '#e7a22b',
         fontWeight: "bold",
         textAlign: 'left',
     },
@@ -86,16 +82,13 @@ const styles = StyleSheet.create({
         paddingVertical: 12,
         paddingHorizontal: 24,
         borderWidth: 1,
-        borderColor: '#419e01',
         borderRadius: 8,
     },
     suggestion_txt: {
         fontSize: 16,
-        color: '#419e01'
     },
     next_question_btn: {
         flexDirection: "row",
-        backgroundColor: '#419e01',
         borderRadius: 8,
         paddingVertical: 12,
         paddingHorizontal: 24
