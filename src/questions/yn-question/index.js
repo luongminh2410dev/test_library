@@ -1,19 +1,9 @@
-import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-import { Alert, Dimensions, Image, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, Image, Text, TouchableOpacity, View } from 'react-native';
 import Collapsible from 'react-native-collapsible';
-import RenderHtml from 'react-native-render-html';
 import Feather from 'react-native-vector-icons/Feather';
+import HtmlContent from '../../components/html-content';
 import styles from './styles';
-
-const { width, height } = Dimensions.get('window');
-
-const HtmlContent = (props) => {
-    const { content, color } = props;
-    return (
-        <RenderHtml source={{ html: content }} contentWidth={width} baseStyle={{ color }} />
-    )
-}
 
 // nextBtnState: 0 - chua chon dap an, 1 - da chon dap an, 2 - da hoan thanh cau hoi
 const YNQuestion = (props) => {
@@ -222,7 +212,7 @@ const YNQuestion = (props) => {
                     <Text style={[styles.question_label_txt, { color: textColor }]}>{label_question}: </Text>
                     {customLevelComponent(difficult_level) || getDifficultQuestion()}
                 </View>
-                {getCornerComponent()}
+                {getCornerComponent(question.id, question.sdk_type)}
             </View>
             {getTopComponent()}
             <Text style={[styles.guide_label, { color: primaryColor }, questionTypeStyles]}>{guide_touch}</Text>
@@ -285,66 +275,6 @@ const YNQuestion = (props) => {
             }
         </View>
     )
-}
-
-YNQuestion.propTypes = {
-    question: PropTypes.object.isRequired,
-    primaryColor: PropTypes.string,
-    customConfig: PropTypes.shape({
-        label_question: PropTypes.string,
-        label_suggestion: PropTypes.string,
-        label_solution_detail: PropTypes.string,
-        label_result_txt: PropTypes.string,
-        btn_suggestion_text: PropTypes.string,
-        btn_skip_text: PropTypes.string,
-        popup_confirm_skip: PropTypes.string,
-    }),
-    customStyles: PropTypes.shape({
-        primaryColor: PropTypes.string,
-        subColor: PropTypes.string,
-        textColor: PropTypes.string,
-        container: PropTypes.object,
-        question_type: PropTypes.object,
-        question_title: PropTypes.object,
-        options_container: PropTypes.object,
-        actived_option_btn: PropTypes.object,
-        actived_option_title: PropTypes.object,
-        default_option_btn: PropTypes.object,
-        default_option_title: PropTypes.object,
-        result_container: PropTypes.object,
-        solution_detail: PropTypes.object,
-        solution_suggestion: PropTypes.object,
-        solution_detail_btn: PropTypes.object,
-        solution_detail_btn_title: PropTypes.object,
-    }),
-    displayMode: PropTypes.oneOf(['default', 'result', 'preview']),
-    getTopComponent: PropTypes.func,
-    getMiddleComponent: PropTypes.func,
-    getBottomComponent: PropTypes.func,
-    getCornerComponent: PropTypes.func,
-    customLevelComponent: PropTypes.func,
-    onSelectOption: PropTypes.func,
-    onToggleSuggestion: PropTypes.func,
-    onSkipQuestion: PropTypes.func,
-    onFinishQuestion: PropTypes.func,
-    onToggleSolutionDetail: PropTypes.func,
-}
-
-YNQuestion.defaultProps = {
-    question: {},
-    customConfig: {},
-    customStyles: {},
-    displayMode: 'default',
-    getTopComponent: () => null,
-    getMiddleComponent: () => null,
-    getBottomComponent: () => null,
-    getCornerComponent: () => null,
-    customLevelComponent: () => null,
-    onSelectOption: () => { },
-    onToggleSuggestion: () => { },
-    onSkipQuestion: () => { },
-    onFinishQuestion: () => { },
-    onToggleSolutionDetail: () => { },
 }
 
 export default YNQuestion
