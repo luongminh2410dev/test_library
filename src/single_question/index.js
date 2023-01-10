@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types'
 import React from 'react'
+import PairingQuestion from '../questions/pairing-question'
 import MultiChoice from '../questions/multichoice-question'
-import YNQuestion from '../questions/yn-question'
 import TextDGNL from '../questions/text-dgnl-question'
+import YNQuestion from '../questions/yn-question'
 
 const SingleQuestion = (props) => {
     const { question, globalConfig, globalStyles, customConfig, customStyles } = props;
@@ -10,15 +11,40 @@ const SingleQuestion = (props) => {
 
     const newConfig = Object.assign({}, globalConfig, customConfig);
     const newStyles = Object.assign({}, globalStyles, customStyles);
-    const newProps = Object.assign({}, props, { customConfig: newConfig, customStyles: newStyles });
 
     switch (sdk_type) {
         case 1:
-            return <MultiChoice {...newProps} />
+            return (
+                <MultiChoice
+                    {...props}
+                    customConfig={newConfig}
+                    customStyles={newStyles}
+                />
+            )
         case 3:
-            return <YNQuestion {...newProps} />
+            return (
+                <YNQuestion
+                    {...props}
+                    customConfig={newConfig}
+                    customStyles={newStyles}
+                />
+            )
+        case 4:
+            return (
+                <PairingQuestion
+                    {...props}
+                    customConfig={newConfig}
+                    customStyles={newStyles}
+                />
+            )
         case 20:
-            return <TextDGNL {...newProps} />
+            return (
+                <TextDGNL
+                    {...props}
+                    customConfig={newConfig}
+                    customStyles={newStyles}
+                />
+            )
         default:
             return null;
     }
@@ -57,10 +83,18 @@ SingleQuestion.propTypes = {
         question_type: PropTypes.object,
         question_title: PropTypes.object,
         options_container: PropTypes.object,
-        actived_option_btn: PropTypes.object,
-        actived_option_title: PropTypes.object,
+        // actived_option_btn: PropTypes.object,
+        // actived_option_title: PropTypes.object,
         default_option_btn: PropTypes.object,
-        default_option_title: PropTypes.object,
+        default_option_txt: PropTypes.object,
+        // 
+        default_target_option: PropTypes.object,
+        default_source_option: PropTypes.object,
+        active_option_btn: PropTypes.object,
+        active_option_txt: PropTypes.object,
+        // 
+        text_input_label: PropTypes.object,
+        text_input_view: PropTypes.object,
         result_container: PropTypes.object,
         solution_detail: PropTypes.object,
         solution_suggestion: PropTypes.object,

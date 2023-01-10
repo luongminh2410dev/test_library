@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React, { useRef, useState } from 'react';
 import { Alert, Image, Text, TouchableOpacity, View } from 'react-native';
 import Collapsible from 'react-native-collapsible';
@@ -36,6 +35,8 @@ const TextQuestion = (props) => {
         options_container: optionContainerStyles = {},
         result_container: resultContainerStyles = {},
         solution_detail: solutionDetailStyles = {},
+        text_input_label: inputLabelStyles = {},
+        text_input_view: textInputStyles = {},
         solution_suggestion: solutionSuggestionStyles = {},
         solution_detail_btn: solutionDetailBtnStyles = {},
         solution_detail_btn_title: solutionDetailBtnTitleStyles = {},
@@ -175,10 +176,10 @@ const TextQuestion = (props) => {
                 {_question.map(_renderQuestion)}
             </View>
             <View style={[styles.row, optionContainerStyles]} pointerEvents={displayMode == 'result' ? 'none' : 'auto'}>
-                <Text style={styles.result_input_label}>Đáp án:</Text>
+                <Text style={[styles.result_input_label, inputLabelStyles]}>Đáp án:</Text>
                 <InputItem
                     ref={refInputItem}
-                    style={styles.result_input}
+                    style={[styles.result_input, textInputStyles]}
                     onChange={onInputChange}
                     editable={questionStep != 2}
                 />
@@ -208,7 +209,7 @@ const TextQuestion = (props) => {
             </View>
             {getMiddleComponent()}
             {
-                questionStep == 2 &&
+                (questionStep == 2 || displayMode != 'default') &&
                 <View style={[styles.result_container, resultContainerStyles]}>
                     <View style={{ borderWidth: 1, borderStyle: 'dashed', borderColor: isCorrect ? primaryColor : 'red' }}>
                         <Text style={[styles.result_txt, { color: isCorrect ? primaryColor : 'red' }]}>Đáp án đúng là: "{correct_options}"</Text>
@@ -235,66 +236,6 @@ const TextQuestion = (props) => {
             }
         </View>
     )
-}
-
-TextQuestion.propTypes = {
-    question: PropTypes.object.isRequired,
-    primaryColor: PropTypes.string,
-    customConfig: PropTypes.shape({
-        label_question: PropTypes.string,
-        label_suggestion: PropTypes.string,
-        label_solution_detail: PropTypes.string,
-        label_result_txt: PropTypes.string,
-        btn_suggestion_text: PropTypes.string,
-        btn_skip_text: PropTypes.string,
-        popup_confirm_skip: PropTypes.string,
-    }),
-    customStyles: PropTypes.shape({
-        primaryColor: PropTypes.string,
-        subColor: PropTypes.string,
-        textColor: PropTypes.string,
-        container: PropTypes.object,
-        question_type: PropTypes.object,
-        question_title: PropTypes.object,
-        options_container: PropTypes.object,
-        actived_option_btn: PropTypes.object,
-        actived_option_title: PropTypes.object,
-        default_option_btn: PropTypes.object,
-        default_option_title: PropTypes.object,
-        result_container: PropTypes.object,
-        solution_detail: PropTypes.object,
-        solution_suggestion: PropTypes.object,
-        solution_detail_btn: PropTypes.object,
-        solution_detail_btn_title: PropTypes.object,
-    }),
-    displayMode: PropTypes.oneOf(['default', 'result', 'preview']),
-    getTopComponent: PropTypes.func,
-    getMiddleComponent: PropTypes.func,
-    getBottomComponent: PropTypes.func,
-    getCornerComponent: PropTypes.func,
-    customLevelComponent: PropTypes.func,
-    onSelectOption: PropTypes.func,
-    onToggleSuggestion: PropTypes.func,
-    onSkipQuestion: PropTypes.func,
-    onFinishQuestion: PropTypes.func,
-    onToggleSolutionDetail: PropTypes.func,
-}
-
-TextQuestion.defaultProps = {
-    question: {},
-    customConfig: {},
-    customStyles: {},
-    displayMode: 'default',
-    getTopComponent: () => null,
-    getMiddleComponent: () => null,
-    getBottomComponent: () => null,
-    getCornerComponent: () => null,
-    customLevelComponent: () => null,
-    onSelectOption: () => { },
-    onToggleSuggestion: () => { },
-    onSkipQuestion: () => { },
-    onFinishQuestion: () => { },
-    onToggleSolutionDetail: () => { },
 }
 
 export default TextQuestion

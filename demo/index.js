@@ -1,7 +1,8 @@
-import { View, Text, ScrollView, TouchableOpacity } from 'react-native'
 import React from 'react'
+import { ScrollView, Text, View } from 'react-native'
+import { paringQuestion } from '../src/const'
 import SingleQuestion from '../src/single_question'
-import { textDGNLQuestion } from '../src/const'
+
 const CustomView = () => {
     // HANDLE SOMETHING
     return (
@@ -14,7 +15,7 @@ const Demo = () => {
         <ScrollView style={{ flex: 1, backgroundColor: 'white' }} contentContainerStyle={{ paddingTop: 80, }}>
             <Text style={{ fontSize: 26, fontWeight: 'bold', width: '100%', textAlign: 'center' }}>Demo App</Text>
             <SingleQuestion
-                question={textDGNLQuestion}
+                question={paringQuestion}
             />
         </ScrollView>
     )

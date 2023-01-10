@@ -109,6 +109,7 @@ export const ynQuestion = {
 
 export const textDGNLQuestion = {
     id: "6385feda3a24fad0792f71cd",
+    content_format: 'array',
     analytics: {
         correct: 0,
         incorrect: 0,
@@ -117,7 +118,7 @@ export const textDGNLQuestion = {
         percent_false: 0
     },
     sdk_type: 20,
-    difficult_degree: 3,
+    difficult_level: 3,
     request_question: [
         {
             type: "html",
@@ -156,4 +157,137 @@ export const textDGNLQuestion = {
     ],
     notice: [],
     correct_options: ['458'],
+}
+
+export const paringQuestion = {
+    id: "61f2638d11732e225b0c7cec",
+    analytics: {
+        correct: 0,
+        incorrect: 0,
+        skiped: 0,
+        total_answer: 0,
+        percent_false: 0
+    },
+    solution_detail: [
+        {
+            type: "html",
+            content: "<p style=\"text-align: justify;\">Đồng hồ hiện 19 giờ hay ch&iacute;nh l&agrave; 7 giờ tối</p>\n<p style=\"text-align: justify;\">Đồng hồ hiện 14 giờ 30 ph&uacute;t hay ch&iacute;nh l&agrave; 2 giờ 30 ph&uacute;t chiều</p>\n<p style=\"text-align: justify;\">Đồng hồ hiện 18 giờ 15 ph&uacute;t hay ch&iacute;nh l&agrave; 6 giờ 15 ph&uacute;t tối</p>"
+        },
+        {
+            type: "html",
+            content: "<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"https://cdn.vungoi.vn/vungoi/2022/0127/1643275069219_anh_34.jpg\" width=\"190\" height=\"200\" /></p>"
+        }
+    ],
+    solution_suggestion: [
+        {
+            type: "html",
+            content: "<p style=\"text-align: justify;\">Em ghi nhớ kiến thức về c&aacute;c giờ trong ng&agrave;y v&agrave; nối c&aacute;c đồng hồ c&ugrave;ng chỉ một giờ lại với nhau.</p>"
+        }
+    ],
+    sdk_type: 4,
+    difficult_level: 3,
+    notice: [],
+    content_format: "array",
+    guide_touch: "Con hãy chạm vào 2 miếng ghép màu xanh và màu cam để tạo thành đáp án đúng",
+    question: [
+        {
+            type: "html",
+            content: "<p style=\"text-align: center;\">Nối c&aacute;c đồng hồ c&ugrave;ng chỉ một thời gian với nhau:</p>"
+        },
+        {
+            type: "image",
+            url: "https://cdn.vungoi.vn/vungoi/2022/0127/1643274808939_anh_25_ds.png",
+            caption: "",
+            optUpload: 2,
+            width: "200",
+            height: "200",
+            quantity: 1
+        }
+    ],
+    options: {
+        targets: [
+            {
+                id: "answer_ckywraioy000g396xdxum0d6x",
+                option_content: [
+                    {
+                        type: "html",
+                        content: "<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"https://cdn.vungoi.vn/vungoi/2022/0127/1643274847009_anh_29.png\" alt=\"\" width=\"122\" height=\"80\" /></p>"
+                    }
+                ],
+                answer: {
+                    index: 2
+                }
+            },
+            {
+                id: "answer_ckywrdflj000v396x3v2pkqhd",
+                option_content: [
+                    {
+                        type: "html",
+                        content: "<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"https://cdn.vungoi.vn/vungoi/2022/0127/1643274870542_anh_30.png\" alt=\"\" width=\"117\" height=\"80\" /></p>"
+                    }
+                ],
+                answer: {
+                    index: 0
+                }
+            },
+            {
+                id: "answer_ckywrdhus001a396xiyjrnmer",
+                option_content: [
+                    {
+                        type: "html",
+                        content: "<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"https://cdn.vungoi.vn/vungoi/2022/0127/1643274889567_anh_32.png\" alt=\"\" width=\"116\" height=\"80\" /></p>"
+                    }
+                ],
+                answer: {
+                    index: 1
+                }
+            }
+        ],
+        sources: [
+            {
+                id: "answer_ckywraioy000h396xng9c3z3x",
+                option_content: [
+                    {
+                        type: "html",
+                        content: "<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"https://cdn.vungoi.vn/vungoi/2022/0127/1643274917366_anh_33.png\" alt=\"\" width=\"136\" height=\"120\" /></p>"
+                    }
+                ],
+                index: 0
+            },
+            {
+                id: "answer_ckywrdjec001r396xs7exuaxe",
+                option_content: [
+                    {
+                        type: "html",
+                        content: "<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"https://cdn.vungoi.vn/vungoi/2022/0127/1643274939626_anh_28.png\" alt=\"\" width=\"130\" height=\"120\" /></p>"
+                    }
+                ],
+                index: 1
+            },
+            {
+                id: "answer_ckywrdk8n0029396x2yrbhj6g",
+                option_content: [
+                    {
+                        type: "html",
+                        content: "<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"https://cdn.vungoi.vn/vungoi/2022/0127/1643274956900_anh_31.png\" alt=\"\" width=\"124\" height=\"120\" /></p>"
+                    }
+                ],
+                index: 2
+            }
+        ]
+    },
+    correct_options: [
+        {
+            id: "answer_ckywraioy000g396xdxum0d6x",
+            answer: 2
+        },
+        {
+            id: "answer_ckywrdflj000v396x3v2pkqhd",
+            answer: 0
+        },
+        {
+            id: "answer_ckywrdhus001a396xiyjrnmer",
+            answer: 1
+        }
+    ]
 }

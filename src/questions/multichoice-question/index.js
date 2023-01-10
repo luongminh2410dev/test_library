@@ -225,7 +225,7 @@ const MultiChoice = (props) => {
             </View>
             {getMiddleComponent()}
             {
-                questionStep == 2 &&
+                (questionStep == 2 || displayMode != 'default') &&
                 <View style={[styles.result_container, resultContainerStyles]}>
                     <View style={{ borderWidth: 1, borderStyle: 'dashed', borderColor: primaryColor }}>
                         <Text style={[styles.result_txt, { color: primaryColor }]}>{

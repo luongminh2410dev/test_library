@@ -32,10 +32,10 @@ const YNQuestion = (props) => {
         question_type: questionTypeStyles = {},
         question_title: questionTitleStyles = {},
         options_container: optionContainerStyles = {},
-        actived_option_btn = {},
-        actived_option_title = {},
+        active_option_btn = {},
+        active_option_txt = {},
         default_option_btn: defaultOptionButtonStyles = {},
-        default_option_title: defaultOptionTitleStyles = {},
+        default_option_txt: defaultOptionTitleStyles = {},
         result_container: resultContainerStyles = {},
         solution_detail: solutionDetailStyles = {},
         solution_suggestion: solutionSuggestionStyles = {},
@@ -57,8 +57,8 @@ const YNQuestion = (props) => {
     const nextButtonLabel = questionStep == 1 ? 'Kiểm tra' : btn_skip_text;
     const suggestButtonLabel = questionStep == 2 ? 'Xem lại lý thuyết' : btn_suggestion_text;
 
-    const activeButtonStyles = Object.assign({}, { borderColor: primaryColor, backgroundColor: primaryColor }, actived_option_btn);
-    const activeTxtStyles = Object.assign({}, styles.active_answer_btn_txt, actived_option_title);
+    const activeButtonStyles = Object.assign({}, { borderColor: primaryColor, backgroundColor: primaryColor }, active_option_btn);
+    const activeTxtStyles = Object.assign({}, styles.active_answer_btn_txt, active_option_txt);
 
     const getDifficultQuestion = () => {
         switch (difficult_level) {
@@ -247,7 +247,7 @@ const YNQuestion = (props) => {
             </View>
             {getMiddleComponent()}
             {
-                questionStep == 2 &&
+                (questionStep == 2 || displayMode != 'default') &&
                 <View style={[styles.result_container, resultContainerStyles]}>
                     <Text style={[styles.suggestion_label, { color: subColor }]}>{label_result_txt}</Text>
                     <View style={styles.row}>
