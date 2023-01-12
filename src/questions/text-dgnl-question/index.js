@@ -36,7 +36,7 @@ const TextQuestion = (props) => {
         result_container: resultContainerStyles = {},
         solution_detail: solutionDetailStyles = {},
         text_input_label: inputLabelStyles = {},
-        text_input_view: textInputStyles = {},
+        text_input_item: textInputStyles = {},
         solution_suggestion: solutionSuggestionStyles = {},
         solution_detail_btn: solutionDetailBtnStyles = {},
         solution_detail_btn_title: solutionDetailBtnTitleStyles = {},
@@ -102,9 +102,7 @@ const TextQuestion = (props) => {
                     {
                         style: 'default',
                         text: btn_ok,
-                        onPress: () => {
-                            onSkipQuestion()
-                        }
+                        onPress: onSkipQuestion
                     },
                     {
                         style: 'destructive',
@@ -113,11 +111,9 @@ const TextQuestion = (props) => {
                 ])
                 break;
             case 1:
-                if (correct_options.includes(refInputItem.current.getValue())) {
-                    setCorrect(true)
-                }
-                setSuggestionCollapsed(true);
-                setQuestionStep(2);
+                if (!correct_options) return onFinishQuestion();
+                setSuggestionCollapsed(true)
+                setQuestionStep(2)
                 break;
             case 2:
                 onFinishQuestion();
@@ -132,30 +128,18 @@ const TextQuestion = (props) => {
         onSelectOption(e.nativeEvent.text)
     }
 
-    const _renderQuestion = (i, idx) => {
-        switch (i.type) {
+    const _renderContent = (item, index) => {
+        switch (item.type) {
             case 'html':
-                return <HtmlContent key={idx} content={i.content} color={textColor} />
+                return <HtmlContent key={index} content={item.content} color={textColor} />
             case 'image':
-                return <Image key={idx} style={{ width: 200, height: 150 }} source={{ uri: i.content }} />
-        }
-    }
-
-    const _renderSuggestion = (i, idx) => {
-        switch (i.type) {
-            case 'html':
-                return <HtmlContent key={idx} content={i.content} color={textColor} />
-            case 'image':
-                return <Image key={idx} style={{ width: 200, height: 150 }} source={{ uri: i.content }} />
-        }
-    }
-
-    const _renderSolutionDetail = (i, idx) => {
-        switch (i.type) {
-            case 'html':
-                return <HtmlContent key={idx} content={i.content} color={textColor} />
-            case 'image':
-                return <Image key={idx} style={{ width: 200, height: 150 }} source={{ uri: i.content }} />
+                return (
+                    <Image
+                        key={index}
+                        resizeMode='contain'
+                        style={{ width: 200, height: 150 }}
+                        source={{ uri: item.url }} />
+                )
         }
     }
 
@@ -172,8 +156,8 @@ const TextQuestion = (props) => {
             {getTopComponent()}
             <Text style={[styles.guide_label, { color: primaryColor }, questionTypeStyles]}>{guide_touch}</Text>
             <View style={[styles.question_view, questionTitleStyles]}>
-                {request_question.map(_renderQuestion)}
-                {_question.map(_renderQuestion)}
+                {request_question.map(_renderContent)}
+                {_question.map(_renderContent)}
             </View>
             <View style={[styles.row, optionContainerStyles]} pointerEvents={displayMode == 'result' ? 'none' : 'auto'}>
                 <Text style={[styles.result_input_label, inputLabelStyles]}>Đáp án:</Text>
@@ -188,7 +172,7 @@ const TextQuestion = (props) => {
                 style={styles.suggestion_collapsible}
                 collapsed={suggestionCollapsed}>
                 <Text style={[styles.suggestion_label, { color: subColor }]}>{label_suggestion}</Text>
-                {solution_suggestion.map(_renderSuggestion)}
+                {solution_suggestion.map(_renderContent)}
             </Collapsible>
             <View style={styles.row}>
                 <TouchableOpacity
@@ -223,12 +207,12 @@ const TextQuestion = (props) => {
                     <Collapsible collapsed={solutionCollapsed} >
                         <View style={solutionSuggestionStyles}>
                             <Text style={[styles.suggestion_label, { color: subColor }]}>{label_suggestion}</Text>
-                            {solution_suggestion.map(_renderSuggestion)}
+                            {solution_suggestion.map(_renderContent)}
                         </View>
                         <View style={solutionDetailStyles}>
                             <Text style={[styles.suggestion_label, { color: subColor }]}>{label_solution_detail}</Text>
                             <View style={{ marginTop: 12 }}>
-                                {solution_detail.map(_renderSolutionDetail)}
+                                {solution_detail.map(_renderContent)}
                             </View>
                         </View>
                     </Collapsible>

@@ -4,6 +4,8 @@ import PairingQuestion from '../questions/pairing-question'
 import MultiChoice from '../questions/multichoice-question'
 import TextDGNL from '../questions/text-dgnl-question'
 import YNQuestion from '../questions/yn-question'
+import PhraseQuestion from '../questions/phrase-question'
+import CompoundQuestion from '../questions/compound-question'
 
 const SingleQuestion = (props) => {
     const { question, globalConfig, globalStyles, customConfig, customStyles } = props;
@@ -21,6 +23,14 @@ const SingleQuestion = (props) => {
                     customStyles={newStyles}
                 />
             )
+        case 2:
+            return (
+                <CompoundQuestion
+                    {...props}
+                    customConfig={newConfig}
+                    customStyles={newStyles}
+                />
+            )
         case 3:
             return (
                 <YNQuestion
@@ -32,6 +42,14 @@ const SingleQuestion = (props) => {
         case 4:
             return (
                 <PairingQuestion
+                    {...props}
+                    customConfig={newConfig}
+                    customStyles={newStyles}
+                />
+            )
+        case 5:
+            return (
+                <PhraseQuestion
                     {...props}
                     customConfig={newConfig}
                     customStyles={newStyles}
@@ -94,7 +112,8 @@ SingleQuestion.propTypes = {
         active_option_txt: PropTypes.object,
         // 
         text_input_label: PropTypes.object,
-        text_input_view: PropTypes.object,
+        text_input_item: PropTypes.object,
+        // 
         result_container: PropTypes.object,
         solution_detail: PropTypes.object,
         solution_suggestion: PropTypes.object,

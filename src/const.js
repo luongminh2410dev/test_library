@@ -1,4 +1,4 @@
-export const fChoicesData = {
+export const multiChoicesData = {
     id: 123123,
     text_label: "Câu 1",
     guide_touch: "Em hãy chọn đáp án đúng hoặc sai",
@@ -290,4 +290,555 @@ export const paringQuestion = {
             answer: 1
         }
     ]
+}
+
+export const phraseQuestion = {
+    id: "6200e7db77e73fc854d3e9f6",
+    analytics: {
+        correct: 0,
+        incorrect: 0,
+        skiped: 0,
+        total_answer: 0,
+        percent_false: 0
+    },
+    solution_detail: [
+        {
+            type: "html",
+            content: "<p style=\"text-align: justify;\">a. Người dân Việt Nam lao động rất <strong>cần cù.</strong></p>\n<p style=\"text-align: justify;\">b. Các chú bộ đội chiến đấu <strong>anh dũng</strong> để bảo vệ Tổ quốc.</p>\n<p style=\"text-align: justify;\">c. Người Việt Nam luôn <strong>thân thiện</strong> với du khách nước ngoài.</p>"
+        }
+    ],
+    solution_suggestion: [
+        {
+            type: "html",
+            content: "<p style=\"text-align: justify;\">- anh dũng: không sợ khó khăn và nguy hiểm khi làm những việc cao đẹp.</p>\n<p style=\"text-align: justify;\">- cần cù: chăm chỉ, chịu khó làm một cách thường xuyên</p>\n<p style=\"text-align: justify;\">- thân thiện: thể hiện sự tử tế và có thiện cảm với nhau.</p>"
+        }
+    ],
+    sdk_type: 5,
+    difficult_level: 3,
+    notice: [],
+    content_format: "array",
+    guide_touch: "Con hãy bấm vào từ/cụm từ sau đó bấm chọn ô trống thích hợp để hoàn thành câu/đoạn văn",
+    question: [
+        {
+            type: "html",
+            content: "<p style=\"text-align: center;\"><strong>Chọn từ ngữ phù hợp để hoàn thiện các câu sau:</strong></p>"
+        },
+        {
+            type: "image",
+            url: "https://cdn.vungoi.vn/vungoi/2022/0207/1644226200528_anh_67_ds.png",
+            caption: "",
+            optUpload: 2,
+            width: 300,
+            height: 200,
+            quantity: 1
+        }
+    ],
+    options: {
+        phrases: [
+            {
+                id: "answer_ckzchsa0p000g396xv43zcdq5",
+                content: "anh dũng",
+            },
+            {
+                id: "answer_ckzchsa0p000h396xgk4bc0yl",
+                content: "thân thiện",
+            },
+            {
+                id: "answer_ckzchsa0p000i396xf01p6g3m",
+                content: "cần cù",
+            }
+        ],
+        sentences: [
+            {
+                id: "answer_ckzchsa0p000j396xav9ngfur",
+                content: "a. Người dân Việt Nam lao động rất ",
+                type: "richText",
+                optionTypeIndex: 0
+            },
+            {
+                id: "answer_ckzchu99f001p396xcunqn6ak",
+                content: "cần cù",
+                type: "boxText",
+                optionTypeIndex: 1,
+            },
+            {
+                id: "answer_ckzchudll002l396xeoo1r78e",
+                content: ".",
+                type: "richText",
+                optionTypeIndex: 0,
+            },
+            {
+                id: "answer_ckzchuzw10044396xw148wlm5",
+                breakDown: [],
+                type: "breakDown",
+                optionTypeIndex: 8,
+            },
+            {
+                id: "answer_ckzchvci9004q396xrvjsd6r1",
+                content: "b. Các chú bộ đội chiến đấu ",
+                type: "richText",
+                optionTypeIndex: 0,
+            },
+            {
+                id: "answer_ckzchvefl005f396x9deofr6t",
+                content: "anh dũng",
+                type: "boxText",
+                optionTypeIndex: 1,
+            },
+            {
+                id: "answer_ckzchvgeh0067396x4lfybgan",
+                content: "để bảo vệ Tổ quốc.",
+                type: "richText",
+                optionTypeIndex: 0,
+            },
+            {
+                id: "answer_ckzchwsmz008e396x9tzgeof1",
+                breakDown: [],
+                type: "breakDown",
+                optionTypeIndex: 8,
+            },
+            {
+                id: "answer_ckzchwujd009d396x64sl0psa",
+                content: "c. Người Việt Nam luôn ",
+                type: "richText",
+                optionTypeIndex: 0,
+            },
+            {
+                id: "answer_ckzchwwlt00af396xesj230tq",
+                content: "thân thiện",
+                type: "boxText",
+                optionTypeIndex: 1,
+            },
+            {
+                id: "answer_ckzchxcbe00co396xat0vxo8w",
+                content: "với du khách",
+                type: "richText",
+                optionTypeIndex: 0,
+            },
+            {
+                id: "answer_ckzchza9m00ja396x0o55s1ih",
+                content: "nước ngoài.",
+                type: "richText",
+                optionTypeIndex: 0,
+            }
+        ]
+    },
+    correct_options: [
+        {
+            id: "answer_ckzchu99f001p396xcunqn6ak",
+            answer: "cần cù"
+        },
+        {
+            id: "answer_ckzchvefl005f396x9deofr6t",
+            answer: "anh dũng"
+        },
+        {
+            id: "answer_ckzchwwlt00af396xesj230tq",
+            answer: "thân thiện"
+        }
+    ]
+}
+
+export const compoundQuestion = {
+    id: "608952892d6921a7b18deab1",
+    sdk_type: 2,
+    question: {
+        id: "cko1f4bdi0007356vr3u9pbd0",
+        content: [
+            {
+                type: "html",
+                content: "<p><strong>Đọc văn bản sau v&agrave; thực hiện y&ecirc;u cầu ở ph&iacute;a dưới:</strong></p>\n<p style=\"text-align: center;\"><strong>B&Ocirc;NG S&Uacute;NG V&Agrave; SI&Ecirc;U B&Atilde;O</strong></p>\n<p style=\"text-align: right;\">-Thanh Thảo-</p>\n<p style=\"padding-left: 90px;\"><em>b&ocirc;ng s&uacute;ng t&iacute;m mọc l&ecirc;n từ nước</em></p>\n<p style=\"padding-left: 90px;\"><em>b&atilde;o Haiyan mọc l&ecirc;n từ biển</em></p>\n<p style=\"padding-left: 90px;\"><em>b&atilde;o Haiyan cho t&ocirc;i kinh ho&agrave;ng</em></p>\n<p style=\"padding-left: 90px;\"><em>b&ocirc;ng s&uacute;ng t&iacute;m cho t&ocirc;i b&igrave;nh y&ecirc;n</em></p>\n<p style=\"padding-left: 90px;\"><em>rồi c&oacute; thể người ta qu&ecirc;n m&agrave; nhớ</em></p>\n<p style=\"padding-left: 90px;\"><em>trong si&ecirc;u b&atilde;o một b&ocirc;ng s&uacute;ng nở</em></p>\n<p style=\"padding-left: 90px;\"><em>b&ocirc;ng s&uacute;ng ấy m&agrave;u t&iacute;m</em></p>\n<p style=\"padding-left: 90px;\"><em>b&atilde;o Haiyan m&agrave;u g&igrave;?</em></p>\n<p style=\"text-align: right;\">(B&aacute;o Thanh ni&ecirc;n Chủ nhật, 17/11/2013)</p>"
+            }
+        ],
+        sub_questions: [
+            {
+                id: "cko1f4bdi0008356v4rte4wne",
+                sdk_type: 1,
+                difficult_level: 1,
+                solution_suggestion: [
+                    {
+                        type: "html",
+                        content: "<p>Dựa v&agrave;o c&aacute;c phương thức biểu đạt đ&atilde; học</p>"
+                    }
+                ],
+                solution_detail: [
+                    {
+                        type: "html",
+                        content: "<p>Phương thức biểu đạt ch&iacute;nh: biểu cảm</p>"
+                    }
+                ],
+                notice: [],
+                question: [
+                    {
+                        type: "html",
+                        content: "<p>Phương thức biểu đạt ch&iacute;nh của văn bản?</p>"
+                    }
+                ],
+                options: [
+                    {
+                        id: "cko1f4bdi000a356vjlaqoyt4",
+                        option_content: [
+                            {
+                                type: "html",
+                                content: "<p>Tự sự</p>"
+                            }
+                        ],
+                        answer_key: "a",
+                        correct: false,
+                        question_child: "cko1f4bdi0009356v0xd94ohj"
+                    },
+                    {
+                        id: "cko1f4bdi000b356vs0ssbl6i",
+                        option_content: [
+                            {
+                                type: "html",
+                                content: "<p>Mi&ecirc;u tả</p>"
+                            }
+                        ],
+                        answer_key: "b",
+                        correct: false,
+                        question_child: "cko1f4bdi0009356v0xd94ohj"
+                    },
+                    {
+                        id: "cko1f4bdi000c356vvr3mcvl5",
+                        option_content: [
+                            {
+                                type: "html",
+                                content: "<p>Biểu cảm</p>"
+                            }
+                        ],
+                        answer_key: "c",
+                        correct: true,
+                        question_child: "cko1f4bdi0009356v0xd94ohj"
+                    },
+                    {
+                        id: "cko1f4bdi000d356v4y2kform",
+                        option_content: [
+                            {
+                                type: "html",
+                                content: "<p>Nghị luận</p>"
+                            }
+                        ],
+                        answer_key: "d",
+                        correct: false,
+                        question_child: "cko1f4bdi0009356v0xd94ohj"
+                    }
+                ],
+                correct_options: ['cko1f4bdi000c356vvr3mcvl5'],
+                parent_id: "cko1f4bdi0007356vr3u9pbd0",
+                _id: "608952892d6921a7b18deab4"
+            },
+            {
+                id: "cko1f4bdi000e356veaddrh2u",
+                sdk_type: 1,
+                difficult_level: 1,
+                solution_suggestion: [
+                    {
+                        type: "html",
+                        content: "<p>Dựa v&agrave;o c&aacute;c phong c&aacute;ch ng&ocirc;n ngữ đ&atilde; học</p>"
+                    }
+                ],
+                solution_detail: [
+                    {
+                        type: "html",
+                        content: "<p>Văn bản tr&ecirc;n thuộc phong c&aacute;ch ng&ocirc;n ngữ nghệ thuật.</p>"
+                    }
+                ],
+                notice: [],
+                question: [
+                    {
+                        type: "html",
+                        content: "<p>Văn bản tr&ecirc;n thuộc phong c&aacute;ch nghệ thuật n&agrave;o?</p>"
+                    }
+                ],
+                options: [
+                    {
+                        id: "cko1f4bdi000g356vsn3fxzl4",
+                        option_content: [
+                            {
+                                type: "html",
+                                content: "<p>Nghệ thuật</p>"
+                            }
+                        ],
+                        answer_key: "a",
+                        correct: true,
+                        question_child: "cko1f4bdi000f356vugbkg0yb"
+                    },
+                    {
+                        id: "cko1f4bdi000h356v69xfgsyx",
+                        option_content: [
+                            {
+                                type: "html",
+                                content: "<p>B&aacute;o ch&iacute;</p>"
+                            }
+                        ],
+                        answer_key: "b",
+                        correct: false,
+                        question_child: "cko1f4bdi000f356vugbkg0yb"
+                    },
+                    {
+                        id: "cko1f4bdi000i356vqcvtr7gz",
+                        option_content: [
+                            {
+                                type: "html",
+                                content: "<p>Ch&iacute;nh luận</p>"
+                            }
+                        ],
+                        answer_key: "c",
+                        correct: false,
+                        question_child: "cko1f4bdi000f356vugbkg0yb"
+                    },
+                    {
+                        id: "cko1f4bdi000j356vs9q4qpwl",
+                        option_content: [
+                            {
+                                type: "html",
+                                content: "<p>Khoa hoa</p>"
+                            }
+                        ],
+                        answer_key: "d",
+                        correct: false,
+                        question_child: "cko1f4bdi000f356vugbkg0yb"
+                    }
+                ],
+                correct_options: ['cko1f4bdi000g356vsn3fxzl4'],
+                parent_id: "cko1f4bdi0007356vr3u9pbd0",
+                _id: "608952892d6921a7b18deab5"
+            },
+            {
+                id: "cko1f7vmy000m356vwgloltak",
+                sdk_type: 1,
+                difficult_level: 2,
+                solution_suggestion: [
+                    {
+                        type: "html",
+                        content: "<p>Xem lại nội dung văn bản</p>"
+                    }
+                ],
+                solution_detail: [
+                    {
+                        type: "html",
+                        content: "<p>H&igrave;nh ảnh &ldquo;b&ocirc;ng s&uacute;ng&rdquo; tượng trưng cho c&aacute;i đẹp, sự sống v&agrave; b&igrave;nh y&ecirc;n</p>"
+                    }
+                ],
+                notice: [],
+                question: [
+                    {
+                        type: "html",
+                        content: "<p>H&igrave;nh ảnh &ldquo;b&ocirc;ng s&uacute;ng&rdquo; trong văn bản tr&ecirc;n l&agrave; h&igrave;nh ảnh tượng trưng cho điều g&igrave;?</p>"
+                    }
+                ],
+                options: [
+                    {
+                        id: "cko1f7vmy000o356vw6w519cw",
+                        option_content: [
+                            {
+                                type: "html",
+                                content: "<p>Tượng trưng cho chiến tranh</p>"
+                            }
+                        ],
+                        answer_key: "a",
+                        correct: false,
+                        question_child: "cko1f7vmy000n356vqoh27oz4"
+                    },
+                    {
+                        id: "cko1f7vmy000p356vbylgmtvj",
+                        option_content: [
+                            {
+                                type: "html",
+                                content: "<p>Tượng trưng cho c&aacute;i đẹp, sự sống v&agrave; b&igrave;nh y&ecirc;n</p>"
+                            }
+                        ],
+                        answer_key: "b",
+                        correct: true,
+                        question_child: "cko1f7vmy000n356vqoh27oz4"
+                    },
+                    {
+                        id: "cko1f7vmy000q356vukmed2kq",
+                        option_content: [
+                            {
+                                type: "html",
+                                content: "<p>Tượng trưng cho sự sinh s&ocirc;i, ph&aacute;t triển</p>"
+                            }
+                        ],
+                        answer_key: "c",
+                        correct: false,
+                        question_child: "cko1f7vmy000n356vqoh27oz4"
+                    },
+                    {
+                        id: "cko1f7vmy000r356vy74rucvr",
+                        option_content: [
+                            {
+                                type: "html",
+                                content: "<p>Tượng trưng cho t&igrave;nh y&ecirc;u</p>"
+                            }
+                        ],
+                        answer_key: "d",
+                        correct: false,
+                        question_child: "cko1f7vmy000n356vqoh27oz4"
+                    }
+                ],
+                correct_options: ['cko1f7vmy000p356vbylgmtvj'],
+                parent_id: "cko1f4bdi0007356vr3u9pbd0",
+                _id: "608952892d6921a7b18deab6"
+            },
+            {
+                id: "cko1f8tfz0016356vcw6lalwk",
+                sdk_type: 1,
+                difficult_level: 2,
+                solution_suggestion: [
+                    {
+                        type: "html",
+                        content: "<p>Xem lại c&aacute;c biện ph&aacute;p nghệ thuật đ&atilde; học</p>"
+                    }
+                ],
+                solution_detail: [
+                    {
+                        type: "html",
+                        content: "<p style=\"text-align: center;\"><em>b&atilde;o Haiyan m&agrave;u g&igrave;?</em></p>\n<p>Nghệ thuật: c&acirc;u hỏi tu từ</p>\n<p>T&aacute;c dụng:</p>\n<p>+ Khắc s&acirc;u b&atilde;o Haiyan l&agrave; những bất trắc, tai ương,&hellip;kh&ocirc;ng c&oacute; m&agrave;u sắc, h&igrave;nh th&ugrave; cụ thể n&ecirc;n rất kh&oacute; lường</p>\n<p>+ Diễn tả những băn khoăn, trăn trở của t&aacute;c giả, đồng thời cảnh b&aacute;o tai ương, bất trắc trong cuộc sống l&agrave; kh&ocirc;n lường.</p>\n<p>+ Tạo ra c&aacute;i kết mở, gợi ra nhiều li&ecirc;n tưởng, suy nghĩ cho người đọc.</p>"
+                    }
+                ],
+                notice: [],
+                question: [
+                    {
+                        type: "html",
+                        content: "<p>C&acirc;u thơ cuối của văn bản tr&ecirc;n sử dụng biện ph&aacute;p nghệ thuật g&igrave;?</p>"
+                    }
+                ],
+                options: [
+                    {
+                        id: "cko1f8tfz0018356vj97a8pkx",
+                        option_content: [
+                            {
+                                type: "html",
+                                content: "<p>So s&aacute;nh</p>"
+                            }
+                        ],
+                        answer_key: "a",
+                        correct: false,
+                        question_child: "cko1f8tfz0017356vqput3l7x"
+                    },
+                    {
+                        id: "cko1f8tfz0019356v6skyvcup",
+                        option_content: [
+                            {
+                                type: "html",
+                                content: "<p>Điệp từ</p>"
+                            }
+                        ],
+                        answer_key: "b",
+                        correct: false,
+                        question_child: "cko1f8tfz0017356vqput3l7x"
+                    },
+                    {
+                        id: "cko1f8tfz001a356varkwrkbg",
+                        option_content: [
+                            {
+                                type: "html",
+                                content: "<p>Ho&aacute;n dụ</p>"
+                            }
+                        ],
+                        answer_key: "c",
+                        correct: false,
+                        question_child: "cko1f8tfz0017356vqput3l7x"
+                    },
+                    {
+                        id: "cko1f8tfz001b356vszyvlzdo",
+                        option_content: [
+                            {
+                                type: "html",
+                                content: "<p>C&acirc;u hỏi tu từ</p>"
+                            }
+                        ],
+                        answer_key: "d",
+                        correct: true,
+                        question_child: "cko1f8tfz0017356vqput3l7x"
+                    }
+                ],
+                correct_options: ['cko1f8tfz001b356vszyvlzdo'],
+                parent_id: "cko1f4bdi0007356vr3u9pbd0",
+                _id: "608952892d6921a7b18deab7"
+            },
+            {
+                id: "cko1fa3s2001q356vly8ll3p7",
+                sdk_type: 1,
+                difficult_level: 3,
+                solution_suggestion: [
+                    {
+                        type: "html",
+                        content: "<p>Xem lại nội dung văn bản</p>"
+                    }
+                ],
+                solution_detail: [
+                    {
+                        type: "html",
+                        content: "<p>Văn bản tr&ecirc;n mang nhiều th&ocirc;ng điệp &yacute; nghĩa:</p>\n<p>- Sự sống nảy sinh từ c&aacute;i chết</p>\n<p>- Sống l&agrave; dũng cảm đương đầu với những kh&oacute; khăn, thử th&aacute;ch</p>\n<p>- Cuộc sống lu&ocirc;n tiềm ẩn những hiểm họa, kh&oacute; khăn kh&oacute; lường</p>"
+                    }
+                ],
+                notice: [],
+                question: [
+                    {
+                        type: "html",
+                        content: "<p>Th&ocirc;ng điệp n&agrave;o dưới đ&acirc;y kh&ocirc;ng ph&ugrave; hợp với văn bản tr&ecirc;n?</p>"
+                    }
+                ],
+                options: [
+                    {
+                        id: "cko1fa3s2001s356vzpgxc1pl",
+                        option_content: [
+                            {
+                                type: "html",
+                                content: "<p>Sự sống nảy sinh từ c&aacute;i chết</p>"
+                            }
+                        ],
+                        answer_key: "a",
+                        correct: false,
+                        question_child: "cko1fa3s2001r356vf1un14zl"
+                    },
+                    {
+                        id: "cko1fa3s3001t356v3o19ma6n",
+                        option_content: [
+                            {
+                                type: "html",
+                                content: "<p>Sống l&agrave; dũng cảm đương đầu với những kh&oacute; khăn, thử th&aacute;ch</p>"
+                            }
+                        ],
+                        answer_key: "b",
+                        correct: false,
+                        question_child: "cko1fa3s2001r356vf1un14zl"
+                    },
+                    {
+                        id: "cko1fa3s3001u356vlej4lh7q",
+                        option_content: [
+                            {
+                                type: "html",
+                                content: "<p>Sống phải khuất phục trước c&aacute;i đẹp</p>"
+                            }
+                        ],
+                        answer_key: "c",
+                        correct: true,
+                        question_child: "cko1fa3s2001r356vf1un14zl"
+                    },
+                    {
+                        id: "cko1fa3s3001v356vybeiwcuk",
+                        option_content: [
+                            {
+                                type: "html",
+                                content: "<p>Cuộc sống lu&ocirc;n tiềm ẩn những hiểm họa, kh&oacute; khăn kh&oacute; lường</p>"
+                            }
+                        ],
+                        answer_key: "d",
+                        correct: false,
+                        question_child: "cko1fa3s2001r356vf1un14zl"
+                    }
+                ],
+                correct_options: ['cko1fa3s3001u356vlej4lh7q'],
+                parent_id: "cko1f4bdi0007356vr3u9pbd0",
+                _id: "608952892d6921a7b18deab8"
+            }
+        ],
+        quiz: "cko1f4bdi0006356ve72oj4mz"
+    },
+    idx: 104388,
+    spec_question: 1,
 }

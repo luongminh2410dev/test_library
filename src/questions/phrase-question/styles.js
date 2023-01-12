@@ -14,12 +14,14 @@ const styles = StyleSheet.create({
     },
     question_label_txt: {
         textAlign: 'left',
-        fontWeight: "bold"
+        fontWeight: "bold",
     },
     guide_label: {
         fontSize: 17,
+        paddingHorizontal: 12,
         fontWeight: 'bold',
         marginTop: 12,
+        textAlign: 'center'
     },
     image: {
         marginTop: 12,
@@ -35,14 +37,6 @@ const styles = StyleSheet.create({
         fontSize: 16,
         marginTop: 12,
     },
-    options: {
-        width: '100%',
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        marginTop: 12,
-        justifyContent: 'center',
-        alignItems: 'flex-start'
-    },
     row: {
         width: '100%',
         marginTop: 12,
@@ -50,33 +44,57 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
-    answer_btn: {
-        width: width / 1,
-        paddingVertical: 12,
-        paddingLeft: 12,
-        flexDirection: 'row',
-        alignItems: "center",
-    },
-    checkbox: {
-        width: 20,
-        height: 20,
-        borderRadius: 20,
-        padding: 2,
-        borderWidth: 1,
-        marginRight: 8
-    },
-    checkbox_dot: {
+    option_container: {
+        marginTop: 12,
         width: '100%',
-        height: '100%',
-        borderRadius: 20
+        paddingHorizontal: 12,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
-    active_answer_btn: {
-        borderColor: '#aad572',
-        backgroundColor: '#aad572'
+    // 
+    phrase_list: {
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
-    answer_btn_txt: {
+    phrase_item: {
+        paddingVertical: 4,
+        paddingHorizontal: 12,
+        marginHorizontal: 6,
+        backgroundColor: '#f2ead9',
+        borderWidth: 1,
+        borderColor: 'transparent'
+    },
+    phrase_item_txt: {
         fontSize: 15,
     },
+    sentence_list: {
+        width: '100%',
+        marginTop: 12,
+        fontSize: 15,
+        lineHeight: 30,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    sentence_txt: {
+        fontSize: 16,
+    },
+    sentence_box: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingTop: 3,
+        height: 30,
+        // width: 80,
+        // height: 24,
+        // borderWidth: 1,
+    },
+    sentence_box_txt: {
+        textDecorationLine: 'underline',
+        fontSize: 15,
+        lineHeight: 30
+    },
+    // 
     suggestion_collapsible: {
         width: width,
         paddingTop: 12,
@@ -116,11 +134,6 @@ const styles = StyleSheet.create({
         width: '100%',
         paddingHorizontal: 12,
         marginTop: 12,
-    },
-    result_txt: {
-        fontWeight: 'bold',
-        padding: 8,
-        fontSize: 15,
     },
     solution_detail_view: {
         marginVertical: 12,

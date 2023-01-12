@@ -1,12 +1,18 @@
-import React, { useState } from 'react';
-import { Alert, Image, Text, TouchableOpacity, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Alert, Dimensions, Image, Text, TouchableOpacity, View } from 'react-native';
 import Collapsible from 'react-native-collapsible';
+import Animated from 'react-native-reanimated';
 import Feather from 'react-native-vector-icons/Feather';
 import HtmlContent from '../../components/html-content';
 import styles from './styles';
 
+const { width, height } = Dimensions.get('screen');
+const OPTION_WIDTH = (width / 2) - 18;
+const OPTION_HEIGHT = (OPTION_WIDTH / 1.3) < 120 ? 120 : (OPTION_WIDTH / 1.3);
+
+const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
 // nextBtnState: 0 - chua chon dap an, 1 - da chon dap an, 2 - da hoan thanh cau hoi
-const YNQuestion = (props) => {
+const PhraseQuestion = (props) => {
     const {
         question, customConfig, customStyles, displayMode,
         getTopComponent, getMiddleComponent, getBottomComponent, getCornerComponent,
@@ -35,7 +41,7 @@ const YNQuestion = (props) => {
         active_option_btn = {},
         active_option_txt = {},
         default_option_btn: defaultOptionButtonStyles = {},
-        default_option_txt: defaultOptionTitleStyles = {},
+        default_option_txt: defaultOptionTextStyles = {},
         result_container: resultContainerStyles = {},
         solution_detail: solutionDetailStyles = {},
         solution_suggestion: solutionSuggestionStyles = {},
@@ -49,16 +55,33 @@ const YNQuestion = (props) => {
         options, correct_options, solution_detail
     } = question;
 
-    const [currentAnswer, setCurrentAnswer] = useState(-1);
+    const { phrases, sentences } = options;
+
+    const [currentPhrase, setCurrentPhrase] = useState(null);
     const [suggestionCollapsed, setSuggestionCollapsed] = useState(true);
     const [solutionCollapsed, setSolutionCollapsed] = useState(true);
     const [questionStep, setQuestionStep] = useState(0);
+    const [pairedList, setPairedList] = useState({});
 
     const nextButtonLabel = questionStep == 1 ? 'Kiểm tra' : btn_skip_text;
     const suggestButtonLabel = questionStep == 2 ? 'Xem lại lý thuyết' : btn_suggestion_text;
 
-    const activeButtonStyles = Object.assign({}, { borderColor: primaryColor, backgroundColor: primaryColor }, active_option_btn);
+    const activeButtonStyles = Object.assign({}, { borderColor: primaryColor, }, active_option_btn);
     const activeTxtStyles = Object.assign({}, styles.active_answer_btn_txt, active_option_txt);
+
+    useEffect(() => {
+        if (questionStep == 2) {
+            const isIncorrect = correct_options.find(item => {
+                const pairedItem = pairedList.find(it => it.id == item.id);
+                if (pairedItem) {
+                    return item.answer != pairedItem.answer;
+                }
+                return true;
+            })
+            console.log(isIncorrect ? 'Không chính xác' : 'Chính xác');
+        }
+    }, [questionStep])
+
 
     const getDifficultQuestion = () => {
         switch (difficult_level) {
@@ -125,70 +148,139 @@ const YNQuestion = (props) => {
         }
     }
 
-    const _renderContent = (item, index) => {
-        switch (item.type) {
+    const _renderQuestion = (i, idx) => {
+        switch (i.type) {
             case 'html':
-                return <HtmlContent key={index} content={item.content} color={textColor} />
+                return <HtmlContent key={idx} content={i.content} color={textColor} />
             case 'image':
-                return (
-                    <Image
-                        key={index}
-                        resizeMode='contain'
-                        style={{ width: 200, height: 150 }}
-                        source={{ uri: item.url }} />
-                )
+                return <Image key={idx} resizeMode='contain' style={{ width: 200, height: 150 }} source={{ uri: i.url }} />
         }
     }
 
-    const _renderOptionItem = (i, idx) => {
+    const _renderPhraseItem = (item, index) => {
+        const isActive = currentPhrase == item.content;
+        const isUnavailable = Object.keys(pairedList).some(i => pairedList[i] == item.content)
         const onPress = () => {
-            onSelectOption(i)
-            setCurrentAnswer(idx)
-            setQuestionStep(1)
+            setCurrentPhrase(isActive ? null : item.content)
         }
         return (
             <TouchableOpacity
-                key={idx}
+                key={item.id}
                 onPress={onPress}
-                disabled={questionStep >= 2}
-                style={[styles.answer_btn, defaultOptionButtonStyles, currentAnswer == idx && activeButtonStyles]}>
-                {i.option_content.map((it, ix) => {
-                    switch (it.type) {
-                        case 'html':
-                            return (
-                                <Text
-                                    key={ix}
-                                    style={[
-                                        styles.answer_btn_txt,
-                                        defaultOptionTitleStyles,
-                                        currentAnswer == idx && activeTxtStyles
-                                    ]}>
-                                    {it.content}
-                                </Text>
-                            )
-                        case 'image':
-                            return <Image key={ix} style={{ width: 200, height: 150 }} source={{ uri: it.content }} />
-                    }
-                })}
+                disabled={questionStep >= 2 || isUnavailable}
+                style={[
+                    styles.phrase_item,
+                    defaultOptionButtonStyles,
+                    isActive && activeButtonStyles,
+                    isUnavailable && { opacity: 0.6 }
+                ]}>
+                <Text style={[styles.phrase_item_txt, defaultOptionTextStyles, isActive && activeTxtStyles]}>{item.content}</Text>
             </TouchableOpacity>
         )
     }
 
-    const _renderOptionUnaccesible = (i, idx) => {
-        return (
-            <View
-                key={idx}
-                style={[styles.answer_btn, correct_options == i.id && activeButtonStyles]}>
-                {i.option_content.map((it, ix) => {
-                    switch (it.type) {
-                        case 'html':
-                            return <Text key={ix} style={[styles.answer_btn_txt, correct_options == i.id && activeTxtStyles]}>{it.content}</Text>
-                        case 'image':
-                            return <Image key={ix} style={{ width: 200, height: 150 }} source={{ uri: it.content }} />
-                    }
-                })}
-            </View>
-        )
+    const _renderSentenceItem = (item, index) => {
+        const isActive = Object.keys(pairedList).some(i => i == item.id);
+
+        const onPress = () => {
+            if (isActive) {
+                const newObject = { ...pairedList };
+                delete newObject[item.id]
+                setPairedList(newObject)
+            }
+            else if (currentPhrase) {
+                const newObject = { ...pairedList };
+                newObject[item.id] = currentPhrase;
+                setPairedList(newObject)
+                setCurrentPhrase(null);
+            }
+            return;
+        }
+
+        switch (item.type) {
+            case 'richText':
+                return item.content;
+            case 'boxText':
+                return (
+                    <TouchableOpacity
+                        key={item.id}
+                        onPress={onPress}
+                        style={styles.sentence_box}>
+                        <Text style={styles.sentence_box_txt}>{isActive ? pairedList[item.id] : '___________'}</Text>
+                    </TouchableOpacity>
+                )
+            case 'breakDown':
+                return `\n`;
+        }
+    }
+
+    const _renderSuggestion = (i, idx) => {
+        switch (i.type) {
+            case 'html':
+                return <HtmlContent key={idx} content={i.content} color={textColor} />
+            case 'image':
+                return <Image key={idx} style={{ width: 200, height: 150 }} source={{ uri: i.content }} />
+        }
+    }
+
+    // const _renderCorrectOptions = (item, index) => {
+    //     const targetIndex = targets.findIndex(i => i.id == item.id);
+    //     const targetData = targets[targetIndex].option_content;
+
+    //     const sourceIndex = sources.findIndex(i => i.index == item.answer);
+    //     const sourceData = sources[sourceIndex].option_content;
+
+    //     return (
+    //         <View key={index} style={{ width: '100%', flexDirection: 'row', justifyContent: 'center' }}>
+    //             <View
+    //                 style={[styles.result_item, { width: OPTION_WIDTH, backgroundColor: '#f1ead8' }, defaultTargetOptionStyles]}>
+    //                 {targetData.map((it, idx) => {
+    //                     switch (it.type) {
+    //                         case 'html':
+    //                             return (
+    //                                 <HtmlContent
+    //                                     key={idx}
+    //                                     content={it.content}
+    //                                     style={[
+    //                                         styles.answer_btn_txt,
+    //                                         defaultOptionTextStyles,
+    //                                     ]} />
+    //                             )
+    //                         case 'image':
+    //                             return <Image key={idx} style={{ width: 200, height: 150 }} source={{ uri: it.content }} />
+    //                     }
+    //                 })}
+    //             </View>
+    //             <View
+    //                 style={[styles.result_item, { width: OPTION_WIDTH }, defaultSourceOptionStyles]}>
+    //                 {sourceData.map((it, idx) => {
+    //                     switch (it.type) {
+    //                         case 'html':
+    //                             return (
+    //                                 <HtmlContent
+    //                                     key={idx}
+    //                                     content={it.content}
+    //                                     style={[
+    //                                         styles.answer_btn_txt,
+    //                                         defaultOptionTextStyles,
+    //                                     ]} />
+    //                             )
+    //                         case 'image':
+    //                             return <Image key={idx} style={{ width: 200, height: 150 }} source={{ uri: it.content }} />
+    //                     }
+    //                 })}
+    //             </View>
+    //         </View>
+    //     )
+    // }
+
+    const _renderSolutionDetail = (i, idx) => {
+        switch (i.type) {
+            case 'html':
+                return <HtmlContent key={idx} content={i.content} color={textColor} />
+            case 'image':
+                return <Image key={idx} style={{ width: 200, height: 150 }} source={{ uri: i.uri }} />
+        }
     }
 
     if (!question) return null;
@@ -204,16 +296,21 @@ const YNQuestion = (props) => {
             {getTopComponent()}
             <Text style={[styles.guide_label, { color: primaryColor }, questionTypeStyles]}>{guide_touch}</Text>
             <View style={[styles.question_view, questionTitleStyles]}>
-                {_question.map(_renderContent)}
+                {_question.map(_renderQuestion)}
             </View>
-            <View style={[styles.row, optionContainerStyles]} pointerEvents={displayMode == 'result' ? 'none' : 'auto'}>
-                {options.map(_renderOptionItem)}
+            <View style={[styles.option_container, optionContainerStyles]} pointerEvents={displayMode == 'result' ? 'none' : 'auto'}>
+                <View style={styles.phrase_list}>
+                    {phrases.map(_renderPhraseItem)}
+                </View>
+                <Text style={styles.sentence_list}>
+                    {sentences.map(_renderSentenceItem)}
+                </Text>
             </View>
             <Collapsible
                 style={styles.suggestion_collapsible}
                 collapsed={suggestionCollapsed}>
                 <Text style={[styles.suggestion_label, { color: subColor }]}>{label_suggestion}</Text>
-                {solution_suggestion.map(_renderContent)}
+                {solution_suggestion.map(_renderSuggestion)}
             </Collapsible>
             <View style={styles.row}>
                 <TouchableOpacity
@@ -237,8 +334,8 @@ const YNQuestion = (props) => {
                 (questionStep == 2 || displayMode != 'default') &&
                 <View style={[styles.result_container, resultContainerStyles]}>
                     <Text style={[styles.suggestion_label, { color: subColor }]}>{label_result_txt}</Text>
-                    <View style={styles.row}>
-                        {options.map(_renderOptionUnaccesible)}
+                    <View style={{ marginTop: 12 }}>
+                        {/* {correct_options.map(_renderCorrectOptions)} */}
                     </View>
                     <View style={styles.solution_detail_view}>
                         <TouchableOpacity onPress={toggleSolutionDetail} style={[styles.solution_detail_btn, solutionDetailBtnStyles]}>
@@ -249,12 +346,12 @@ const YNQuestion = (props) => {
                     <Collapsible collapsed={solutionCollapsed} >
                         <View style={solutionSuggestionStyles}>
                             <Text style={[styles.suggestion_label, { color: subColor }]}>{label_suggestion}</Text>
-                            {solution_suggestion.map(_renderContent)}
+                            {solution_suggestion.map(_renderSuggestion)}
                         </View>
                         <View style={solutionDetailStyles}>
                             <Text style={[styles.suggestion_label, { color: subColor }]}>{label_solution_detail}</Text>
                             <View style={{ marginTop: 12 }}>
-                                {solution_detail.map(_renderContent)}
+                                {solution_detail.map(_renderSolutionDetail)}
                             </View>
                         </View>
                     </Collapsible>
@@ -264,4 +361,4 @@ const YNQuestion = (props) => {
     )
 }
 
-export default YNQuestion
+export default PhraseQuestion

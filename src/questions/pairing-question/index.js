@@ -133,9 +133,7 @@ const PairingQuestion = (props) => {
                     {
                         style: 'default',
                         text: btn_ok,
-                        onPress: () => {
-                            onSkipQuestion()
-                        }
+                        onPress: onSkipQuestion
                     },
                     {
                         style: 'destructive',
@@ -144,6 +142,7 @@ const PairingQuestion = (props) => {
                 ])
                 break;
             case 1:
+                if (!correct_options) return onFinishQuestion();
                 setSuggestionCollapsed(true)
                 setQuestionStep(2)
                 break;
@@ -155,12 +154,18 @@ const PairingQuestion = (props) => {
         }
     }
 
-    const _renderQuestion = (i, idx) => {
-        switch (i.type) {
+    const _renderContent = (item, index) => {
+        switch (item.type) {
             case 'html':
-                return <HtmlContent key={idx} content={i.content} color={textColor} />
+                return <HtmlContent key={index} content={item.content} color={textColor} />
             case 'image':
-                return <Image key={idx} resizeMode='contain' style={{ width: 200, height: 150 }} source={{ uri: i.url }} />
+                return (
+                    <Image
+                        key={index}
+                        resizeMode='contain'
+                        style={{ width: 200, height: 150 }}
+                        source={{ uri: item.url }} />
+                )
         }
     }
 
@@ -325,15 +330,6 @@ const PairingQuestion = (props) => {
         )
     }
 
-    const _renderSuggestion = (i, idx) => {
-        switch (i.type) {
-            case 'html':
-                return <HtmlContent key={idx} content={i.content} color={textColor} />
-            case 'image':
-                return <Image key={idx} style={{ width: 200, height: 150 }} source={{ uri: i.content }} />
-        }
-    }
-
     const _renderCorrectOptions = (item, index) => {
         const targetIndex = targets.findIndex(i => i.id == item.id);
         const targetData = targets[targetIndex].option_content;
@@ -385,15 +381,6 @@ const PairingQuestion = (props) => {
         )
     }
 
-    const _renderSolutionDetail = (i, idx) => {
-        switch (i.type) {
-            case 'html':
-                return <HtmlContent key={idx} content={i.content} color={textColor} />
-            case 'image':
-                return <Image key={idx} style={{ width: 200, height: 150 }} source={{ uri: i.uri }} />
-        }
-    }
-
     if (!question) return null;
     return (
         <View style={[styles.container, containerStyles]} pointerEvents={displayMode == 'preview' ? 'none' : 'auto'}>
@@ -407,7 +394,7 @@ const PairingQuestion = (props) => {
             {getTopComponent()}
             <Text style={[styles.guide_label, { color: primaryColor }, questionTypeStyles]}>{guide_touch}</Text>
             <View style={[styles.question_view, questionTitleStyles]}>
-                {_question.map(_renderQuestion)}
+                {_question.map(_renderContent)}
             </View>
             <View style={[styles.pairing_options, { height: OPTION_HEIGHT * sources.length + 24 }, optionContainerStyles]} pointerEvents={displayMode == 'result' ? 'none' : 'auto'}>
                 <View style={{ position: 'relative', flex: 1, }}>
@@ -421,7 +408,7 @@ const PairingQuestion = (props) => {
                 style={styles.suggestion_collapsible}
                 collapsed={suggestionCollapsed}>
                 <Text style={[styles.suggestion_label, { color: subColor }]}>{label_suggestion}</Text>
-                {solution_suggestion.map(_renderSuggestion)}
+                {solution_suggestion.map(_renderContent)}
             </Collapsible>
             <View style={styles.row}>
                 <TouchableOpacity
@@ -457,12 +444,12 @@ const PairingQuestion = (props) => {
                     <Collapsible collapsed={solutionCollapsed} >
                         <View style={solutionSuggestionStyles}>
                             <Text style={[styles.suggestion_label, { color: subColor }]}>{label_suggestion}</Text>
-                            {solution_suggestion.map(_renderSuggestion)}
+                            {solution_suggestion.map(_renderContent)}
                         </View>
                         <View style={solutionDetailStyles}>
                             <Text style={[styles.suggestion_label, { color: subColor }]}>{label_solution_detail}</Text>
                             <View style={{ marginTop: 12 }}>
-                                {solution_detail.map(_renderSolutionDetail)}
+                                {solution_detail.map(_renderContent)}
                             </View>
                         </View>
                     </Collapsible>
