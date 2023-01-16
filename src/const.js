@@ -842,3 +842,291 @@ export const compoundQuestion = {
     idx: 104388,
     spec_question: 1,
 }
+
+export const sortQuestion = {
+    "id": "6200ecde77e73fc854d3ea0c",
+    "analytics": {
+        "correct": 0,
+        "incorrect": 0,
+        "skiped": 0,
+        "total_answer": 0,
+        "percent_false": 0
+    },
+    "solution_detail": [
+        {
+            "type": "html",
+            "content": "<p style=\"text-align: center;\">C&acirc;u ho&agrave;n chỉnh như sau:</p>\n<p style=\"text-align: center;\">Em muốn kể lại việc B&aacute;c Hồ trồng chiếc rễ đa trong vườn theo một c&aacute;ch đặc biệt.</p>"
+        }
+    ],
+    "solution_suggestion": [
+        {
+            "type": "html",
+            "content": "<p>Em l&agrave;m theo y&ecirc;u cầu của b&agrave;i tập.</p>"
+        }
+    ],
+    "guide_touch": "Con hãy kéo đổi vị trí các từ/cụm từ để được đáp án đúng",
+    "sdk_type": 6,
+    "difficult_level": 2,
+    "notice": [],
+    "question": [
+        {
+            "type": "html",
+            "content": "<p style=\"text-align: center;\"><strong>Em h&atilde;y sắp xếp c&aacute;c từ sau c&acirc;u c&oacute; nghĩa:</strong></p>"
+        },
+        {
+            "type": "image",
+            "url": "https://cdn.vungoi.vn/vungoi/2022/0207/1644227457985_anh_1.jpg",
+            "caption": "",
+            "optUpload": 2,
+            "width": "300",
+            "height": "200",
+            "quantity": 1
+        }
+    ],
+    // "options": [
+    //     {
+    //         "id": "answer_ckzcidk0x000g396x7sqin7kh",
+    //         "content": [
+    //             {
+    //                 "type": "html",
+    //                 "content": "<p>đặc bi&ecirc;̣t.</p>"
+    //             }
+    //         ],
+    //         "obj_type": "boxText"
+    //     },
+    //     {
+    //         "id": "answer_ckzcidk0x000h396xmnj9r8eb",
+    //         "content": [
+    //             {
+    //                 "type": "html",
+    //                 "content": "<p>Em</p>"
+    //             }
+    //         ],
+    //         "obj_type": "boxText"
+    //     },
+    //     {
+    //         "id": "answer_ckzcidk0x000i396xr2s4p82u",
+    //         "content": [
+    //             {
+    //                 "type": "html",
+    //                 "content": "<p>Bác H&ocirc;̀</p>"
+    //             }
+    //         ],
+    //         "obj_type": "boxText"
+    //     },
+    //     {
+    //         "id": "answer_ckzcil2w30011396x5fion9i5",
+    //         "content": [
+    //             {
+    //                 "type": "html",
+    //                 "content": "<p>k&ecirc;̉ lại</p>"
+    //             }
+    //         ],
+    //         "obj_type": "boxText"
+    //     },
+    //     {
+    //         "id": "answer_ckzcilkkz001l396xsl7vsauw",
+    //         "content": [
+    //             {
+    //                 "type": "html",
+    //                 "content": "<p>mu&ocirc;́n</p>"
+    //             }
+    //         ],
+    //         "obj_type": "boxText"
+    //     },
+    //     {
+    //         "id": "answer_ckzcilm2b0028396xz31y22je",
+    //         "content": [
+    //             {
+    //                 "type": "html",
+    //                 "content": "<p>vi&ecirc;̣c</p>"
+    //             }
+    //         ],
+    //         "obj_type": "boxText"
+    //     },
+    //     {
+    //         "id": "answer_ckzcilmye002u396x9x28ej2c",
+    //         "content": [
+    //             {
+    //                 "type": "html",
+    //                 "content": "<p>tr&ocirc;̀ng</p>"
+    //             }
+    //         ],
+    //         "obj_type": "boxText"
+    //     },
+    //     {
+    //         "id": "answer_ckzcilnpo003g396xlpk7j5hv",
+    //         "content": [
+    //             {
+    //                 "type": "html",
+    //                 "content": "<p>chiếc rễ đa</p>"
+    //             }
+    //         ],
+    //         "obj_type": "boxText"
+    //     },
+    //     {
+    //         "id": "answer_ckzciloa40040396x40n9b92v",
+    //         "content": [
+    //             {
+    //                 "type": "html",
+    //                 "content": "<p>theo một c&aacute;ch</p>"
+    //             }
+    //         ],
+    //         "obj_type": "boxText"
+    //     },
+    //     {
+    //         "id": "answer_ckzcilowq004m396xzt7qfm0i",
+    //         "content": [
+    //             {
+    //                 "type": "html",
+    //                 "content": "<p>trong vườn</p>"
+    //             }
+    //         ],
+    //         "obj_type": "boxText"
+    //     }
+    // ],
+    "options": [
+        {
+            "id": "answer_ckzcidk0x000g396x7sqin7kh",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "đặc biệt"
+                }
+            ],
+            "obj_type": "boxText"
+        },
+        {
+            "id": "answer_ckzcidk0x000h396xmnj9r8eb",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "Em"
+                }
+            ],
+            "obj_type": "boxText"
+        },
+        {
+            "id": "answer_ckzcidk0x000i396xr2s4p82u",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "Bác Hồ"
+                }
+            ],
+            "obj_type": "boxText"
+        },
+        {
+            "id": "answer_ckzcil2w30011396x5fion9i5",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "kể lại"
+                }
+            ],
+            "obj_type": "boxText"
+        },
+        {
+            "id": "answer_ckzcilkkz001l396xsl7vsauw",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "muốn"
+                }
+            ],
+            "obj_type": "boxText"
+        },
+        {
+            "id": "answer_ckzcilm2b0028396xz31y22je",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "việc"
+                }
+            ],
+            "obj_type": "boxText"
+        },
+        {
+            "id": "answer_ckzcilmye002u396x9x28ej2c",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "trồng"
+                }
+            ],
+            "obj_type": "boxText"
+        },
+        {
+            "id": "answer_ckzcilnpo003g396xlpk7j5hv",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "chiếc rễ đa"
+                }
+            ],
+            "obj_type": "boxText"
+        },
+        {
+            "id": "answer_ckzciloa40040396x40n9b92v",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "theo một cách"
+                }
+            ],
+            "obj_type": "boxText"
+        },
+        {
+            "id": "answer_ckzcilowq004m396xzt7qfm0i",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "trong vườn"
+                }
+            ],
+            "obj_type": "boxText"
+        }
+    ],
+    "correct_options": [
+        {
+            "id": "answer_ckzcidk0x000g396x7sqin7kh",
+            "answer": 10
+        },
+        {
+            "id": "answer_ckzcidk0x000h396xmnj9r8eb",
+            "answer": 1
+        },
+        {
+            "id": "answer_ckzcidk0x000i396xr2s4p82u",
+            "answer": 5
+        },
+        {
+            "id": "answer_ckzcil2w30011396x5fion9i5",
+            "answer": 3
+        },
+        {
+            "id": "answer_ckzcilkkz001l396xsl7vsauw",
+            "answer": 2
+        },
+        {
+            "id": "answer_ckzcilm2b0028396xz31y22je",
+            "answer": 4
+        },
+        {
+            "id": "answer_ckzcilmye002u396x9x28ej2c",
+            "answer": 6
+        },
+        {
+            "id": "answer_ckzcilnpo003g396xlpk7j5hv",
+            "answer": 7
+        },
+        {
+            "id": "answer_ckzciloa40040396x40n9b92v",
+            "answer": 9
+        },
+        {
+            "id": "answer_ckzcilowq004m396xzt7qfm0i",
+            "answer": 8
+        }
+    ]
+}

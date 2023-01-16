@@ -198,7 +198,7 @@ const PairingQuestion = (props) => {
         }
     }
 
-    const shortOptions = (target_id, source_id, isPairing) => {
+    const sortOptions = (target_id, source_id, isPairing) => {
         if (isPairing) {
             targets.map(item => {
                 if (
@@ -288,7 +288,7 @@ const PairingQuestion = (props) => {
             if (isPaired) {
                 const newArray = [...pairedList];
                 const unpairingItem = newArray.splice(getIndex, 1);
-                shortOptions(unpairingItem[0].id, unpairingItem[0].answer, false);
+                sortOptions(unpairingItem[0].id, unpairingItem[0].answer, false);
                 setPairedList(newArray);
                 questionStep != 0 && setQuestionStep(0);
             }
@@ -300,7 +300,7 @@ const PairingQuestion = (props) => {
                     setCurrentTarget(item.id)
                 }
                 else {
-                    shortOptions(item.id, currentSource, true);
+                    sortOptions(item.id, currentSource, true);
                     const newArray = [...pairedList, { id: item.id, answer: currentSource }];
                     onSelectOption(newArray);
                     setPairedList(newArray);
@@ -369,7 +369,7 @@ const PairingQuestion = (props) => {
             if (isPaired) {
                 const newArray = [...pairedList];
                 const unpairingItem = newArray.splice(getIndex, 1);
-                shortOptions(unpairingItem[0].id, unpairingItem[0].answer, false);
+                sortOptions(unpairingItem[0].id, unpairingItem[0].answer, false);
                 setPairedList(newArray);
                 questionStep != 0 && setQuestionStep(0);
             }
@@ -381,7 +381,7 @@ const PairingQuestion = (props) => {
                     setCurrentSource(item.id)
                 }
                 else {
-                    shortOptions(currentTarget, item.id, true);
+                    sortOptions(currentTarget, item.id, true);
                     const newArray = [...pairedList, { id: currentTarget, answer: item.id }];
                     setPairedList(newArray);
                     setCurrentSource(-1);
