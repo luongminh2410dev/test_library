@@ -86,11 +86,9 @@ const styles = StyleSheet.create({
         // color: 'white'
     },
     pairing_options: {
+        position: 'relative',
         width: '100%',
         marginTop: 12,
-        flexDirection: "row",
-        // justifyContent: 'space-between',
-        paddingHorizontal: 12,
     },
     suggestion_collapsible: {
         width: width,
