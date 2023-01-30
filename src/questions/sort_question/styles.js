@@ -17,9 +17,11 @@ const styles = StyleSheet.create({
         fontWeight: "bold"
     },
     guide_label: {
+        width: '100%',
         fontSize: 17,
         fontWeight: 'bold',
         marginTop: 12,
+        paddingHorizontal: 12,
     },
     image: {
         marginTop: 12,
@@ -101,6 +103,11 @@ const styles = StyleSheet.create({
     suggestion_txt: {
         fontSize: 16,
     },
+    correct_result: {
+        marginTop: 12,
+        flexDirection: "row",
+        flexWrap: 'wrap'
+    },
     next_question_btn: {
         flexDirection: "row",
         borderRadius: 8,
@@ -152,13 +159,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: "row",
-        flexWrap: 'wrap'
+        flexWrap: 'wrap',
     },
     phrase_item: {
         paddingVertical: 8,
         paddingHorizontal: 12,
         backgroundColor: 'gray',
-        marginHorizontal: 4,
+        marginRight: 8,
         marginBottom: 8,
         borderRadius: 16,
     },

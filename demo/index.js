@@ -12,7 +12,7 @@ const CustomView = () => {
 
 const Demo = () => {
     return (
-        <ScrollView style={{ flex: 1, backgroundColor: 'white' }} contentContainerStyle={{ paddingTop: 80, }}>
+        <ScrollView style={{ flex: 1, backgroundColor: 'white', }} contentContainerStyle={{ paddingVertical: 80 }}>
             <Text style={{ fontSize: 26, fontWeight: 'bold', width: '100%', textAlign: 'center' }}>Demo App</Text>
             <SingleQuestion
                 question={sortQuestion}

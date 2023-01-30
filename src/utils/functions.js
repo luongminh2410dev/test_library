@@ -22,3 +22,10 @@ export function listToObject(list) {
 
     return object;
 }
+
+export function swapElements(array, index1, index2) {
+    let temp = array[index1];
+    array[index1] = array[index2];
+    array[index2] = temp;
+    return [...array];
+};
