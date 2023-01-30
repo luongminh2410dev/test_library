@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Alert, Dimensions, Image, Text, TouchableOpacity, View } from 'react-native';
 import Collapsible from 'react-native-collapsible';
-import Animated from 'react-native-reanimated';
 import Feather from 'react-native-vector-icons/Feather';
 import HtmlContent from '../../components/html-content';
 import styles from './styles';
@@ -10,7 +9,6 @@ const { width, height } = Dimensions.get('screen');
 const OPTION_WIDTH = (width / 2) - 18;
 const OPTION_HEIGHT = (OPTION_WIDTH / 1.3) < 120 ? 120 : (OPTION_WIDTH / 1.3);
 
-const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
 // nextBtnState: 0 - chua chon dap an, 1 - da chon dap an, 2 - da hoan thanh cau hoi
 const PhraseQuestion = (props) => {
     const {
@@ -70,18 +68,10 @@ const PhraseQuestion = (props) => {
     const activeTxtStyles = Object.assign({}, styles.active_answer_btn_txt, active_option_txt);
 
     useEffect(() => {
-        if (questionStep == 2) {
-            const isIncorrect = correct_options.find(item => {
-                const pairedItem = pairedList.find(it => it.id == item.id);
-                if (pairedItem) {
-                    return item.answer != pairedItem.answer;
-                }
-                return true;
-            })
-            console.log(isIncorrect ? 'Không chính xác' : 'Chính xác');
+        if (Object.keys(pairedList).length == correct_options.length) {
+            setQuestionStep(1)
         }
-    }, [questionStep])
-
+    }, [pairedList])
 
     const getDifficultQuestion = () => {
         switch (difficult_level) {
@@ -137,8 +127,17 @@ const PhraseQuestion = (props) => {
                 break;
             case 1:
                 if (!correct_options) return onFinishQuestion();
-                setSuggestionCollapsed(true)
-                setQuestionStep(2)
+                setSuggestionCollapsed(true);
+                setQuestionStep(2);
+                // CHECK RESULT
+                const isIncorrect = correct_options.find(item => {
+                    const pairedItem = pairedList[item.id];
+                    if (pairedItem) {
+                        return item.answer != pairedItem;
+                    }
+                    return true;
+                })
+                console.log(isIncorrect ? 'Không chính xác' : 'Chính xác');
                 break;
             case 2:
                 onFinishQuestion();
@@ -220,56 +219,22 @@ const PhraseQuestion = (props) => {
         }
     }
 
-    // const _renderCorrectOptions = (item, index) => {
-    //     const targetIndex = targets.findIndex(i => i.id == item.id);
-    //     const targetData = targets[targetIndex].option_content;
+    const _renderCorrectOptions = (item, index) => {
+        const correctPhrase = correct_options.find(it => it.id == item.id);
 
-    //     const sourceIndex = sources.findIndex(i => i.index == item.answer);
-    //     const sourceData = sources[sourceIndex].option_content;
-
-    //     return (
-    //         <View key={index} style={{ width: '100%', flexDirection: 'row', justifyContent: 'center' }}>
-    //             <View
-    //                 style={[styles.result_item, { width: OPTION_WIDTH, backgroundColor: '#f1ead8' }, defaultTargetOptionStyles]}>
-    //                 {targetData.map((it, idx) => {
-    //                     switch (it.type) {
-    //                         case 'html':
-    //                             return (
-    //                                 <HtmlContent
-    //                                     key={idx}
-    //                                     content={it.content}
-    //                                     style={[
-    //                                         styles.answer_btn_txt,
-    //                                         defaultOptionTextStyles,
-    //                                     ]} />
-    //                             )
-    //                         case 'image':
-    //                             return <Image key={idx} style={{ width: 200, height: 150 }} source={{ uri: it.content }} />
-    //                     }
-    //                 })}
-    //             </View>
-    //             <View
-    //                 style={[styles.result_item, { width: OPTION_WIDTH }, defaultSourceOptionStyles]}>
-    //                 {sourceData.map((it, idx) => {
-    //                     switch (it.type) {
-    //                         case 'html':
-    //                             return (
-    //                                 <HtmlContent
-    //                                     key={idx}
-    //                                     content={it.content}
-    //                                     style={[
-    //                                         styles.answer_btn_txt,
-    //                                         defaultOptionTextStyles,
-    //                                     ]} />
-    //                             )
-    //                         case 'image':
-    //                             return <Image key={idx} style={{ width: 200, height: 150 }} source={{ uri: it.content }} />
-    //                     }
-    //                 })}
-    //             </View>
-    //         </View>
-    //     )
-    // }
+        switch (item.type) {
+            case 'richText':
+                return item.content;
+            case 'boxText':
+                return (
+                    <View style={styles.sentence_box}>
+                        <Text style={styles.sentence_box_txt}> {correctPhrase.answer} </Text>
+                    </View>
+                )
+            case 'breakDown':
+                return `\n`;
+        }
+    }
 
     if (!question) return null;
     return (
@@ -322,9 +287,9 @@ const PhraseQuestion = (props) => {
                 (questionStep == 2 || displayMode != 'default') &&
                 <View style={[styles.result_container, resultContainerStyles]}>
                     <Text style={[styles.suggestion_label, { color: subColor }]}>{label_result_txt}</Text>
-                    <View style={{ marginTop: 12 }}>
-                        {/* {correct_options.map(_renderCorrectOptions)} */}
-                    </View>
+                    <Text style={styles.sentence_list}>
+                        {sentences.map(_renderCorrectOptions)}
+                    </Text>
                     <View style={styles.solution_detail_view}>
                         <TouchableOpacity onPress={toggleSolutionDetail} style={[styles.solution_detail_btn, solutionDetailBtnStyles]}>
                             <Text style={[{ fontSize: 15, }, solutionDetailBtnTitleStyles]}>Xem lời giải</Text>
