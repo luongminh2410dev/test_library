@@ -8,6 +8,7 @@ import PhraseQuestion from '../questions/phrase-question'
 import CompoundQuestion from '../questions/compound-question'
 import SortQuestion from '../questions/sort_question'
 import TFTableQuestion from '../questions/tf-table-question'
+import FindFaultQuestion from '../questions/find-fault-question'
 
 const SingleQuestion = (props) => {
     const { question, globalConfig, globalStyles, customConfig, customStyles } = props;
@@ -68,6 +69,14 @@ const SingleQuestion = (props) => {
         case 7:
             return (
                 <TFTableQuestion
+                    {...props}
+                    customConfig={newConfig}
+                    customStyles={newStyles}
+                />
+            )
+        case 8:
+            return (
+                <FindFaultQuestion
                     {...props}
                     customConfig={newConfig}
                     customStyles={newStyles}

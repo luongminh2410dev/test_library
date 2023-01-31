@@ -1139,3 +1139,311 @@ export const tfTableQuestion = {
     ],
     "spec_question": 1
 }
+
+export const findFaultQuestion = {
+    "id": "6179196e047439b674336e23",
+    "analytics": {
+        "correct": 0,
+        "incorrect": 0,
+        "skiped": 0,
+        "total_answer": 0,
+        "percent_false": 0
+    },
+    "solution_detail": [
+        {
+            "type": "html",
+            "content": "<p style=\"text-align: justify;\">Những từ viết sai ch&iacute;nh tả l&agrave;:</p>\n<p style=\"text-align: justify;\">Em Bống c&oacute; khu&ocirc;n mặt bầu <strong>bỉnh</strong>. Em rất ngoan <strong>ngoản</strong> v&agrave; biết ch&agrave;o hỏi mọi người.</p>\n<p style=\"text-align: justify;\">Sửa lại: bỉnh -&gt; bĩnh, ngoản -&gt; ngo&atilde;n</p>"
+        }
+    ],
+    "solution_suggestion": [
+        {
+            "type": "html",
+            "content": "<p>Em ch&uacute; &yacute; ph&acirc;n biệt dấu hỏi / dấu ng&atilde;.</p>"
+        }
+    ],
+    "guide_touch": "Con hãy bấm chọn từ/cụm từ chứa lỗi sai",
+    "sdk_type": 8,
+    "difficult_level": 3,
+    "notice": [],
+    "question": [
+        {
+            "type": "html",
+            "content": "<p style=\"text-align: center;\"><strong>Bấm chọn v&agrave;o từ viết sai ch&iacute;nh tả trong c&acirc;u sau:</strong></p>\n<p style=\"text-align: center;\">&nbsp;</p>"
+        },
+        {
+            "type": "html",
+            "content": "<p style=\"text-align: center;\"><img src=\"https://cdn.vungoi.vn/vungoi/2021/1027/1635328704505_mceclip0.jpg\" width=\"250\" /></p>"
+        }
+    ],
+    "options": [
+        {
+            "id": "answer_ckv9aqol40002386y6i3uxjzk",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>Em</p>"
+                }
+            ],
+            "correct": false
+        },
+        {
+            "id": "answer_ckv9aqol40003386ykwk8cmzs",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>Bống</p>"
+                }
+            ],
+            "correct": false
+        },
+        {
+            "id": "answer_ckv9auyk7000j386ym2u4wqgc",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>c&oacute;</p>"
+                }
+            ],
+            "correct": false
+        },
+        {
+            "id": "answer_ckv9av3fx000z386yon0jtbrc",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>khu&ocirc;n</p>"
+                }
+            ],
+            "correct": false
+        },
+        {
+            "id": "answer_ckv9av871001i386y3f0emb9a",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>mặt</p>"
+                }
+            ],
+            "correct": false
+        },
+        {
+            "id": "answer_ckv9avgpu0024386yxfvj6cdt",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>bầu</p>"
+                }
+            ],
+            "correct": false
+        },
+        {
+            "id": "answer_ckv9avqon002t386ytokt046n",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>bỉnh</p>"
+                }
+            ],
+            "correct": true
+        },
+        {
+            "id": "answer_ckv9avxn2003l386yjnusxvbv",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>.</p>"
+                }
+            ],
+            "correct": false
+        },
+        {
+            "id": "answer_ckv9aw7pc004g386yewhrfbh4",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>Em</p>"
+                }
+            ],
+            "correct": false
+        },
+        {
+            "id": "answer_ckv9awfkq005e386yz766l7gh",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>rất</p>"
+                }
+            ],
+            "correct": false
+        },
+        {
+            "id": "answer_ckv9awn9p006f386yjzquddr8",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>ngoan</p>"
+                }
+            ],
+            "correct": false
+        },
+        {
+            "id": "answer_ckv9awu41007j386yw1z4eqyu",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>ngoản</p>"
+                }
+            ],
+            "correct": true
+        },
+        {
+            "id": "answer_ckv9ax7cf008q386yk1s1q3ql",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>v&agrave;</p>"
+                }
+            ],
+            "correct": false
+        },
+        {
+            "id": "answer_ckv9axetc00a0386yha3uz3gm",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>biết</p>"
+                }
+            ],
+            "correct": false
+        },
+        {
+            "id": "answer_ckv9axphd00bd386yu1bh99m4",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>ch&agrave;o</p>"
+                }
+            ],
+            "correct": false
+        },
+        {
+            "id": "answer_ckv9axy3i00ct386y228550fa",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>hỏi</p>"
+                }
+            ],
+            "correct": false
+        },
+        {
+            "id": "answer_ckv9ay7sw00ec386ytk3pp2rx",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>mọi</p>"
+                }
+            ],
+            "correct": false
+        },
+        {
+            "id": "answer_ckv9ayox100fy386ywl1rckyl",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>người</p>"
+                }
+            ],
+            "correct": false
+        },
+        {
+            "id": "answer_ckv9az18600hn386yk99c7rzl",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>.</p>"
+                }
+            ],
+            "correct": false
+        }
+    ],
+    "correct_options": [
+        {
+            "id": "answer_ckv9aqol40002386y6i3uxjzk",
+            "answer": false
+        },
+        {
+            "id": "answer_ckv9aqol40003386ykwk8cmzs",
+            "answer": false
+        },
+        {
+            "id": "answer_ckv9auyk7000j386ym2u4wqgc",
+            "answer": false
+        },
+        {
+            "id": "answer_ckv9av3fx000z386yon0jtbrc",
+            "answer": false
+        },
+        {
+            "id": "answer_ckv9av871001i386y3f0emb9a",
+            "answer": false
+        },
+        {
+            "id": "answer_ckv9avgpu0024386yxfvj6cdt",
+            "answer": false
+        },
+        {
+            "id": "answer_ckv9avqon002t386ytokt046n",
+            "answer": true
+        },
+        {
+            "id": "answer_ckv9avxn2003l386yjnusxvbv",
+            "answer": false
+        },
+        {
+            "id": "answer_ckv9aw7pc004g386yewhrfbh4",
+            "answer": false
+        },
+        {
+            "id": "answer_ckv9awfkq005e386yz766l7gh",
+            "answer": false
+        },
+        {
+            "id": "answer_ckv9awn9p006f386yjzquddr8",
+            "answer": false
+        },
+        {
+            "id": "answer_ckv9awu41007j386yw1z4eqyu",
+            "answer": true
+        },
+        {
+            "id": "answer_ckv9ax7cf008q386yk1s1q3ql",
+            "answer": false
+        },
+        {
+            "id": "answer_ckv9axetc00a0386yha3uz3gm",
+            "answer": false
+        },
+        {
+            "id": "answer_ckv9axphd00bd386yu1bh99m4",
+            "answer": false
+        },
+        {
+            "id": "answer_ckv9axy3i00ct386y228550fa",
+            "answer": false
+        },
+        {
+            "id": "answer_ckv9ay7sw00ec386ytk3pp2rx",
+            "answer": false
+        },
+        {
+            "id": "answer_ckv9ayox100fy386ywl1rckyl",
+            "answer": false
+        },
+        {
+            "id": "answer_ckv9az18600hn386yk99c7rzl",
+            "answer": false
+        }
+    ],
+    "spec_question": 1
+}
