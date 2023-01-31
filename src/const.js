@@ -1028,3 +1028,114 @@ export const sortQuestion = {
         }
     ]
 }
+
+export const tfTableQuestion = {
+    "id": "61d5244c8d1e34b8498a0f4b",
+    "analytics": {
+        "correct": 0,
+        "incorrect": 0,
+        "skiped": 0,
+        "total_answer": 0,
+        "percent_false": 0
+    },
+    "solution_detail": [
+        {
+            "type": "html",
+            "content": "<p><img src=\"https://cdn.vungoi.vn/vungoi/2022/0105/1641358402380_mceclip0.png\" /></p>"
+        }
+    ],
+    "solution_suggestion": [],
+    "guide_touch": "Con hãy tích vào ô đúng hoặc sai cho mỗi câu (khẳng định)  dưới đây.",
+    "sdk_type": 7,
+    "difficult_level": 3,
+    "notice": [],
+    "question": [
+        {
+            "type": "html",
+            "content": "<h2>Tầng b&igrave;nh lưu kh&ocirc;ng c&oacute; c&aacute;c đặc điểm sau:</h2>"
+        }
+    ],
+    "options": [
+        {
+            "id": "answer_cky124dxh000g2w6v0qbq296z",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>Nơi c&oacute; c&aacute;c hiện tượng thời tiết như m&acirc;y, mưa, gi&oacute;, b&atilde;o, s&eacute;t,...</p>"
+                }
+            ]
+        },
+        {
+            "id": "answer_cky124dxh000h2w6v9pqkx71q",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>Nơi c&oacute; lớp &ocirc;-d&ocirc;n bảo vệ sự sống tr&ecirc;n Tr&aacute;i Đất</p>"
+                }
+            ]
+        },
+        {
+            "id": "answer_cky125rlr000w2w6vwtqhtzdu",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>Kh&ocirc;ng kh&iacute; chuyển động theo chiều ngang</p>"
+                }
+            ]
+        },
+        {
+            "id": "answer_cky125t1f001c2w6vw5w2hnoq",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>Nhiệt độ kh&ocirc;ng kh&iacute; giảm dần theo độ cao</p>"
+                }
+            ]
+        },
+        {
+            "id": "answer_cky12c7yv001v2w6va1zr213e",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>Phần lớn c&aacute;c tia cực t&iacute;m đều bị ngăn lại</p>"
+                }
+            ]
+        },
+        {
+            "id": "answer_cky12c9k7002h2w6vd75x4zxv",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>Nơi xuất hiện cực quang</p>"
+                }
+            ]
+        }
+    ],
+    "correct_options": [
+        {
+            "id": "answer_cky124dxh000g2w6v0qbq296z",
+            "answer": true
+        },
+        {
+            "id": "answer_cky124dxh000h2w6v9pqkx71q",
+            "answer": false
+        },
+        {
+            "id": "answer_cky125rlr000w2w6vwtqhtzdu",
+            "answer": false
+        },
+        {
+            "id": "answer_cky125t1f001c2w6vw5w2hnoq",
+            "answer": true
+        },
+        {
+            "id": "answer_cky12c7yv001v2w6va1zr213e",
+            "answer": false
+        },
+        {
+            "id": "answer_cky12c9k7002h2w6vd75x4zxv",
+            "answer": true
+        }
+    ],
+    "spec_question": 1
+}

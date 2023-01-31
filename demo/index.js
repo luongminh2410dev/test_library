@@ -1,6 +1,6 @@
 import React from 'react'
 import { ScrollView, Text, View } from 'react-native'
-import { phraseQuestion } from '../src/const'
+import { tfTableQuestion } from '../src/const'
 import SingleQuestion from '../src/single_question'
 
 const CustomView = () => {
@@ -15,7 +15,7 @@ const Demo = () => {
         <ScrollView style={{ flex: 1, backgroundColor: 'white', }} contentContainerStyle={{ paddingVertical: 80 }}>
             <Text style={{ fontSize: 26, fontWeight: 'bold', width: '100%', textAlign: 'center' }}>Demo App</Text>
             <SingleQuestion
-                question={phraseQuestion}
+                question={tfTableQuestion}
             />
         </ScrollView>
     )

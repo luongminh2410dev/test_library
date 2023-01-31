@@ -7,6 +7,7 @@ import YNQuestion from '../questions/yn-question'
 import PhraseQuestion from '../questions/phrase-question'
 import CompoundQuestion from '../questions/compound-question'
 import SortQuestion from '../questions/sort_question'
+import TFTableQuestion from '../questions/tf-table-question'
 
 const SingleQuestion = (props) => {
     const { question, globalConfig, globalStyles, customConfig, customStyles } = props;
@@ -59,6 +60,14 @@ const SingleQuestion = (props) => {
         case 6:
             return (
                 <SortQuestion
+                    {...props}
+                    customConfig={newConfig}
+                    customStyles={newStyles}
+                />
+            )
+        case 7:
+            return (
+                <TFTableQuestion
                     {...props}
                     customConfig={newConfig}
                     customStyles={newStyles}
