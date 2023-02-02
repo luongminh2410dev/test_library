@@ -1447,3 +1447,380 @@ export const findFaultQuestion = {
     ],
     "spec_question": 1
 }
+
+export const findFaultQuestion2 = {
+    "id": "61f12e4711732e225b0c7571",
+    "analytics": {
+        "correct": 0,
+        "incorrect": 0,
+        "skiped": 0,
+        "total_answer": 0,
+        "percent_false": 0
+    },
+    "solution_detail": [
+        {
+            "type": "html",
+            "content": "<p><strong>Sửa:</strong> generous /ˈdʒenərəs/ =&gt; gentle/ˈdʒentl/</p>\n<p><strong>Chọn C</strong></p>"
+        },
+        {
+            "type": "html",
+            "content": "<div class=\"card\">\n<div id=\"headingOne\" class=\"card-header\">\n<h5 class=\"mb-0\"><button class=\"btn btn-link\" data-toggle=\"collapse\" data-target=\"#ckyvgk0sk00it386xs8s45ukp_collpase\" aria-expanded=\"true\" aria-controls=\"collapseOne\"><strong>Lyrics:</strong></button></h5>\n</div>\n</div>\n<p>All of those who are hither and yonder</p>\n<p>With love in our hearts</p>\n<p>We grow fonder and fonder</p>\n<p>Hail to those who we hold so dear</p>\n<p>And hail to those who are gathered here</p>\n<p>&nbsp;</p>\n<p>And a happy new year to all that is living</p>\n<p>To all that is gentle, young, and forgiving</p>\n<p>Raise your glass and we'll have a cheer</p>\n<p>My dear acquaintance, a happy new year</p>\n<p>Happy new year</p>"
+        },
+        {
+            "type": "html",
+            "content": "<div class=\"card\">\n<div id=\"headingOne\" class=\"card-header\">\n<h5 class=\"mb-0\"><button class=\"btn btn-link\" data-toggle=\"collapse\" data-target=\"#ckyvgkj4q00iu386x30hnzwc1_collpase\" aria-expanded=\"true\" aria-controls=\"collapseOne\"><strong>Lời b&agrave;i h&aacute;t:</strong></button></h5>\n</div>\n</div>\n<p><em>Tất cả những người tha phương cầu thực</em></p>\n<p><em>Với t&igrave;nh y&ecirc;u trong tr&aacute;i tim của ch&uacute;ng ta</em></p>\n<p><em>Ch&uacute;ng ta trở n&ecirc;n vui vẻ v&agrave; ấm &aacute;p hơn</em></p>\n<p><em>Ch&agrave;o mừng những người m&agrave; ch&uacute;ng ta y&ecirc;u qu&yacute;</em></p>\n<p><em>V&agrave; ch&agrave;o mừng những người đang tập trung ở đ&acirc;y</em></p>\n<p>&nbsp;</p>\n<p><em>N&acirc;ng ly của bạn v&agrave; ch&uacute;ng ta sẽ c&oacute; một cuộc ăn mừng</em></p>\n<p><em>Đối với ch&uacute;ng ta tất cả những người đang tập trung ở đ&acirc;y</em></p>\n<p><em>V&agrave; một năm mới hạnh ph&uacute;c cho tất cả những g&igrave; đang tồn tại</em></p>\n<p><em>Đối với tất cả những g&igrave; l&agrave; nhẹ nh&agrave;ng, tốt bụng v&agrave; tha thứ</em></p>\n<p><em>N&acirc;ng ly của bạn v&agrave; ch&uacute;ng ta sẽ c&oacute; một cuộc ăn mừng</em></p>\n<p><em>Bạn th&acirc;n mến của t&ocirc;i ơi, một năm mới hạnh ph&uacute;c nh</em>&eacute;&hellip;</p>"
+        }
+    ],
+    "solution_suggestion": [
+        {
+            "type": "html",
+            "content": "<p>X&eacute;t c&aacute;ch ph&aacute;t &acirc;m của c&aacute;c đ&aacute;p &aacute;n</p>\n<p>hither /ˈhɪ&eth;ə(r)/</p>\n<p>fonder /fɒndə(r)/</p>\n<p>generous /ˈdʒenərəs/</p>"
+        }
+    ],
+    "guide_touch": "Con hãy bấm chọn từ/cụm từ chứa lỗi sai sau đó sửa lại từ/cụm từ bằng cách điền từ/cụm từ vào ô trống",
+    "sdk_type": 9,
+    "difficult_level": 2,
+    "notice": [],
+    "question": [
+        {
+            "type": "html",
+            "content": "<p><strong>Listen carefully. Find and correct the only mistake below.</strong></p>"
+        },
+        {
+            "type": "html",
+            "content": "<p><audio class=\"audio_file\" controls=\"controls\">\n                                                    <source src=\"https://cdn.vungoi.vn/vungoi/2022/0126/1643196244762_My_Dear_Acquaintance_(cau_6).mp3\" type=\"audio/mpeg\" />\n                                                    Your browser does not support the audio element.\n                                              </audio></p>"
+        }
+    ],
+    "suggestion_paragraph": [
+        {
+            "id": "answer_ckyvgc6em000g386y8g30sf09",
+            "content": "hither",
+            "name": "TEXT BOX",
+            "obj_type": "boxText",
+            "optionTypeIndex": 0
+        },
+        {
+            "id": "answer_ckyvgc6em000h386ydsq0nytj",
+            "content": "fonder",
+            "name": "TEXT BOX",
+            "obj_type": "boxText",
+            "optionTypeIndex": 0
+        },
+        {
+            "id": "answer_ckyvgc6em000i386y6awc7uq0",
+            "content": "generous",
+            "name": "TEXT BOX",
+            "obj_type": "boxText",
+            "optionTypeIndex": 0
+        }
+    ],
+    "options": [
+        {
+            "id": "answer_ckyvgc6em000j386y9a52y51q",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>All of those who are</p>"
+                }
+            ],
+            "correct": "",
+            "type": "choiceTextHightLight"
+        },
+        {
+            "id": "answer_ckyvgc6em000k386y3bdwm0mo",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>hither</p>"
+                }
+            ],
+            "correct": "",
+            "type": "choiceTextHightLight"
+        },
+        {
+            "id": "answer_ckyvgd5bp0011386y16cdst1g",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>and yonder</p>"
+                }
+            ],
+            "type": "choiceTextHightLight",
+            "correct": ""
+        },
+        {
+            "id": "answer_ckyvgdiqg001j386y8obau19m",
+            "type": "breakDown"
+        },
+        {
+            "id": "answer_ckyvgdoxg0024386y0xy9ho4v",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>With love in our hearts</p>"
+                }
+            ],
+            "type": "choiceTextHightLight",
+            "correct": ""
+        },
+        {
+            "id": "answer_ckyvgduoc002r386y5hhi36m6",
+            "type": "breakDown"
+        },
+        {
+            "id": "answer_ckyvge19g003h386y64fofuyp",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>We grow fonder and</p>"
+                }
+            ],
+            "type": "choiceTextHightLight",
+            "correct": ""
+        },
+        {
+            "id": "answer_ckyvge5m7004a386ywkiwszy2",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>fonder</p>"
+                }
+            ],
+            "type": "choiceTextHightLight",
+            "correct": ""
+        },
+        {
+            "id": "answer_ckyvgedpa0055386yw1egltuf",
+            "type": "breakDown"
+        },
+        {
+            "id": "answer_ckyvgej900063386y5qr3zo06",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>Hail to those who we hold so dear</p>"
+                }
+            ],
+            "type": "choiceTextHightLight",
+            "correct": ""
+        },
+        {
+            "id": "answer_ckyvges8a0073386ym1zn63ib",
+            "type": "breakDown"
+        },
+        {
+            "id": "answer_ckyvgeyee0086386yfijs1oin",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>And hail to those who are gathered here</p>"
+                }
+            ],
+            "type": "choiceTextHightLight",
+            "correct": ""
+        },
+        {
+            "id": "answer_ckyvgf5uv009b386yt5yvythf",
+            "type": "breakDown"
+        },
+        {
+            "id": "answer_ckyvgfbvw00aj386y12j4atmd",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>And a happy new year to all that is living</p>"
+                }
+            ],
+            "type": "choiceTextHightLight",
+            "correct": ""
+        },
+        {
+            "id": "answer_ckyvgfy5t001u386x775i01oq",
+            "type": "breakDown"
+        },
+        {
+            "id": "answer_ckyvgg73k0037386xrcgk4cii",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>To all that is</p>"
+                }
+            ],
+            "type": "choiceTextHightLight",
+            "correct": ""
+        },
+        {
+            "id": "answer_ckyvggdqi004n386xvc3d6tn7",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>generous</p>"
+                }
+            ],
+            "type": "choiceTextHightLight",
+            "correct": "gentle"
+        },
+        {
+            "id": "answer_ckyvggx8v0066386x06k7qo3v",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>, young, and forgiving</p>"
+                }
+            ],
+            "type": "choiceTextHightLight",
+            "correct": ""
+        },
+        {
+            "id": "answer_ckyvgh8z9007r386xv5py3tsl",
+            "type": "breakDown"
+        },
+        {
+            "id": "answer_ckyvghh4d009f386xmbsacbd9",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>Raise your glass and we'll have a cheer</p>"
+                }
+            ],
+            "type": "choiceTextHightLight",
+            "correct": ""
+        },
+        {
+            "id": "answer_ckyvghqvh00b5386x04wevwq6",
+            "type": "breakDown"
+        },
+        {
+            "id": "answer_ckyvghze400cy386x12p7jd7s",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>My dear acquaintance, a happy new year</p>"
+                }
+            ],
+            "type": "choiceTextHightLight",
+            "correct": ""
+        },
+        {
+            "id": "answer_ckyvgi9ny00et386xlv28dleu",
+            "type": "breakDown"
+        },
+        {
+            "id": "answer_ckyvginni00gr386xcrnlsgjb",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>Happy new year</p>"
+                }
+            ],
+            "type": "choiceTextHightLight",
+            "correct": ""
+        }
+    ],
+    "correct_options": [
+        {
+            "id": "answer_ckyvggdqi004n386xvc3d6tn7",
+            "answer": "gentle"
+        }
+    ],
+    "spec_question": 1
+}
+
+export const multiCorrectQuestion = {
+    "id": "61efb789e64eeffeac5678e0",
+    "analytics": {
+        "correct": 0,
+        "incorrect": 0,
+        "skiped": 0,
+        "total_answer": 0,
+        "percent_false": 0
+    },
+    "solution_detail": [
+        {
+            "type": "html",
+            "content": "<p>C&aacute;c hồ thủy điện ở Việt Nam l&agrave;: Hồ Trị An, Hồ H&ograve;a B&igrave;nh, Hồ Dầu Tiếng.</p>"
+        }
+    ],
+    "solution_suggestion": [],
+    "guide_touch": "Con hãy chọn những đáp án đúng (Được chọn nhiều đáp án)",
+    "sdk_type": 10,
+    "difficult_level": 4,
+    "notice": [],
+    "content_format": "array",
+    "question": [
+        {
+            "type": "html",
+            "content": "<p><strong>Chọn c&aacute;c đ&aacute;p &aacute;n đ&uacute;ng:</strong></p>\n<p>C&aacute;c hồ ở Việt Nam được coi l&agrave; hồ thủy điện l&agrave;:</p>"
+        }
+    ],
+    "options": [
+        {
+            "id": "answer_ckytv4ir8000g386yytix8l30",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>Hồ Trị An</p>"
+                }
+            ]
+        },
+        {
+            "id": "answer_ckytv4ir8000h386yfj02mzvn",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>Hồ T&acirc;y</p>"
+                }
+            ]
+        },
+        {
+            "id": "answer_ckytv4z58000x386yy9qudt51",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>Hồ H&ograve;a B&igrave;nh</p>"
+                }
+            ]
+        },
+        {
+            "id": "answer_ckytv5azu001d386yqf3uoi7p",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>Hồ Dầu Tiếng</p>"
+                }
+            ]
+        },
+        {
+            "id": "answer_ckytv5iyi001w386y5muypaxp",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>Hồ Ba Bể</p>"
+                }
+            ]
+        }
+    ],
+    "correct_options": [
+        {
+            "id": "answer_ckytv4ir8000g386yytix8l30",
+            "answer": true
+        },
+        {
+            "id": "answer_ckytv4ir8000h386yfj02mzvn",
+            "answer": false
+        },
+        {
+            "id": "answer_ckytv4z58000x386yy9qudt51",
+            "answer": true
+        },
+        {
+            "id": "answer_ckytv5azu001d386yqf3uoi7p",
+            "answer": true
+        },
+        {
+            "id": "answer_ckytv5iyi001w386y5muypaxp",
+            "answer": false
+        }
+    ],
+    "spec_question": 1
+}

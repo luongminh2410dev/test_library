@@ -1,14 +1,16 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import PairingQuestion from '../questions/pairing-question'
-import MultiChoice from '../questions/multichoice-question'
-import TextDGNL from '../questions/text-dgnl-question'
-import YNQuestion from '../questions/yn-question'
-import PhraseQuestion from '../questions/phrase-question'
 import CompoundQuestion from '../questions/compound-question'
-import SortQuestion from '../questions/sort_question'
-import TFTableQuestion from '../questions/tf-table-question'
 import FindFaultQuestion from '../questions/find-fault-question'
+import FindFaultQuestion2 from '../questions/find-fault-question2'
+import MultiChoice from '../questions/multichoice-question'
+import PairingQuestion from '../questions/pairing-question'
+import PhraseQuestion from '../questions/phrase-question'
+import SortQuestion from '../questions/sort_question'
+import TextDGNL from '../questions/text-dgnl-question'
+import TFTableQuestion from '../questions/tf-table-question'
+import YNQuestion from '../questions/yn-question'
+import MultiCorrectQuestion from '../questions/multi-correct-question'
 
 const SingleQuestion = (props) => {
     const { question, globalConfig, globalStyles, customConfig, customStyles } = props;
@@ -77,6 +79,22 @@ const SingleQuestion = (props) => {
         case 8:
             return (
                 <FindFaultQuestion
+                    {...props}
+                    customConfig={newConfig}
+                    customStyles={newStyles}
+                />
+            )
+        case 9:
+            return (
+                <FindFaultQuestion2
+                    {...props}
+                    customConfig={newConfig}
+                    customStyles={newStyles}
+                />
+            )
+        case 10:
+            return (
+                <MultiCorrectQuestion
                     {...props}
                     customConfig={newConfig}
                     customStyles={newStyles}

@@ -18,9 +18,11 @@ import { name as appName } from './app.json';
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import Feather from 'react-native-vector-icons/Feather'
 import Entypo from 'react-native-vector-icons/Entypo'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
 AntDesign.loadFont();
 Feather.loadFont();
 Entypo.loadFont();
+Ionicons.loadFont()
 
 AppRegistry.registerComponent(appName, () => App);
