@@ -1824,3 +1824,155 @@ export const multiCorrectQuestion = {
     ],
     "spec_question": 1
 }
+
+export const selectSentenceQuestion = {
+    "id": "61f7b8c111732e225b0c88ec",
+    "analytics": {
+        "correct": 0,
+        "incorrect": 0,
+        "skiped": 0,
+        "total_answer": 0,
+        "percent_false": 0
+    },
+    "solution_detail": [
+        {
+            "type": "html",
+            "content": "<p style=\"text-align: justify;\">Những từ ngữ chỉ người l&agrave;m việc tr&ecirc;n biển l&agrave;: ngư d&acirc;n, bộ đội hải qu&acirc;n, thợ lặn, thủy thủ</p>"
+        }
+    ],
+    "solution_suggestion": [
+        {
+            "type": "html",
+            "content": "<p style=\"text-align: justify;\">Em đọc kĩ c&aacute;c từ ngữ.</p>"
+        }
+    ],
+    "guide_touch": "Con hãy bấm vào từ/cụm từ để chọn. Bấm lại vào từ/cụm từ để bỏ chọn",
+    "sdk_type": 11,
+    "difficult_level": 2,
+    "notice": [],
+    "content_format": "array",
+    "question": [
+        {
+            "type": "html",
+            "content": "<p style=\"text-align: center;\"><strong>Bấm chọn v&agrave;o từ ngữ chỉ người l&agrave;m việc tr&ecirc;n biển?</strong></p>"
+        },
+        {
+            "type": "image",
+            "url": "https://cdn.vungoi.vn/vungoi/2022/0131/1643624254973_anh_7_ds.png",
+            "caption": "",
+            "optUpload": 2,
+            "width": "200",
+            "height": "197",
+            "quantity": 1
+        }
+    ],
+    "options": [
+        {
+            "id": "answer_ckz2ja8ft000g3p6yx6z13vm2",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>ngư d&acirc;n</p>"
+                }
+            ],
+            "obj_type": "choiceTextHightLight"
+        },
+        {
+            "id": "answer_ckz2jg3fk00163p6yy9mwn63y",
+            "obj_type": "breakDown"
+        },
+        {
+            "id": "answer_ckz2jgc7c00253p6ylcllfsi8",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>bộ đội hải qu&acirc;n</p>"
+                }
+            ],
+            "obj_type": "choiceTextHightLight"
+        },
+        {
+            "id": "answer_ckz2jgop0002j3p6ytt15wsv4",
+            "obj_type": "breakDown"
+        },
+        {
+            "id": "answer_ckz2jgrbr00303p6ypa491rej",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>l&aacute;i xe</p>"
+                }
+            ],
+            "obj_type": "choiceTextHightLight"
+        },
+        {
+            "id": "answer_ckz2jh1yk003j3p6y84sptjj3",
+            "obj_type": "breakDown"
+        },
+        {
+            "id": "answer_ckz2jh9p100453p6y429xu2l1",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>thợ lặn</p>"
+                }
+            ],
+            "obj_type": "choiceTextHightLight"
+        },
+        {
+            "id": "answer_ckz2jhdge004t3p6ywhpbfvdx",
+            "obj_type": "breakDown"
+        },
+        {
+            "id": "answer_ckz2jhkro005k3p6yn3ictjbv",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>thủy thủ</p>"
+                }
+            ],
+            "obj_type": "choiceTextHightLight"
+        },
+        {
+            "id": "answer_ckz2jhszw006d3p6yotgp1gq3",
+            "obj_type": "breakDown"
+        },
+        {
+            "id": "answer_ckz2jhw2d00793p6ywmn6cjwu",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>n&ocirc;ng d&acirc;n</p>"
+                }
+            ],
+            "obj_type": "choiceTextHightLight"
+        }
+    ],
+    "correct_options": [
+        {
+            "id": "answer_ckz2ja8ft000g3p6yx6z13vm2",
+            "answer": true
+        },
+        {
+            "id": "answer_ckz2jgc7c00253p6ylcllfsi8",
+            "answer": true
+        },
+        {
+            "id": "answer_ckz2jgrbr00303p6ypa491rej",
+            "answer": false
+        },
+        {
+            "id": "answer_ckz2jh9p100453p6y429xu2l1",
+            "answer": true
+        },
+        {
+            "id": "answer_ckz2jhkro005k3p6yn3ictjbv",
+            "answer": true
+        },
+        {
+            "id": "answer_ckz2jhw2d00793p6ywmn6cjwu",
+            "answer": false
+        }
+    ],
+    "spec_question": 1
+}

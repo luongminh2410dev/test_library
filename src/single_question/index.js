@@ -11,6 +11,7 @@ import TextDGNL from '../questions/text-dgnl-question'
 import TFTableQuestion from '../questions/tf-table-question'
 import YNQuestion from '../questions/yn-question'
 import MultiCorrectQuestion from '../questions/multi-correct-question'
+import SelectSentenceQuestion from '../questions/select-sentence-question'
 
 const SingleQuestion = (props) => {
     const { question, globalConfig, globalStyles, customConfig, customStyles } = props;
@@ -95,6 +96,14 @@ const SingleQuestion = (props) => {
         case 10:
             return (
                 <MultiCorrectQuestion
+                    {...props}
+                    customConfig={newConfig}
+                    customStyles={newStyles}
+                />
+            )
+        case 11:
+            return (
+                <SelectSentenceQuestion
                     {...props}
                     customConfig={newConfig}
                     customStyles={newStyles}
