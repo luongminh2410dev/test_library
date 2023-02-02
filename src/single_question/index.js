@@ -12,6 +12,7 @@ import TFTableQuestion from '../questions/tf-table-question'
 import YNQuestion from '../questions/yn-question'
 import MultiCorrectQuestion from '../questions/multi-correct-question'
 import SelectSentenceQuestion from '../questions/select-sentence-question'
+import TextNonMathjaxQuestion from '../questions/text-nonmathjax-question'
 
 const SingleQuestion = (props) => {
     const { question, globalConfig, globalStyles, customConfig, customStyles } = props;
@@ -104,6 +105,14 @@ const SingleQuestion = (props) => {
         case 11:
             return (
                 <SelectSentenceQuestion
+                    {...props}
+                    customConfig={newConfig}
+                    customStyles={newStyles}
+                />
+            )
+        case 12:
+            return (
+                <TextNonMathjaxQuestion
                     {...props}
                     customConfig={newConfig}
                     customStyles={newStyles}

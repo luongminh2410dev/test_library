@@ -1,16 +1,28 @@
-import React, { useState } from 'react';
-import { Alert, Dimensions, Image, Text, TouchableOpacity, View } from 'react-native';
+import React, { useRef, useState } from 'react';
+import { Alert, Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Collapsible from 'react-native-collapsible';
 import Feather from 'react-native-vector-icons/Feather';
 import HtmlContent from '../../components/html-content';
 import styles from './styles';
 
-const { width, height } = Dimensions.get('window');
+const WORD_WIDTH = 15;
+const SentenceEditor = (props) => {
+    const { item, index, updateAnswers, correct_options } = props;
+    const defaultValue = correct_options ? correct_options.find(it => it.id == item.id)?.answer : '';
 
-const answers = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
+    const onChangeText = (text) => {
+        updateAnswers(item.id, text)
+    }
 
-// nextBtnState: 0 - chua chon dap an, 1 - da chon dap an, 2 - da hoan thanh cau hoi
-const MultiChoice = (props) => {
+    return (
+        <TextInput
+            defaultValue={defaultValue}
+            onChangeText={onChangeText}
+            style={[styles.sentence_editor, { width: WORD_WIDTH * item.width }]} />
+    )
+}
+
+const TextNonMathjaxQuestion = (props) => {
     const {
         question, customConfig, customStyles, displayMode,
         getTopComponent, getMiddleComponent, getBottomComponent, getCornerComponent,
@@ -48,10 +60,10 @@ const MultiChoice = (props) => {
         options, correct_options, solution_detail
     } = question;
 
-    const [currentAnswer, setCurrentAnswer] = useState(-1);
     const [suggestionCollapsed, setSuggestionCollapsed] = useState(true);
     const [solutionCollapsed, setSolutionCollapsed] = useState(true);
     const [questionStep, setQuestionStep] = useState(0);
+    const refAnswers = useRef({});
 
     const nextButtonLabel = questionStep == 1 && correct_options ? 'Kiểm tra' : btn_skip_text;
     const suggestButtonLabel = questionStep == 2 ? 'Xem lại lý thuyết' : btn_suggestion_text;
@@ -114,6 +126,11 @@ const MultiChoice = (props) => {
                 if (!correct_options) return onFinishQuestion();
                 setSuggestionCollapsed(true)
                 setQuestionStep(2)
+                // CHECK RESULT
+                const isCorrect = !correct_options.find(item => {
+                    return item.answer != refAnswers.current[item.id];
+                })
+                console.log(isCorrect ? 'Chính xác' : 'Không chính xác');
                 break;
             case 2:
                 onFinishQuestion();
@@ -123,34 +140,17 @@ const MultiChoice = (props) => {
         }
     }
 
-    const _renderOptionItem = (i, idx) => {
-        const isActive = currentAnswer == idx;
-        const onPress = () => {
-            onSelectOption(i)
-            setCurrentAnswer(idx)
-            setQuestionStep(1)
+    const _renderSentenceItem = (item, index) => {
+        switch (item.obj_type) {
+            case 'richText':
+                return item.content.map((it, idx) => (
+                    <HtmlContent key={`${index}_${idx}`} content={it.content} color={textColor} />
+                ))
+            case 'inputText':
+                return <SentenceEditor key={index} item={item} updateAnswers={updateAnswers} />
+            case 'breakDown':
+                return <View key={index} style={{ width: '100%' }} />;
         }
-        return (
-            <TouchableOpacity
-                key={idx}
-                onPress={onPress}
-                disabled={questionStep >= 2}
-                style={[styles.answer_btn, { width: width / items_per_row }]}>
-                <View style={[styles.checkbox, isActive && activeButtonStyles]}>
-                    <View style={[styles.checkbox_dot, isActive && { backgroundColor: primaryColor }]} />
-                </View>
-                {i.option_content.map((it, ix) => {
-                    switch (it.type) {
-                        case 'html':
-                            return (
-                                <HtmlContent key={ix} content={`${answers[idx]}.${it.content}`} color={isActive ? primaryColor : textColor} />
-                            )
-                        case 'image':
-                            return <Image key={ix} style={{ width: 200, height: 150 }} source={{ uri: it.content }} />
-                    }
-                })}
-            </TouchableOpacity>
-        )
     }
 
     const _renderContent = (item, index) => {
@@ -168,6 +168,32 @@ const MultiChoice = (props) => {
         }
     }
 
+    const _renderResult = (item, index) => {
+        switch (item.obj_type) {
+            case 'richText':
+                return item.content.map((it, idx) => (
+                    <HtmlContent key={`${index}_${idx}`} content={it.content} color={textColor} />
+                ))
+            case 'inputText':
+                return <SentenceEditor
+                    key={index}
+                    item={item}
+                    updateAnswers={updateAnswers}
+                    correct_options={correct_options} />
+            case 'breakDown':
+                return <View key={index} style={{ width: '100%' }} />;
+        }
+    }
+
+    const updateAnswers = (id, answer) => {
+        answer.trim() != '' ?
+            refAnswers.current[id] = answer
+            :
+            delete refAnswers.current[id];
+        setQuestionStep(Object.keys(refAnswers.current).length > 0 ? 1 : 0)
+
+    }
+
     if (!question) return null;
     return (
         <View style={[styles.container, containerStyles]} pointerEvents={displayMode == 'preview' ? 'none' : 'auto'}>
@@ -183,8 +209,10 @@ const MultiChoice = (props) => {
             <View style={[styles.question_view, questionTitleStyles]}>
                 {_question.map(_renderContent)}
             </View>
-            <View style={[styles.options, optionContainerStyles]} pointerEvents={displayMode == 'result' ? 'none' : 'auto'}>
-                {options.map(_renderOptionItem)}
+            <View
+                style={[styles.option_container, optionContainerStyles]}
+                pointerEvents={displayMode == 'result' || questionStep == 2 ? 'none' : 'auto'}>
+                {options.map(_renderSentenceItem)}
             </View>
             <Collapsible
                 style={styles.suggestion_collapsible}
@@ -213,13 +241,9 @@ const MultiChoice = (props) => {
             {
                 (questionStep == 2 || displayMode != 'default') &&
                 <View style={[styles.result_container, resultContainerStyles]}>
-                    <View style={{ borderWidth: 1, borderStyle: 'dashed', borderColor: primaryColor }}>
-                        <Text style={[styles.result_txt, { color: primaryColor }]}>{
-                            correct_options.includes(options[currentAnswer].id) ?
-                                <Text>Bạn đã chọn đúng </Text>
-                                :
-                                <Text style={{ color: 'red' }}>Bạn đã chọn sai </Text>
-                        } | Đáp án đúng: {answers[options.findIndex(i => correct_options.includes(i.id))]} </Text>
+                    <Text style={[styles.suggestion_label, { color: subColor }]}>{label_solution_detail}</Text>
+                    <View style={styles.correct_result} pointerEvents='none'>
+                        {options.map(_renderResult)}
                     </View>
                     <View style={styles.solution_detail_view}>
                         <TouchableOpacity onPress={toggleSolutionDetail} style={[styles.solution_detail_btn, solutionDetailBtnStyles]}>
@@ -245,4 +269,4 @@ const MultiChoice = (props) => {
     )
 }
 
-export default MultiChoice
+export default TextNonMathjaxQuestion

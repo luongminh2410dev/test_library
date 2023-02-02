@@ -258,7 +258,7 @@ const PairingQuestion = (props) => {
                     <Image
                         key={index}
                         resizeMode='contain'
-                        style={{ width: 200, height: 150 }}
+                        style={{ width: parseInt(item.width), height: parseInt(item.height) }}
                         source={{ uri: item.url }} />
                 )
         }

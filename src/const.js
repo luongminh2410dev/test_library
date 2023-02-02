@@ -1976,3 +1976,70 @@ export const selectSentenceQuestion = {
     ],
     "spec_question": 1
 }
+
+export const textNonMathjaxQuestion = {
+    "id": "61eecf80e64eeffeac566ebc",
+    "analytics": {
+        "correct": 0,
+        "incorrect": 0,
+        "skiped": 0,
+        "total_answer": 0,
+        "percent_false": 0
+    },
+    "solution_detail": [
+        {
+            "type": "html",
+            "content": "<p style=\"text-align: justify;\"><strong>Bước 1: </strong>X&aacute;c định c&aacute;c số v&agrave; x&acirc;y dựng c&aacute;c ph&eacute;p t&iacute;nh</p>\n<p style=\"text-align: justify;\">- Số lớn nhất c&oacute; một chữ số l&agrave;m 9.</p>\n<p style=\"text-align: justify;\">- Đề b&agrave;i cho biết số cần t&igrave;m cộng với 9 bằng 7 cộng 8 n&ecirc;n ta c&oacute;:</p>\n<p style=\"text-align: justify;\">&hellip;&hellip;&hellip;.. + 9 = 7 + 8</p>\n<p style=\"text-align: justify;\"><strong>Bước 2: </strong>X&aacute;c định số cần t&igrave;m</p>\n<p style=\"text-align: justify;\">&hellip;&hellip;&hellip;.. + 9 = 7 + 8</p>\n<p style=\"text-align: justify;\">Như vậy, &hellip;&hellip;&hellip;&hellip;+ 9 = 15</p>\n<p style=\"text-align: justify;\">Em nhẩm bảng cộng (qua 10) v&agrave; t&igrave;m được đ&aacute;p &aacute;n: 6 + 9 = 15</p>\n<p style=\"text-align: justify;\">Vậy số cần t&iacute;m l&agrave; số <strong>6</strong>.</p>\n<p style=\"text-align: justify;\">&nbsp;</p>"
+        }
+    ],
+    "solution_suggestion": [
+        {
+            "type": "html",
+            "content": "<p style=\"text-align: justify;\"><strong>Bước 1: </strong>X&aacute;c định c&aacute;c số v&agrave; x&acirc;y dựng c&aacute;c ph&eacute;p t&iacute;nh.</p>\n<p style=\"text-align: justify;\"><strong>Bước 2: </strong>X&aacute;c định số cần t&igrave;m</p>"
+        }
+    ],
+    "guide_touch": "Con hãy điền từ / cụm từ/ số thích hợp vào các ô trống",
+    "sdk_type": 12,
+    "difficult_level": 4,
+    "notice": [],
+    "content_format": "array",
+    "question": [
+        {
+            "type": "html",
+            "content": "<p style=\"text-align: justify;\">T&igrave;m một số, biết rằng số đ&oacute; cộng với số lớn nhất c&oacute; một chữ số sẽ bằng 7 cộng với 8.</p>"
+        },
+        {
+            "type": "image",
+            "url": "https://cdn.vungoi.vn/vungoi/2022/0124/1643040516978_anh_20.png",
+            "caption": "",
+            "optUpload": 2,
+            "width": "200",
+            "height": "200",
+            "quantity": 1
+        }
+    ],
+    "options": [
+        {
+            "id": "answer_ckysvu9cg000g396x9bahoa89",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>Số cần t&igrave;m l&agrave; số</p>"
+                }
+            ],
+            "obj_type": "richText"
+        },
+        {
+            "id": "answer_ckysvvzk10019396xjxt56207",
+            "obj_type": "inputText",
+            "width": 5
+        }
+    ],
+    "correct_options": [
+        {
+            "id": "answer_ckysvvzk10019396xjxt56207",
+            "answer": "6"
+        }
+    ],
+    "spec_question": 1
+}
