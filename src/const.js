@@ -2043,3 +2043,183 @@ export const textNonMathjaxQuestion = {
     ],
     "spec_question": 1
 }
+
+export const dragOnBoxQuestion = {
+    "id": "61ed7105e64eeffeac566854",
+    "analytics": {
+        "correct": 0,
+        "incorrect": 0,
+        "skiped": 0,
+        "total_answer": 0,
+        "percent_false": 0
+    },
+    "solution_detail": [
+        {
+            "type": "html",
+            "content": "<table style=\"width: 100%;\">\n<tbody>\n<tr>\n<td style=\"text-align: center;\" width=\"319\">\n<p>Từ chỉ hoạt động</p>\n</td>\n<td style=\"text-align: center;\" width=\"319\">\n<p>Từ chỉ đặc điểm</p>\n</td>\n</tr>\n<tr>\n<td style=\"text-align: center;\" width=\"319\">\n<p>Nằm, nghỉ, dậy, ăn</p>\n</td>\n<td style=\"text-align: center;\" width=\"319\">\n<p>&Ecirc;m ả, thơm, &acirc;m thầm, lao xao</p>\n</td>\n</tr>\n</tbody>\n</table>"
+        }
+    ],
+    "solution_suggestion": [
+        {
+            "type": "html",
+            "content": "<p>Em sắp xếp c&aacute;c từ ngữ v&agrave;o nh&oacute;m th&iacute;ch hợp.</p>"
+        }
+    ],
+    "guide_touch": "Kéo Thả Đáp Án Vào Các Cột Tương Ứng",
+    "sdk_type": 13,
+    "difficult_level": 3,
+    "notice": [],
+    "content_format": "array",
+    "question": [
+        {
+            "type": "html",
+            "content": "<p style=\"text-align: center;\"><strong>Sắp xếp c&aacute;c từ trong b&agrave;i sau v&agrave;o nh&oacute;m th&iacute;ch hợp:</strong></p>"
+        },
+        {
+            "type": "image",
+            "url": "https://cdn.vungoi.vn/vungoi/2022/0123/1642950713605_anh_112.png",
+            "caption": "",
+            "optUpload": 2,
+            "width": "200",
+            "height": "200",
+            "quantity": 1
+        }
+    ],
+    "boxList": [
+        {
+            "id": "box_ckyred3lg000k396xqsuujxmm",
+            "title": "Từ chỉ hoạt động",
+            "index": 0
+        },
+        {
+            "id": "box_ckyred3lg000l396x5e1sxidc",
+            "title": "Từ chỉ đặc điểm",
+            "index": 1
+        }
+    ],
+    "options": [
+        {
+            "id": "answer_ckyred3lg000g396xqu3iyvct",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>nằm</p>"
+                }
+            ]
+        },
+        {
+            "id": "answer_ckyred3lg000h396xrz0y7703",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>nghỉ</p>"
+                }
+            ]
+        },
+        {
+            "id": "answer_ckyred3lg000i396xu8oxxr6g",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>&ecirc;m ả</p>"
+                }
+            ]
+        },
+        {
+            "id": "answer_ckyred3lg000j396x7ec4mlsh",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>thơm</p>"
+                }
+            ]
+        },
+        {
+            "id": "answer_ckyref6at001a396x4m38b13k",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>d&acirc;̣y</p>"
+                }
+            ]
+        },
+        {
+            "id": "answer_ckyregdct0020396xnp1i4a2n",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>ăn</p>"
+                }
+            ]
+        },
+        {
+            "id": "answer_ckyregkg8002t396xqx0eu7bq",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>&acirc;m th&acirc;̀m</p>"
+                }
+            ]
+        },
+        {
+            "id": "answer_ckyregwhn003p396xf1h89oow",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>lao xao</p>"
+                }
+            ]
+        }
+    ],
+    "correct_options": [
+        {
+            "id": "answer_ckyred3lg000g396xqu3iyvct",
+            "answer": {
+                "index": 0
+            }
+        },
+        {
+            "id": "answer_ckyred3lg000h396xrz0y7703",
+            "answer": {
+                "index": 0
+            }
+        },
+        {
+            "id": "answer_ckyred3lg000i396xu8oxxr6g",
+            "answer": {
+                "index": 1
+            }
+        },
+        {
+            "id": "answer_ckyred3lg000j396x7ec4mlsh",
+            "answer": {
+                "index": 1
+            }
+        },
+        {
+            "id": "answer_ckyref6at001a396x4m38b13k",
+            "answer": {
+                "index": 0
+            }
+        },
+        {
+            "id": "answer_ckyregdct0020396xnp1i4a2n",
+            "answer": {
+                "index": 0
+            }
+        },
+        {
+            "id": "answer_ckyregkg8002t396xqx0eu7bq",
+            "answer": {
+                "index": 1
+            }
+        },
+        {
+            "id": "answer_ckyregwhn003p396xf1h89oow",
+            "answer": {
+                "index": 1
+            }
+        }
+    ],
+    "spec_question": 1
+}

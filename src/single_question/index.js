@@ -13,6 +13,7 @@ import YNQuestion from '../questions/yn-question'
 import MultiCorrectQuestion from '../questions/multi-correct-question'
 import SelectSentenceQuestion from '../questions/select-sentence-question'
 import TextNonMathjaxQuestion from '../questions/text-nonmathjax-question'
+import DragOnBoxQuestion from '../questions/drag-on-box-question'
 
 const SingleQuestion = (props) => {
     const { question, globalConfig, globalStyles, customConfig, customStyles } = props;
@@ -113,6 +114,14 @@ const SingleQuestion = (props) => {
         case 12:
             return (
                 <TextNonMathjaxQuestion
+                    {...props}
+                    customConfig={newConfig}
+                    customStyles={newStyles}
+                />
+            )
+        case 13:
+            return (
+                <DragOnBoxQuestion
                     {...props}
                     customConfig={newConfig}
                     customStyles={newStyles}
