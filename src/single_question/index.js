@@ -14,6 +14,7 @@ import MultiCorrectQuestion from '../questions/multi-correct-question'
 import SelectSentenceQuestion from '../questions/select-sentence-question'
 import TextNonMathjaxQuestion from '../questions/text-nonmathjax-question'
 import DragOnBoxQuestion from '../questions/drag-on-box-question'
+import ShaftNumberQuestion from '../questions/shaft-number-question'
 
 const SingleQuestion = (props) => {
     const { question, globalConfig, globalStyles, customConfig, customStyles } = props;
@@ -122,6 +123,22 @@ const SingleQuestion = (props) => {
         case 13:
             return (
                 <DragOnBoxQuestion
+                    {...props}
+                    customConfig={newConfig}
+                    customStyles={newStyles}
+                />
+            )
+        case 14:
+            return (
+                <DragOnBoxQuestion
+                    {...props}
+                    customConfig={newConfig}
+                    customStyles={newStyles}
+                />
+            )
+        case 15:
+            return (
+                <ShaftNumberQuestion
                     {...props}
                     customConfig={newConfig}
                     customStyles={newStyles}

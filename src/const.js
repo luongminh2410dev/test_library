@@ -2223,3 +2223,100 @@ export const dragOnBoxQuestion = {
     ],
     "spec_question": 1
 }
+
+export const shaftNumberQuestion = {
+    "id": "5c8621aa3e0fbb00229ca87d",
+    "analytics": {
+        "correct": 0,
+        "incorrect": 0,
+        "skiped": 0,
+        "total_answer": 0,
+        "percent_false": 0
+    },
+    "solution_detail": [
+        {
+            "content": "<p>Điền c&aacute;c số c&ograve;n thiếu em thu được d&atilde;y số như sau:</p>\n<p>153; 154; 155; 156; 157; 158; 159.</p>",
+            "type": "html"
+        }
+    ],
+    "solution_suggestion": [
+        {
+            "content": "<p>Đếm xu&ocirc;i c&aacute;c số rồi điền số c&ograve;n thiếu v&agrave;o trục số.</p>",
+            "type": "html"
+        }
+    ],
+    "guide_touch": "Con hãy điền số thích hợp vào ô trống",
+    "sdk_type": 15,
+    "difficult_level": 1,
+    "notice": [],
+    "content_format": "array",
+    "question": [
+        {
+            "content": "<p style=\"text-align: center;\">Điền số th&iacute;ch hợp v&agrave;o chỗ trống:</p>",
+            "type": "html"
+        },
+        {
+            "content": "<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"https://cdn.vungoi.vn/vungoi/1552294038817_cong_nhan.png\" alt=\"\" width=\"180\" height=\"152\" /></p>",
+            "type": "html"
+        }
+    ],
+    "options": [
+        {
+            "x": "-3",
+            "obj_type": "richText",
+            "content": "153",
+            "id": "answer_cjt43q1qh00022y6hzi9zyn7w"
+        },
+        {
+            "x": "-2",
+            "obj_type": "richText",
+            "content": "154",
+            "id": "answer_cjt43tcsm000c2y6hnth4m3z9"
+        },
+        {
+            "x": "-1",
+            "obj_type": "inputText",
+            "id": "answer_cjt43u218000n2y6ht9lev5m1"
+        },
+        {
+            "x": "0",
+            "obj_type": "richText",
+            "content": "156",
+            "id": "answer_cjt43ujmq00102y6hxqzjs4pj"
+        },
+        {
+            "x": "1",
+            "obj_type": "inputText",
+            "id": "answer_cjt43uxzn001f2y6hm8yohobt"
+        },
+        {
+            "x": "2",
+            "obj_type": "inputText",
+            "id": "answer_cjt43v14d001w2y6hl0teks32"
+        },
+        {
+            "x": "3",
+            "obj_type": "inputText",
+            "id": "answer_cjt43v324002e2y6hz21m30bk"
+        }
+    ],
+    "correct_options": [
+        {
+            "id": "answer_cjt43u218000n2y6ht9lev5m1",
+            "answer": "155"
+        },
+        {
+            "id": "answer_cjt43uxzn001f2y6hm8yohobt",
+            "answer": "157"
+        },
+        {
+            "id": "answer_cjt43v14d001w2y6hl0teks32",
+            "answer": "158"
+        },
+        {
+            "id": "answer_cjt43v324002e2y6hz21m30bk",
+            "answer": "159"
+        }
+    ],
+    "spec_question": 1
+}
