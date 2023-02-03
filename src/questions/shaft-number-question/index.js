@@ -26,7 +26,7 @@ const PointItem = (props) => {
                     <TextInput
                         onChangeText={onChangeText}
                         keyboardType='decimal-pad'
-                        style={styles.point_content} />
+                        style={[styles.point_content, { backgroundColor: '#f2ead8', borderColor: 'lightgray' }]} />
                     :
                     <Text style={styles.point_content}>{item.content}</Text>
             }
