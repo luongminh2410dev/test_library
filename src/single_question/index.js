@@ -1,21 +1,22 @@
 import PropTypes from 'prop-types'
 import React from 'react'
+import ChooseCorrectestQuestion from '../questions/choose-correctest-question'
 import CompoundQuestion from '../questions/compound-question'
+import DragOnBoxQuestion from '../questions/drag-on-box-question'
 import FindFaultQuestion from '../questions/find-fault-question'
 import FindFaultQuestion2 from '../questions/find-fault-question2'
+import MultiCorrectQuestion from '../questions/multi-correct-question'
+import MultiSelectBoxQuestion from '../questions/multi-selectbox-question'
 import MultiChoice from '../questions/multichoice-question'
 import PairingQuestion from '../questions/pairing-question'
 import PhraseQuestion from '../questions/phrase-question'
+import SelectSentenceQuestion from '../questions/select-sentence-question'
+import ShaftNumberQuestion from '../questions/shaft-number-question'
 import SortQuestion from '../questions/sort_question'
 import TextDGNL from '../questions/text-dgnl-question'
+import TextNonMathjaxQuestion from '../questions/text-nonmathjax-question'
 import TFTableQuestion from '../questions/tf-table-question'
 import YNQuestion from '../questions/yn-question'
-import MultiCorrectQuestion from '../questions/multi-correct-question'
-import SelectSentenceQuestion from '../questions/select-sentence-question'
-import TextNonMathjaxQuestion from '../questions/text-nonmathjax-question'
-import DragOnBoxQuestion from '../questions/drag-on-box-question'
-import ShaftNumberQuestion from '../questions/shaft-number-question'
-import MultiSelectBoxQuestion from '../questions/multi-selectbox-question'
 
 const SingleQuestion = (props) => {
     const { question, globalConfig, globalStyles, customConfig, customStyles } = props;
@@ -148,6 +149,14 @@ const SingleQuestion = (props) => {
         case 17:
             return (
                 <MultiSelectBoxQuestion
+                    {...props}
+                    customConfig={newConfig}
+                    customStyles={newStyles}
+                />
+            )
+        case 18:
+            return (
+                <ChooseCorrectestQuestion
                     {...props}
                     customConfig={newConfig}
                     customStyles={newStyles}

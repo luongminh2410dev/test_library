@@ -2619,3 +2619,107 @@ export const multiSelectBoxQuestion = {
     ],
     "spec_question": 1
 }
+
+export const chooseCorrectestAnswer = {
+    "id": "62027a0877e73fc854d3f328",
+    "analytics": {
+        "correct": 0,
+        "incorrect": 0,
+        "skiped": 0,
+        "total_answer": 0,
+        "percent_false": 0
+    },
+    "solution_detail": [
+        {
+            "type": "html",
+            "content": "<p>Cổ k&iacute;nh l&agrave; cổ v&agrave; trang nghi&ecirc;m.</p>\n<p>Chọn đ&aacute;p &aacute;n:&nbsp;<strong>cổ v&agrave; trang nghi&ecirc;m</strong></p>"
+        }
+    ],
+    "solution_suggestion": [
+        {
+            "type": "html",
+            "content": "<p>Em xem phần ch&uacute; th&iacute;ch trong b&agrave;i.</p>"
+        }
+    ],
+    "guide_touch": "Con hãy chọn đáp án đúng nhất",
+    "sdk_type": 18,
+    "difficult_level": 1,
+    "notice": [],
+    "content_format": "array",
+    "question": [
+        {
+            "type": "html",
+            "content": "<p style=\"text-align: center;\"><strong>Em hiểu &ldquo;<em>cổ k&iacute;nh&rdquo; </em>l&agrave; g&igrave;?</strong></p>"
+        },
+        {
+            "type": "image",
+            "url": "https://cdn.vungoi.vn/vungoi/2022/0208/1644329347827_anh_2.jpg",
+            "caption": "",
+            "optUpload": 2,
+            "width": "300",
+            "height": "200",
+            "quantity": 1
+        },
+        {
+            "type": "html",
+            "content": "<div class=\"card\">\n<div id=\"headingOne\" class=\"card-header\">\n<h5 class=\"mb-0\" style=\"text-align: center;\"><button class=\"btn btn-link\" data-toggle=\"collapse\" data-target=\"#ckze7a5m40016396v1adx5iaq_collpase\" aria-expanded=\"true\" aria-controls=\"collapseOne\"> Xem B&agrave;i Đọc </button></h5>\n</div>\n<div id=\"ckze7a5m40016396v1adx5iaq_collpase\" class=\"collapse\" aria-labelledby=\"headingOne\" data-parent=\"#accordion\">\n<div class=\"card-body\">\n<p style=\"text-align: center;\"><strong>HỒ GƯƠM</strong></p>\n<p style=\"text-align: justify;\">Nh&agrave; t&ocirc;i ở H&agrave; Nội, c&aacute;ch Hồ Gươm kh&ocirc;ng xa. Từ tr&ecirc;n cao nh&igrave;n xuống, mặt hồ như một chiếc gương bầu dục lớn, s&aacute;ng long lanh.</p>\n<p style=\"text-align: justify;\">Cầu Th&ecirc; H&uacute;c m&agrave;u son, cong cong như con t&ocirc;m, dẫn v&agrave;o đền Ngọc Sơn. M&aacute;i đền lấp l&oacute; b&ecirc;n gốc đa gi&agrave;, rễ l&aacute; xum xu&ecirc;. Xa một ch&uacute;t l&agrave; Th&aacute;p R&ugrave;a, tường r&ecirc;u cổ k&iacute;nh. Th&aacute;p x&acirc;y tr&ecirc;n g&ograve; đất giữa hồ, cỏ mọc xanh um.</p>\n<p style=\"text-align: justify;\">C&oacute; buổi, người ta thấy c&oacute; con r&ugrave;a lớn, đầu to như tr&aacute;i bưởi, nh&ocirc; l&ecirc;n khỏi mặt nư&oacute;c. R&ugrave;a như lắng nghe tiếng chu&ocirc;ng đồng hồ tr&ecirc;n tầng cao như bưu điện, bu&ocirc;ng từng tiếng ng&acirc;n nga trong gi&oacute;. T&ocirc;i thầm nghĩ: kh&ocirc;ng biết c&oacute; phải r&ugrave;a đ&atilde; từng ngậm thanh kiếm của vua L&ecirc; thắng giặc đ&oacute; kh&ocirc;ng?</p>\n<p style=\"text-align: right;\">(Theo Ng&ocirc; Qu&acirc;n Miện)</p>\n<p style=\"text-align: justify;\"><strong>Từ ngữ</strong></p>\n<p style=\"text-align: justify;\">- <em>Hồ Gươm</em>: c&ograve;n gọi l&agrave; hồ Ho&agrave;n Kiếm, ở Thủ đ&ocirc; H&agrave; Nội.</p>\n<p style=\"text-align: justify;\">- <em>Cổ k&iacute;nh</em>: Cổ v&agrave; trang nghi&ecirc;m.</p>\n</div>\n</div>\n</div>"
+        }
+    ],
+    "options": [
+        {
+            "id": "answer_ckze75lw4000g396vvwc4wgbh",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p style=\"text-align: center;\">mới v&agrave; sang trọng</p>"
+                }
+            ]
+        },
+        {
+            "id": "answer_ckze75lw4000h396vntneogky",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p style=\"text-align: center;\">cổ v&agrave; trang nghi&ecirc;m</p>"
+                }
+            ]
+        },
+        {
+            "id": "answer_ckze75lw4000i396ve1g6iv5x",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p style=\"text-align: center;\">mới v&agrave; hiện đại</p>"
+                }
+            ]
+        },
+        {
+            "id": "answer_ckze75lw4000j396vvfr8hcr9",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p style=\"text-align: center;\">cổ nhưng kh&ocirc;ng c&ograve;n tồn tại nữa</p>"
+                }
+            ]
+        }
+    ],
+    "correct_options": [
+        {
+            "id": "answer_ckze75lw4000g396vvwc4wgbh",
+            "answer": false
+        },
+        {
+            "id": "answer_ckze75lw4000h396vntneogky",
+            "answer": true
+        },
+        {
+            "id": "answer_ckze75lw4000i396ve1g6iv5x",
+            "answer": false
+        },
+        {
+            "id": "answer_ckze75lw4000j396vvfr8hcr9",
+            "answer": false
+        }
+    ],
+    "spec_question": 1
+}
