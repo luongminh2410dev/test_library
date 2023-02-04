@@ -2320,3 +2320,302 @@ export const shaftNumberQuestion = {
     ],
     "spec_question": 1
 }
+
+export const multiSelectBoxQuestion = {
+    "id": "620276ce77e73fc854d3f31e",
+    "analytics": {
+        "correct": 0,
+        "incorrect": 0,
+        "skiped": 0,
+        "total_answer": 0,
+        "percent_false": 0
+    },
+    "solution_detail": [
+        {
+            "type": "html",
+            "content": "<p style=\"text-align: justify;\">H&egrave; vừa rồi, em đ&atilde; được <strong>đi biển</strong> chơi. Bố em l&ecirc;n kế hoạch cho cả nh&agrave; được tham gia một chuyến đi thật th&uacute; vị. Gia đ&igrave;nh em c&ugrave;ng nhau đi <strong>tắm biển</strong>. Bố dẫn hai mẹ con em tới ăn ở một nh&agrave; h&agrave;ng <strong>hải sản</strong> rất nhiều m&oacute;n ăn ngon. Em được ngắm nh&igrave;n những cảnh đẹp v&agrave; chơi rất nhiều <strong>tr&ograve; chơi</strong> th&uacute; vị. Cả gia đ&igrave;nh em đều vui v&agrave; <strong>hạnh ph&uacute;c</strong> v&igrave; đ&atilde; c&oacute; qu&atilde;ng thời gian thật tuyệt vời ở đ&acirc;y. Đ&acirc;y l&agrave; một chuyến đi thật <strong>đ&aacute;ng nhớ</strong> với em. Em mong sau n&agrave;y sẽ c&oacute; thật nhiều những chuyến đi như thế.</p>"
+        }
+    ],
+    "solution_suggestion": [
+        {
+            "type": "html",
+            "content": "<p>Em l&agrave;m theo y&ecirc;u cầu của b&agrave;i tập.</p>"
+        }
+    ],
+    "guide_touch": "Con hãy chọn đáp án đúng nhất để điền vào chỗ trống",
+    "sdk_type": 17,
+    "difficult_level": 4,
+    "notice": [],
+    "content_format": "array",
+    "question": [
+        {
+            "type": "html",
+            "content": "<p style=\"text-align: center;\"><strong>Điền v&agrave;o chỗ trống để ho&agrave;n thiện đoạn văn kể về một buổi đi chơi với người th&acirc;n:</strong></p>"
+        },
+        {
+            "type": "image",
+            "url": "https://cdn.vungoi.vn/vungoi/2022/0208/1644328160304_anh_3.png",
+            "caption": "",
+            "optUpload": 2,
+            "width": "200",
+            "height": "200",
+            "quantity": 1
+        }
+    ],
+    "options": [
+        {
+            "id": "answer_ckze6hm17000g396wt1wqmdaa",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>H&egrave; vừa rồi, em đ&atilde; được</p>"
+                }
+            ],
+            "obj_type": "richText"
+        },
+        {
+            "id": "answer_ckze6hm17000h396w7d2qtsua",
+            "content": [
+                {
+                    "value": "đi biển"
+                },
+                {
+                    "value": "tắm biển"
+                },
+                {
+                    "value": "đáng nhớ"
+                }
+            ],
+            "obj_type": "choiceSelectOption"
+        },
+        {
+            "id": "answer_ckze6j1w7009z396wtdrfmr20",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>chơi. Bố em l&ecirc;n kế</p>"
+                }
+            ],
+            "obj_type": "richText"
+        },
+        {
+            "id": "answer_ckze6jfr000ax396w7iwhymuh",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>hoạch cho cả nh&agrave; được tham gia một chuyến đi thật th&uacute; vị.</p>"
+                }
+            ],
+            "obj_type": "richText"
+        },
+        {
+            "id": "answer_ckze6jo5f00bx396wgkvdct0b",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>Gia đ&igrave;nh em c&ugrave;ng nhau đi</p>"
+                }
+            ],
+            "obj_type": "richText"
+        },
+        {
+            "id": "answer_ckze6juzv00d8396w9xd627jj",
+            "content": [
+                {
+                    "value": "trò chơi"
+                },
+                {
+                    "value": "tắm biển"
+                },
+                {
+                    "value": "hạnh phúc"
+                }
+            ],
+            "obj_type": "choiceSelectOption"
+        },
+        {
+            "id": "answer_ckze6jwxv00e6396wg94f889a",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>. Bố dẫn hai mẹ</p>"
+                }
+            ],
+            "obj_type": "richText"
+        },
+        {
+            "id": "answer_ckze6kztv01vg396wqz1o5hln",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>con em tới ăn ở một nh&agrave; h&agrave;ng</p>"
+                }
+            ],
+            "obj_type": "richText"
+        },
+        {
+            "id": "answer_ckze6l87h01xd396wf095p5ts",
+            "content": [
+                {
+                    "value": "đáng nhớ"
+                },
+                {
+                    "value": "đi biển"
+                },
+                {
+                    "value": "hải sản"
+                }
+            ],
+            "obj_type": "choiceSelectOption"
+        },
+        {
+            "id": "answer_ckze6lr8j0321396w3azhruoq",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>rất nhiều</p>"
+                }
+            ],
+            "obj_type": "richText"
+        },
+        {
+            "id": "answer_ckze6lyib0349396w22ue21iy",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>m&oacute;n ăn ngon. Em được ngắm nh&igrave;n những cảnh đẹp v&agrave; chơi</p>"
+                }
+            ],
+            "obj_type": "richText"
+        },
+        {
+            "id": "answer_ckze6m9sf037n396wuimls23n",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>r&acirc;́t nhi&ecirc;̀u</p>"
+                }
+            ],
+            "obj_type": "richText"
+        },
+        {
+            "id": "answer_ckze6miya03ag396wnhlawkg6",
+            "content": [
+                {
+                    "value": "tắm biển"
+                },
+                {
+                    "value": "trò chơi"
+                },
+                {
+                    "value": "hải sản"
+                }
+            ],
+            "obj_type": "choiceSelectOption"
+        },
+        {
+            "id": "answer_ckze6mnqd03cc396w1hwd8ebd",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>th&uacute; vị. Cả gia đ&igrave;nh em đều vui v&agrave;</p>"
+                }
+            ],
+            "obj_type": "richText"
+        },
+        {
+            "id": "answer_ckze6o752057x396wxitc38dy",
+            "content": [
+                {
+                    "value": "tắm biển"
+                },
+                {
+                    "value": "trò chơi"
+                },
+                {
+                    "value": "hạnh phúc"
+                }
+            ],
+            "obj_type": "choiceSelectOption"
+        },
+        {
+            "id": "answer_ckze6oavg05a1396w5iajnx2x",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>v&igrave; đ&atilde; c&oacute; qu&atilde;ng thời gian&nbsp;thật&nbsp;tuyệt vời&nbsp;</p>"
+                }
+            ],
+            "obj_type": "richText"
+        },
+        {
+            "id": "answer_ckze6qeag07jp396wafamxs7q",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>ở đ&acirc;y. Đ&acirc;y l&agrave; một chuyến đi thật</p>"
+                }
+            ],
+            "obj_type": "richText"
+        },
+        {
+            "id": "answer_ckze6qnnq07ng396wdnt78kne",
+            "content": [
+                {
+                    "value": "đáng nhớ"
+                },
+                {
+                    "value": "hạnh phúc"
+                }
+            ],
+            "obj_type": "choiceSelectOption"
+        },
+        {
+            "id": "answer_ckze6qskn07py396wc4uk1lw0",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>với em. Em mong sau n&agrave;y sẽ c&oacute; thật nhiều những chuyến đi</p>"
+                }
+            ],
+            "obj_type": "richText"
+        },
+        {
+            "id": "answer_ckze6rlbf09og396w4dbow6nq",
+            "content": [
+                {
+                    "type": "html",
+                    "content": "<p>như thế.</p>"
+                }
+            ],
+            "obj_type": "richText"
+        }
+    ],
+    "correct_options": [
+        {
+            "id": "answer_ckze6hm17000h396w7d2qtsua",
+            "answer": "1"
+        },
+        {
+            "id": "answer_ckze6juzv00d8396w9xd627jj",
+            "answer": "2"
+        },
+        {
+            "id": "answer_ckze6l87h01xd396wf095p5ts",
+            "answer": "3"
+        },
+        {
+            "id": "answer_ckze6miya03ag396wnhlawkg6",
+            "answer": "2"
+        },
+        {
+            "id": "answer_ckze6o752057x396wxitc38dy",
+            "answer": "3"
+        },
+        {
+            "id": "answer_ckze6qnnq07ng396wdnt78kne",
+            "answer": "1"
+        }
+    ],
+    "spec_question": 1
+}
