@@ -188,7 +188,21 @@ const MultiSelectBoxQuestion = (props) => {
     }
 
     const _renderResult = (item, index) => {
-        return null
+        switch (item.obj_type) {
+            case 'richText':
+                return item.content.map((it, idx) => (
+                    <HtmlContent key={`${item.id}_${idx}`} content={it.content} color={textColor} />
+                ))
+            case 'choiceSelectOption':
+                const answerIndex = correct_options.find(it => it.id == item.id)?.answer;
+                return (
+                    <View key={index} style={{ justifyContent: 'center' }}>
+                        <View style={styles.selectbox_item}>
+                            <Text>{item.content[answerIndex - 1].value}</Text>
+                        </View>
+                    </View>
+                )
+        }
     }
 
     const _renderSelectionItem = (item, index) => {

@@ -77,6 +77,8 @@ const styles = StyleSheet.create({
     },
     correct_result: {
         width: '100%',
+        flexDirection: 'row',
+        flexWrap: 'wrap'
     },
     next_question_btn: {
         flexDirection: "row",
