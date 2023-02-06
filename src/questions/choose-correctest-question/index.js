@@ -9,6 +9,28 @@ const { width, height } = Dimensions.get('window');
 
 const answers = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
 
+const CollapseView = (props) => {
+    const { content, color } = props;
+    const [isCollapsed, setCollapsed] = useState(true);
+
+    const removedButtonContent = content.replace(/<(button|a)(?!([^>]*?)analytics-on)(?:[^>]*?)>(?:[^<]*)<\/(button|a)>/g, '');
+
+    const onPress = () => setCollapsed(!isCollapsed)
+
+    return (
+        <View style={{ width: '100%', justifyContent: 'center', alignItems: 'center' }}>
+            <TouchableOpacity
+                onPress={onPress}
+                style={{ paddingVertical: 8, paddingHorizontal: 12, backgroundColor: 'lightgray', borderRadius: 4, }} >
+                <Text style={{ fontSize: 15 }}>Xem bài đọc</Text>
+            </TouchableOpacity>
+            <Collapsible collapsed={isCollapsed}>
+                <HtmlContent content={removedButtonContent} color={color} />
+            </Collapsible>
+        </View>
+    );
+}
+
 // nextBtnState: 0 - chua chon dap an, 1 - da chon dap an, 2 - da hoan thanh cau hoi
 const ChooseCorrectestQuestion = (props) => {
     const {
@@ -166,7 +188,11 @@ const ChooseCorrectestQuestion = (props) => {
     const _renderContent = (item, index) => {
         switch (item.type) {
             case 'html':
-                return <HtmlContent key={index} content={item.content} color={textColor} />
+                const isCollapseButton = item.content.includes('<button class=\"btn btn-link\" data-toggle=\"collapse\"')
+                return isCollapseButton ?
+                    <CollapseView key={index} content={item.content} color={textColor} />
+                    :
+                    <HtmlContent key={index} content={item.content} color={textColor} />
             case 'image':
                 return (
                     <Image

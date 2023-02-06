@@ -73,26 +73,16 @@ const styles = StyleSheet.create({
         width: '100%',
         marginTop: 12,
         fontSize: 15,
-        lineHeight: 30,
         justifyContent: 'center',
         alignItems: 'center',
-    },
-    sentence_txt: {
-        fontSize: 16,
     },
     sentence_box: {
-        justifyContent: 'center',
+        justifyContent: 'flex-end',
         alignItems: 'center',
-        paddingTop: 3,
-        height: 30,
-        // width: 80,
-        // height: 24,
-        // borderWidth: 1,
+        borderBottomWidth: 1,
     },
     sentence_box_txt: {
-        textDecorationLine: 'underline',
         fontSize: 15,
-        lineHeight: 30
     },
     // 
     suggestion_collapsible: {

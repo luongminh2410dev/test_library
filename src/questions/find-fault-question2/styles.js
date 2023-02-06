@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     option_container: {
+        marginTop: 12,
         paddingHorizontal: 12,
         flexDirection: 'row',
         flexWrap: 'wrap',
@@ -110,6 +111,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'center',
+        marginTop: 12,
     },
     paragraph_item: {
         marginRight: 8,
@@ -127,6 +129,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#f2ead9',
         marginHorizontal: 4,
         paddingHorizontal: 4,
+        borderRadius: 4,
         alignItems: 'center',
         borderWidth: 1,
         borderColor: 'lightgray'

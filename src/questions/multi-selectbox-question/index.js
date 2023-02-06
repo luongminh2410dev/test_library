@@ -157,19 +157,24 @@ const MultiSelectBoxQuestion = (props) => {
     }
 
     const _renderOptions = (item, index) => {
-        switch (item.obj_type) {
-            case 'richText':
-                return item.content.map((it, idx) => (
-                    <HtmlContent key={`${item.id}_${idx}`} content={it.content} color={textColor} />
-                ))
-            case 'choiceSelectOption':
-                return <SelectBoxItem
-                    ref={ref => refSelectBoxes.current[index] = ref}
-                    key={index}
-                    item={item}
-                    index={index}
-                    handleShowModal={handleShowModal} />
-        }
+        return (
+            <View style={{ marginTop: 4, }}>
+                {
+                    item.obj_type == 'choiceSelectOption' ?
+                        <SelectBoxItem
+                            ref={ref => refSelectBoxes.current[index] = ref}
+                            key={index}
+                            item={item}
+                            index={index}
+                            handleShowModal={handleShowModal} />
+                        :
+                        item.content.map((it, idx) => (
+                            <HtmlContent key={`${item.id}_${idx}`} content={it.content} color={textColor} />
+                        ))
+
+                }
+            </View>
+        )
     }
 
     const _renderContent = (item, index) => {
@@ -206,6 +211,9 @@ const MultiSelectBoxQuestion = (props) => {
     }
 
     const _renderSelectionItem = (item, index) => {
+        const isSelected = refAnswers.current[options[modalDataIndex].id]
+            && refAnswers.current[options[modalDataIndex].id] - 1 == index;
+
         const onPress = () => {
             refSelectBoxes.current[modalDataIndex].setCurrentSelected(index);
             refAnswers.current[options[modalDataIndex].id] = index + 1;
@@ -215,7 +223,7 @@ const MultiSelectBoxQuestion = (props) => {
         return (
             <View key={index} style={{ borderBottomWidth: 1, borderBottomColor: 'lightgray' }}>
                 <TouchableOpacity onPress={onPress} key={index} style={styles.selection_item}>
-                    <Text style={styles.selection_txt}>{item.value}</Text>
+                    <Text style={[styles.selection_txt, isSelected && { color: primaryColor }]}>{item.value}</Text>
                 </TouchableOpacity>
             </View>
         )

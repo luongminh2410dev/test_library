@@ -55,8 +55,15 @@ const HtmlContent = (props) => {
                 source={{ html: content }}
                 renderers={renderers}
                 customHTMLElementModels={customHTMLElementModels}
+                tagsStyles={{
+                    p: {
+                        padding: 0,
+                        margin: 0,
+                        lineHeight: 30
+                    }
+                }}
                 defaultTextProps={{
-                    style: { color, marginTop: 2 }
+                    style: { color, fontSize: 15 }
                 }}
             />
     )

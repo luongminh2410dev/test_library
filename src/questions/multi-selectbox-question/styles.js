@@ -126,12 +126,13 @@ const styles = StyleSheet.create({
     },
     selectbox_item: {
         justifyContent: 'center',
-        paddingHorizontal: 4,
+        paddingHorizontal: 8,
         paddingVertical: 8,
         marginHorizontal: 4,
         borderWidth: 1,
         borderRadius: 4,
         borderColor: 'lightgray',
+        backgroundColor: '#f2ead9'
     },
     selection_item: {
         width: '100%',
@@ -140,24 +141,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    // selection_checkbox: {
-    //     width: 20,
-    //     height: 20,
-    //     borderRadius: 20,
-    //     padding: 1,
-    //     marginRight: 8,
-    //     borderWidth: 1,
-    //     borderColor: '#6dae41',
-    // },
-    // selection_checkbox_active: {
-    //     width: '100%',
-    //     height: '100%',
-    //     borderRadius: 20,
-    //     backgroundColor: '#93ea77'
-    // },
     selection_txt: {
-        // borderBottomWidth: 1,
-        // borderBottomColor: 'lightgray'
+
     }
 })
 

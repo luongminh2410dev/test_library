@@ -1,13 +1,47 @@
 import React, { useEffect, useState } from 'react';
-import { Alert, Dimensions, Image, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, Image, Pressable, Text, TouchableOpacity, View } from 'react-native';
 import Collapsible from 'react-native-collapsible';
+import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import Feather from 'react-native-vector-icons/Feather';
 import HtmlContent from '../../components/html-content';
 import styles from './styles';
 
-const { width, height } = Dimensions.get('screen');
-const OPTION_WIDTH = (width / 2) - 18;
-const OPTION_HEIGHT = (OPTION_WIDTH / 1.3) < 120 ? 120 : (OPTION_WIDTH / 1.3);
+const AnimatedButton = Animated.createAnimatedComponent(Pressable);
+const PhraseItem = (props) => {
+    const {
+        item, index, currentPhrase, setCurrentPhrase, pairedList,
+        activeButtonStyles, activeTxtStyles, defaultOptionButtonStyles, defaultOptionTextStyles
+    } = props;
+    const opacityAnim = useSharedValue(1);
+    const isActive = currentPhrase == item.content;
+    const isDisable = Object.keys(pairedList).some(i => pairedList[i] == item.content);
+
+    useEffect(() => {
+        opacityAnim.value = withTiming(isDisable ? 0.5 : 1)
+    }, [isDisable])
+
+    const animatedButtonStyles = useAnimatedStyle(() => {
+        return { opacity: opacityAnim.value }
+    })
+
+    const onPress = () => {
+        setCurrentPhrase(isActive ? null : item.content)
+    }
+
+    return (
+        <AnimatedButton
+            onPress={onPress}
+            disabled={isDisable}
+            style={[
+                styles.phrase_item,
+                defaultOptionButtonStyles,
+                isActive && activeButtonStyles,
+                animatedButtonStyles
+            ]}>
+            <Text style={[styles.phrase_item_txt, defaultOptionTextStyles, isActive && activeTxtStyles]}>{item.content}</Text>
+        </AnimatedButton>
+    )
+}
 
 // nextBtnState: 0 - chua chon dap an, 1 - da chon dap an, 2 - da hoan thanh cau hoi
 const PhraseQuestion = (props) => {
@@ -162,27 +196,20 @@ const PhraseQuestion = (props) => {
         }
     }
 
-    const _renderPhraseItem = (item, index) => {
-        const isActive = currentPhrase == item.content;
-        const isUnavailable = Object.keys(pairedList).some(i => pairedList[i] == item.content)
-        const onPress = () => {
-            setCurrentPhrase(isActive ? null : item.content)
-        }
-        return (
-            <TouchableOpacity
-                key={item.id}
-                onPress={onPress}
-                disabled={questionStep >= 2 || isUnavailable}
-                style={[
-                    styles.phrase_item,
-                    defaultOptionButtonStyles,
-                    isActive && activeButtonStyles,
-                    isUnavailable && { opacity: 0.6 }
-                ]}>
-                <Text style={[styles.phrase_item_txt, defaultOptionTextStyles, isActive && activeTxtStyles]}>{item.content}</Text>
-            </TouchableOpacity>
-        )
-    }
+    const _renderPhraseItem = (item, index) => (
+        <PhraseItem
+            key={index}
+            item={item}
+            index={index}
+            currentPhrase={currentPhrase}
+            setCurrentPhrase={setCurrentPhrase}
+            pairedList={pairedList}
+            activeButtonStyles={activeButtonStyles}
+            activeTxtStyles={activeTxtStyles}
+            defaultOptionButtonStyles={defaultOptionButtonStyles}
+            defaultOptionTextStyles={defaultOptionTextStyles}
+        />
+    )
 
     const _renderSentenceItem = (item, index) => {
         const isActive = Object.keys(pairedList).some(i => i == item.id);
@@ -199,7 +226,6 @@ const PhraseQuestion = (props) => {
                 setPairedList(newObject)
                 setCurrentPhrase(null);
             }
-            return;
         }
 
         switch (item.type) {
@@ -211,11 +237,11 @@ const PhraseQuestion = (props) => {
                         key={item.id}
                         onPress={onPress}
                         style={styles.sentence_box}>
-                        <Text style={styles.sentence_box_txt}>{isActive ? pairedList[item.id] : '___________'}</Text>
+                        <Text style={styles.sentence_box_txt}>{isActive ? pairedList[item.id] : '                  '}</Text>
                     </TouchableOpacity>
                 )
             case 'breakDown':
-                return `\n`;
+                return `\n\n`;
         }
     }
 

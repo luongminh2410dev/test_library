@@ -30,10 +30,14 @@ const SentenceEditor = (props) => {
 
     return (
         <View style={{ position: 'relative' }} pointerEvents={correct_options ? 'none' : 'auto'}>
+            {
+                editText &&
+                <Text adjustsFontSizeToFit style={{ position: 'absolute', top: - 20, width: 100, left: 0 }}>{editText}</Text>
+            }
             <TouchableOpacity
                 onPress={onPress}
                 style={[styles.sentence_item, (focus || editText) && { borderColor: 'green' }]}>
-                <HtmlContent content={item.content} color={textColor} />
+                <HtmlContent content={editText ? `<s>${item.content}</s>` : item.content} color={textColor} />
             </TouchableOpacity>
             {
                 focus &&
@@ -183,17 +187,22 @@ const FindFaultQuestion2 = (props) => {
                     const editEnable = suggestion_paragraph.find(i => {
                         return /<.+?>(.*?)<\/.+?>/.exec(it.content)[1] == i.content;
                     })
-                    return !!editEnable ?
-                        <SentenceEditor
-                            key={`${index}_${idx}`}
-                            item={it}
-                            index={idx}
-                            sentenceId={item.id}
-                            textColor={textColor}
-                            updateAnswering={updateAnswering}
-                        />
-                        :
-                        <HtmlContent key={`${index}_${idx}`} content={it.content} color={textColor} />
+                    return (
+                        <View key={`${index}_${idx}`} style={{ height: 50, justifyContent: 'center' }}>
+                            {!!editEnable ?
+                                <SentenceEditor
+                                    item={it}
+                                    index={idx}
+                                    sentenceId={item.id}
+                                    textColor={textColor}
+                                    updateAnswering={updateAnswering}
+                                />
+                                :
+                                <HtmlContent content={it.content} color={textColor} />
+                            }
+                        </View>
+                    )
+
                 })
             case 'breakDown':
                 return <View key={index} style={{ width: '100%' }} />;
@@ -229,10 +238,12 @@ const FindFaultQuestion2 = (props) => {
                         return i.id == item.id;
                     })
                     return incorrectSentence != -1 ?
-                        <View key={`${index}_${idx}`} style={{
-                            marginHorizontal: 4,
-                        }}>
-                            <View style={{ position: 'absolute', top: -4 }}>
+                        <View
+                            key={`${index}_${idx}`}
+                            style={{
+                                marginHorizontal: 4,
+                            }}>
+                            <View style={{ position: 'absolute', top: -8 }}>
                                 <Text>{correct_options[incorrectSentence].answer}</Text>
                             </View>
                             <HtmlContent content={`<s>${it.content}</s>`} color={textColor} />
