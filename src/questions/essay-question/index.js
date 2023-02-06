@@ -101,6 +101,7 @@ const EssayQuestion = (props) => {
         label_question = 'Câu 1',
         label_suggestion = 'Phương pháp giải',
         label_solution_detail = 'Lời giải của GV Vungoi.vn',
+        label_result_txt = 'Đáp án của GV Vungoi.vn',
         btn_suggestion_text = 'Gợi ý',
         btn_skip_text = 'Câu tiếp theo',
         popup_confirm_skip = {},
@@ -134,8 +135,6 @@ const EssayQuestion = (props) => {
 
     const nextButtonLabel = questionStep == 1 && correct_options ? 'Kiểm tra' : btn_skip_text;
     const suggestButtonLabel = questionStep == 2 ? 'Xem lại lý thuyết' : btn_suggestion_text;
-
-    const activeButtonStyles = { borderColor: primaryColor };
 
     const getDifficultQuestion = () => {
         switch (difficult_level) {
@@ -217,12 +216,18 @@ const EssayQuestion = (props) => {
         }
     }
 
+    const _renderResult = (item, index) => (
+        <Text key={index}>{item}</Text>
+    )
+
     const onTextInputChange = (text) => {
         refAnswering.current.content = text;
+        setQuestionStep((text || refAnswering.current.images.length != 0) ? 1 : 0);
     }
 
     const onUploadImageChange = (images) => {
         refAnswering.current.images = images;
+        setQuestionStep((images.length != 0 || refAnswering.current.content) ? 1 : 0);
     }
 
     if (!question) return null;
@@ -240,7 +245,9 @@ const EssayQuestion = (props) => {
             <View style={[styles.question_view, questionTitleStyles]}>
                 {_question.map(_renderContent)}
             </View>
-            <View style={[styles.option_container, optionContainerStyles]} pointerEvents={displayMode == 'result' ? 'none' : 'auto'}>
+            <View
+                style={[styles.option_container, optionContainerStyles]}
+                pointerEvents={displayMode == 'result' || questionStep == 2 ? 'none' : 'auto'}>
                 <PickedImages onUploadImageChange={onUploadImageChange} />
                 <TextInput
                     style={styles.textinput_answer}
@@ -275,8 +282,9 @@ const EssayQuestion = (props) => {
             {
                 (questionStep == 2 || displayMode != 'default') &&
                 <View style={[styles.result_container, resultContainerStyles]}>
+                    <Text style={[styles.suggestion_label, { color: subColor }]}>{label_result_txt}</Text>
                     <View style={styles.correct_result}>
-                        {/* {options.map(_renderResult)} */}
+                        {correct_options.map(_renderResult)}
                     </View>
                     <View style={styles.solution_detail_view}>
                         <TouchableOpacity onPress={toggleSolutionDetail} style={[styles.solution_detail_btn, solutionDetailBtnStyles]}>
