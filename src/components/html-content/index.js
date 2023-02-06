@@ -1,6 +1,8 @@
 import React from 'react';
 import { Dimensions } from 'react-native';
+import { MathJaxSvg } from 'react-native-mathjax-html-to-svg';
 import RenderHTML, { HTMLContentModel, defaultHTMLElementModels } from 'react-native-render-html';
+import { containsMathjax } from '../../utils/functions';
 import AudioView from '../audio-view';
 
 const { width, height } = Dimensions.get('window')
@@ -34,16 +36,29 @@ const renderers = {
 
 const HtmlContent = (props) => {
     const { content, color } = props;
+
+    const containMathjax = containsMathjax(content);
+
     return (
-        <RenderHTML
-            contentWidth={width}
-            source={{ html: content }}
-            renderers={renderers}
-            customHTMLElementModels={customHTMLElementModels}
-            defaultTextProps={{
-                style: { color, marginTop: 2 }
-            }}
-        />
+        containMathjax ?
+            <MathJaxSvg
+                color={color}
+                style={{
+                    marginTop: 12,
+                }}
+                fontSize={15}>
+                {content}
+            </MathJaxSvg>
+            :
+            <RenderHTML
+                contentWidth={width}
+                source={{ html: content }}
+                renderers={renderers}
+                customHTMLElementModels={customHTMLElementModels}
+                defaultTextProps={{
+                    style: { color, marginTop: 2 }
+                }}
+            />
     )
 }
 

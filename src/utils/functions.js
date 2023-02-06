@@ -29,3 +29,7 @@ export function swapElements(array, index1, index2) {
     array[index2] = temp;
     return [...array];
 };
+
+export const containsMathjax = (target) => {
+    return ['$', '\\(', '\\[', '\`'].some(word => target.includes(word))
+}

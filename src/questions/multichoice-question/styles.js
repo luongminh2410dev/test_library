@@ -27,9 +27,10 @@ const styles = StyleSheet.create({
         height: width * 0.7 * 9 / 16,
     },
     question_view: {
+        width: '100%',
         paddingHorizontal: 12,
         justifyContent: 'center',
-        alignItems: "center"
+        alignItems: "center",
     },
     question: {
         fontSize: 16,

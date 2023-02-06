@@ -139,16 +139,19 @@ const MultiChoice = (props) => {
                 <View style={[styles.checkbox, isActive && activeButtonStyles]}>
                     <View style={[styles.checkbox_dot, isActive && { backgroundColor: primaryColor }]} />
                 </View>
-                {i.option_content.map((it, ix) => {
-                    switch (it.type) {
-                        case 'html':
-                            return (
-                                <HtmlContent key={ix} content={`${answers[idx]}.${it.content}`} color={isActive ? primaryColor : textColor} />
-                            )
-                        case 'image':
-                            return <Image key={ix} style={{ width: 200, height: 150 }} source={{ uri: it.content }} />
-                    }
-                })}
+                <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center' }}>
+                    <Text style={{ fontSize: 15, color: isActive ? primaryColor : textColor }}>{answers[idx]}. </Text>
+                    {i.option_content.map((it, ix) => {
+                        switch (it.type) {
+                            case 'html':
+                                return (
+                                    <HtmlContent key={ix} content={it.content} color={isActive ? primaryColor : textColor} />
+                                )
+                            case 'image':
+                                return <Image key={ix} style={{ width: 200, height: 150 }} source={{ uri: it.content }} />
+                        }
+                    })}
+                </View>
             </TouchableOpacity>
         )
     }
