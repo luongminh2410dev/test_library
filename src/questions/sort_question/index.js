@@ -92,6 +92,7 @@ const PhraseItem = (props) => {
                 </View>
                 <PanGestureHandler
                     enabled={isSelected}
+                    maxPointers={1}
                     onGestureEvent={onGestureEvent}>
                     <AnimatedTouchable
                         onPress={onPress}
@@ -384,7 +385,7 @@ const SortQuestion = (props) => {
             <View style={[styles.question_view, questionTitleStyles]}>
                 {_question.map(_renderContent)}
             </View>
-            <View style={[styles.option_container, optionContainerStyles]} pointerEvents={displayMode == 'result' ? 'none' : 'auto'}>
+            <View style={[styles.option_container, optionContainerStyles]} pointerEvents={displayMode == 'result' || questionStep == 2 ? 'none' : 'auto'}>
                 <View style={[styles.display, { width: DISPLAY_WIDTH, height: DISPLAY_HEIGHT }]}>
                     <View style={styles.display_absolute}>
                         <View style={styles.display_line}>
@@ -404,7 +405,7 @@ const SortQuestion = (props) => {
                         </View>
                     </View>
                 </View>
-                <View style={styles.phrase_list} pointerEvents={questionStep == 2}>
+                <View style={styles.phrase_list}>
                     {options.map(_renderPhraseList)}
                 </View>
             </View>

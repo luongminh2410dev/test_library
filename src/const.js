@@ -2723,3 +2723,107 @@ export const chooseCorrectestAnswer = {
     ],
     "spec_question": 1
 }
+
+export const essayQuestion = {
+    "id": "638763fefd8cc0588a1621d3",
+    "analytics": {
+        "correct": 0,
+        "incorrect": 0,
+        "skiped": 0,
+        "total_answer": 0,
+        "percent_false": 0
+    },
+    "solution_detail": [
+        {
+            "type": "html",
+            "content": "<p>Gọi \\(a,b,c\\) lần lượt l&agrave; c&aacute;c số đo của h&igrave;nh hộp chữ nhật.</p>\n<p>Khi đ&oacute; ta c&oacute; \\({S_{tp}} = 2\\left( {ab + bc + ca} \\right) = 64\\).</p>\n<p>\\( \\Leftrightarrow ab + bc + ca = 32\\).</p>\n<p>Lại c&oacute; độ d&agrave;i đường ch&eacute;o bằng 8 n&ecirc;n ta c&oacute; \\({a^2} + {b^2} + {c^2} = 64\\).</p>\n<p>X&eacute;t hệ \\(\\left\\{ \\begin{array}{l}ab + bc + ca = 32\\\\{a^2} + {b^2} + {c^2} = 64\\end{array} \\right. \\Leftrightarrow \\left\\{ \\begin{array}{l}ab + bc + ca = 32\\\\{\\left( {a + b + c} \\right)^2} - 2\\left( {ab + bc + ca} \\right) = 64\\end{array} \\right.\\)</p>\n<p>\\( \\Leftrightarrow \\left\\{ \\begin{array}{l}b\\left( {a + c} \\right) + ca = 32\\\\{\\left( {a + b + c} \\right)^2} = 128\\end{array} \\right. \\Leftrightarrow \\left\\{ \\begin{array}{l}ca = 32 - b\\left( {a + c} \\right)\\\\a + b + c = 8\\sqrt 2 \\end{array} \\right.\\)</p>\n<p>Ta c&oacute; \\(V = abc = b\\left[ {32 - b\\left( {a + c} \\right)} \\right] = b\\left[ {32 - b\\left( {8\\sqrt 2&nbsp; - b} \\right)} \\right] = 32b - 8\\sqrt 2 {b^2} + {b^3}\\).</p>\n<p>Ta c&oacute; \\(\\left\\{ \\begin{array}{l}a + c = 8\\sqrt 2&nbsp; - b\\\\b\\left( {8\\sqrt 2&nbsp; - b} \\right) + ca = 32\\end{array} \\right. \\Leftrightarrow \\left\\{ \\begin{array}{l}a + c = 8\\sqrt 2&nbsp; - b\\\\ca = 32 - 8\\sqrt 2 b + {b^2}\\end{array} \\right.\\)</p>\n<p>Để tồn tại \\(a,c\\) th&igrave; \\({S^2} \\ge 4P \\Leftrightarrow {\\left( {8\\sqrt 2&nbsp; - b} \\right)^2} \\ge 4\\left( {32 - 8\\sqrt 2 b + {b^2}} \\right)\\)</p>\n<p>\\( \\Leftrightarrow 3{b^2} - 16\\sqrt 2 b \\le 0\\)</p>\n<p>\\( \\Leftrightarrow 0 \\le b \\le \\dfrac{{16\\sqrt 2 }}{3}\\).</p>\n<p>X&eacute;t h&agrave;m số \\(V = 32b - 8\\sqrt 2 {b^2} + {b^3}\\).</p>\n<p>\\(V' = 32 - 16\\sqrt 2 b + 3{b^2}\\).</p>\n<p>Cho \\(V' = 0 \\Leftrightarrow 32 - 16\\sqrt 2 b + 3{b^2} = 0 \\Leftrightarrow \\left[ \\begin{array}{l}b = 4\\sqrt 2 \\\\b = \\dfrac{{4\\sqrt 2 }}{3}\\end{array} \\right.\\)</p>\n<p>Ta c&oacute; bảng biến thi&ecirc;n:</p>"
+        },
+        {
+            "type": "html",
+            "content": "<p><img src=\"https://cdn.vungoi.vn/vungoi/2022/1130/1669817327612_mceclip0.png\" width=\"321\" /></p>"
+        },
+        {
+            "type": "html",
+            "content": "<p>Dựa v&agrave;o bảng biến thi&ecirc;n, ta c&oacute; \\({V_{\\max }} = \\dfrac{{512\\sqrt 2 }}{{27}}\\).</p>\n<p>Khi đ&oacute; \\(a = 512,\\,\\,b = 27\\).</p>\n<p>Vậy \\(a - 2b = 512 - 2.27 = 458\\).</p>"
+        }
+    ],
+    "solution_suggestion": [
+        {
+            "type": "html",
+            "content": "<p><strong>Bước 1: </strong>T&igrave;m \\(V\\) theo \\(b\\) v&agrave; t&igrave;m điều kiện x&aacute;c định của \\(b\\).</p>\n<p><strong>Bước 2:</strong> Khảo s&aacute;t h&agrave;m số \\(V\\left( b \\right)\\) v&agrave; kết luận.</p>"
+        }
+    ],
+    "sdk_type": 19,
+    "difficult_level": 4,
+    "notice": [],
+    "content_format": "array",
+    "question": [
+        {
+            "type": "html",
+            "content": "<p>Cho h&igrave;nh hộp chữ nhật c&oacute; diện t&iacute;ch to&agrave;n phần bằng 64, độ d&agrave;i đường ch&eacute;o bằng 8. Gi&aacute; trị lớn nhất của thể t&iacute;ch khối hộp đ&oacute; bằng \\(\\dfrac{{a\\sqrt 2 }}{b}\\), với \\(a,b\\) l&agrave; c&aacute;c số nguy&ecirc;n dương v&agrave; \\(\\dfrac{{a\\sqrt 2 }}{b}\\) l&agrave; ph&acirc;n số tối giản. Khi đ&oacute; \\(a - 2b\\) bằng</p>"
+        }
+    ],
+    "correct_answer": ["458"],
+    "spec_question": 1
+}
+
+// PENDING
+export const mathQuillQuestion = {
+    "id": "61f15b2811732e225b0c75da",
+    "analytics": {
+        "correct": 0,
+        "incorrect": 0,
+        "skiped": 0,
+        "total_answer": 0,
+        "percent_false": 0
+    },
+    "solution_detail": [
+        {
+            "type": "html",
+            "content": "<p><img src=\"https://cdn.vungoi.vn/vungoi/2022/0128/1643334087438_image-removebg-preview_(8).png\" alt=\"\" width=\"487\" height=\"87\" /></p>"
+        },
+        {
+            "type": "html",
+            "content": "<p>Vậy 81 &ndash; 53 = 28</p>"
+        }
+    ],
+    "solution_suggestion": [
+        {
+            "type": "html",
+            "content": "<p style=\"text-align: justify;\">Thực hiện t&iacute;nh từ phải qua tr&aacute;i, lần lượt trừ hai số đơn vị, hai số chục.</p>\n<p style=\"text-align: justify;\">Lưu &yacute;: cần phải trả 1 đơn vị v&agrave;o h&agrave;ng chục khi mượn 1 chục từ h&agrave;ng chục sang h&agrave;ng đơn vị.</p>"
+        }
+    ],
+    "sdk_type": 14,
+    "difficult_level": 1,
+    "notice": [],
+    "content_format": "array",
+    "question": [
+        {
+            "type": "html",
+            "content": "<p style=\"text-align: center;\">T&iacute;nh gi&aacute; trị ph&eacute;p t&iacute;nh:</p>"
+        },
+        {
+            "type": "image",
+            "url": "https://cdn.vungoi.vn/vungoi/2022/0126/1643207283266_anh_51_ds_.png",
+            "caption": "",
+            "optUpload": 2,
+            "width": "300",
+            "height": "200",
+            "quantity": 1
+        }
+    ],
+    "mathquill": [
+        {
+            "id": "answer_ckyvn4v2j000h396xzo0bj050",
+            "obj_type": "mInputText",
+            "content": "\\frac{\\stimes{81}{53}}{\\mInputText{1}{28}}"
+        }
+    ],
+    "correct_answer": [
+        {
+            "answer": "28",
+            "id": "mInputText_1"
+        }
+    ],
+    "spec_question": 1
+}

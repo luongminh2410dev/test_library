@@ -43,9 +43,7 @@ const HtmlContent = (props) => {
         containMathjax ?
             <MathJaxSvg
                 color={color}
-                style={{
-                    marginTop: 12,
-                }}
+                style={{ marginTop: 12 }}
                 fontSize={15}>
                 {content}
             </MathJaxSvg>
@@ -59,7 +57,7 @@ const HtmlContent = (props) => {
                     p: {
                         padding: 0,
                         margin: 0,
-                        lineHeight: 30
+                        lineHeight: 30,
                     }
                 }}
                 defaultTextProps={{

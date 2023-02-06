@@ -17,6 +17,8 @@ import TextDGNL from '../questions/text-dgnl-question'
 import TextNonMathjaxQuestion from '../questions/text-nonmathjax-question'
 import TFTableQuestion from '../questions/tf-table-question'
 import YNQuestion from '../questions/yn-question'
+import MathQuillQuestion from '../questions/mathquill-question'
+import EssayQuestion from '../questions/essay-question'
 
 const SingleQuestion = (props) => {
     const { question, globalConfig, globalStyles, customConfig, customStyles } = props;
@@ -132,7 +134,7 @@ const SingleQuestion = (props) => {
             )
         case 14:
             return (
-                <DragOnBoxQuestion
+                <MathQuillQuestion
                     {...props}
                     customConfig={newConfig}
                     customStyles={newStyles}
@@ -157,6 +159,14 @@ const SingleQuestion = (props) => {
         case 18:
             return (
                 <ChooseCorrectestQuestion
+                    {...props}
+                    customConfig={newConfig}
+                    customStyles={newStyles}
+                />
+            )
+        case 19:
+            return (
+                <EssayQuestion
                     {...props}
                     customConfig={newConfig}
                     customStyles={newStyles}
