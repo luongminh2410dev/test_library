@@ -19,6 +19,7 @@ import TFTableQuestion from '../questions/tf-table-question'
 import YNQuestion from '../questions/yn-question'
 import MathQuillQuestion from '../questions/mathquill-question'
 import EssayQuestion from '../questions/essay-question'
+import PictureEnglishQuestion from '../questions/picture-english-question'
 
 const SingleQuestion = (props) => {
     const { question, globalConfig, globalStyles, customConfig, customStyles } = props;
@@ -175,6 +176,14 @@ const SingleQuestion = (props) => {
         case 20:
             return (
                 <TextDGNL
+                    {...props}
+                    customConfig={newConfig}
+                    customStyles={newStyles}
+                />
+            )
+        case 21:
+            return (
+                <PictureEnglishQuestion
                     {...props}
                     customConfig={newConfig}
                     customStyles={newStyles}

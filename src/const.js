@@ -2775,6 +2775,101 @@ export const essayQuestion = {
     "spec_question": 1
 }
 
+export const pictureEnglishQuestion = {
+    "id": "634a3f4c22f571b10706b7f3",
+    "attachment": {
+        "questionFile": "",
+        "solutionDetailFile": "",
+        "audioFile": "https://img.loigiaihay.com/picture/2022/1015/1665810219290-de-3.mp3"
+    },
+    "analytics": {
+        "correct": 0,
+        "incorrect": 0,
+        "skiped": 0,
+        "total_answer": 0,
+        "percent_false": 0
+    },
+    "solution_detail": [
+        {
+            "type": "html",
+            "content": "<p><img src=\"https://img.loigiaihay.com/picture/2022/1015/1665810175050-mceclip0.png\" width=\"559\" height=\"624\" /></p>"
+        }
+    ],
+    "solution_suggestion": [
+        {
+            "type": "html",
+            "content": "<p>Nick is playing football. <em>(Nick đang chơi b&oacute;ng đ&aacute;.)</em></p>\n<p>Alice is reading a book. <em>(Alice đang đọc s&aacute;ch.)</em></p>\n<p>Tom is skating. <em>(Tom đang chơi trượt v&aacute;n.)</em></p>\n<p>Bill is with his dog. <em>(Bill đang ở c&ugrave;ng ch&uacute; ch&oacute; của anh ấy.)</em></p>\n<p>Matt and Dan are catching each other.&nbsp; Matt is wearing a green T-shirt. <em>(Matt v&agrave; Dan đang chơi đuổi bắt. Matt mặc một chiếc &aacute;o m&agrave;u xanh l&aacute; c&acirc;y.) </em></p>\n<p style=\"text-align: justify;\">Jill is wearing a red dress. <em>(Jill đang mặc một chiếc v&aacute;y đỏ.)a</em></p>"
+        }
+    ],
+    "sdk_type": 21,
+    "difficult_level": 2,
+    "notice": [],
+    "content_format": "array",
+    "question": [
+        {
+            "type": "html",
+            "content": "<p>Listen and match.&nbsp;</p>"
+        }
+    ],
+    "picture": {
+        "url": "https://img.loigiaihay.com/picture/2022/1015/1-0_1.png",
+        "coordinates": [
+            {
+                "correct_text": "Matt",
+                "note": "",
+                "x": "214",
+                "y": "139",
+                "x_percent": "38.49",
+                "y_percent": "23.72"
+            },
+            {
+                "correct_text": "Dan ",
+                "note": "",
+                "x": "307",
+                "y": "128",
+                "x_percent": "55.22",
+                "y_percent": "21.84"
+            },
+            {
+                "correct_text": "Alice",
+                "note": "",
+                "x": "261",
+                "y": "260",
+                "x_percent": "46.94",
+                "y_percent": "44.37"
+            },
+            {
+                "correct_text": "Tom ",
+                "note": "",
+                "x": "208",
+                "y": "401",
+                "x_percent": "37.41",
+                "y_percent": "68.43"
+            },
+            {
+                "correct_text": "Bill ",
+                "note": "",
+                "x": "362",
+                "y": "368",
+                "x_percent": "65.11",
+                "y_percent": "62.8"
+            },
+            {
+                "correct_text": "Jill ",
+                "note": "",
+                "x": "366",
+                "y": "288",
+                "x_percent": "65.83",
+                "y_percent": "49.15"
+            }
+        ],
+        "width": "556",
+        "height": "586"
+    },
+    "options": ["Bill ", "Dan ", "Jill ", "Alice ", "Matt ", "Tom "],
+    "spec_question": 1
+}
+
 // PENDING
 export const mathQuillQuestion = {
     "id": "61f15b2811732e225b0c75da",
