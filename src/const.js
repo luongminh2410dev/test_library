@@ -2816,7 +2816,7 @@ export const pictureEnglishQuestion = {
         "coordinates": [
             {
                 "correct_text": "Matt",
-                "note": "",
+                "notice": "",
                 "x": "214",
                 "y": "139",
                 "x_percent": "38.49",
@@ -2824,7 +2824,7 @@ export const pictureEnglishQuestion = {
             },
             {
                 "correct_text": "Dan ",
-                "note": "",
+                "notice": "",
                 "x": "307",
                 "y": "128",
                 "x_percent": "55.22",
@@ -2832,7 +2832,7 @@ export const pictureEnglishQuestion = {
             },
             {
                 "correct_text": "Alice",
-                "note": "",
+                "notice": "",
                 "x": "261",
                 "y": "260",
                 "x_percent": "46.94",
@@ -2840,7 +2840,7 @@ export const pictureEnglishQuestion = {
             },
             {
                 "correct_text": "Tom ",
-                "note": "",
+                "notice": "",
                 "x": "208",
                 "y": "401",
                 "x_percent": "37.41",
@@ -2848,7 +2848,7 @@ export const pictureEnglishQuestion = {
             },
             {
                 "correct_text": "Bill ",
-                "note": "",
+                "notice": "",
                 "x": "362",
                 "y": "368",
                 "x_percent": "65.11",
@@ -2856,7 +2856,7 @@ export const pictureEnglishQuestion = {
             },
             {
                 "correct_text": "Jill ",
-                "note": "",
+                "notice": "",
                 "x": "366",
                 "y": "288",
                 "x_percent": "65.83",
@@ -2869,6 +2869,252 @@ export const pictureEnglishQuestion = {
     "options": ["Bill ", "Dan ", "Jill ", "Alice ", "Matt ", "Tom "],
     "spec_question": 1
 }
+
+export const lghCompoundQuestion = {
+    "id": "63bfccd2a6f8cf396ef66230",
+    "analytics": {
+        "correct": 0,
+        "incorrect": 0,
+        "skiped": 0,
+        "total_answer": 0,
+        "percent_false": 0
+    },
+    "solution_detail": [
+        {
+            "type": "html",
+            "content": "<p><span style=\"font-weight: 400;\">Cakes are great! You can make them at home or buy them from a bakery. I like chocolate cakes and my sister likes cakes with </span><strong>fruits </strong><span style=\"font-weight: 400;\">such as mangoes, apples or strawberries. Children drink </span><strong>milk</strong><span style=\"font-weight: 400;\"> or juice with cakes. People often have a cake on their </span><strong>birthday</strong><span style=\"font-weight: 400;\">. On that day, your friends and your </span><strong>family</strong><span style=\"font-weight: 400;\"> gather, and they </span><strong>sing</strong><span style=\"font-weight: 400;\"> the &ldquo;Happy Birthday&rdquo; song for you. It&rsquo;s a lot of fun!</span></p>\n<p><strong><em>Tạm dịch:</em></strong></p>\n<p><em><span style=\"font-weight: 400;\">B&aacute;nh ngọt rất tuyệt! Bạn c&oacute; thể l&agrave;m ch&uacute;ng ở nh&agrave; hoặc mua ch&uacute;ng từ tiệm b&aacute;nh. T&ocirc;i th&iacute;ch b&aacute;nh s&ocirc;-c&ocirc;-la c&ograve;n em g&aacute;i t&ocirc;i th&iacute;ch b&aacute;nh c&oacute; tr&aacute;i c&acirc;y như xo&agrave;i, t&aacute;o hoặc d&acirc;u t&acirc;y. Trẻ em uống sữa hoặc nước tr&aacute;i c&acirc;y với b&aacute;nh ngọt. Mọi người thường c&oacute; một chiếc b&aacute;nh ngọt v&agrave;o ng&agrave;y sinh nhật của họ. V&agrave;o ng&agrave;y đ&oacute;, bạn b&egrave; v&agrave; gia đ&igrave;nh của bạn tụ họp, v&agrave; họ h&aacute;t b&agrave;i &ldquo;Ch&uacute;c mừng sinh nhật&rdquo; cho bạn. N&oacute; thật sự rất vui!</span></em></p>"
+        }
+    ],
+    "solution_suggestion": [
+        {
+            "type": "html",
+            "content": "<p>PPG</p>"
+        }
+    ],
+    "sdk_type": 22,
+    "difficult_level": 1,
+    "notice": [
+        {
+            "type": "html",
+            "content": "<p>ch&uacute; &yacute; cha</p>"
+        }
+    ],
+    "content_type": "array",
+    "question": {
+        "id": "clcssxg4x000f377ayebygje2",
+        "content": [
+            {
+                "type": "html",
+                "content": "<p><strong>Read this. Choose a word from the box to complete the paragraph. There is one example.&nbsp;</strong></p>"
+            },
+            {
+                "type": "html",
+                "content": "<p><img src=\"https://img.loigiaihay.com/picture/2023/0112/1673515664548-mceclip0.png\" /></p>"
+            }
+        ],
+        "sub_questions": [
+            {
+                "id": "clcsv33wr000u377a17vfzqu3",
+                "sdk_type": 1,
+                "difficult_level": 1,
+                "solution_suggestion": [
+                    {
+                        "type": "html",
+                        "content": "<p>phương ph&aacute;p giải c&acirc;u 1</p>"
+                    }
+                ],
+                "solution_detail": [
+                    {
+                        "type": "html",
+                        "content": "<p>SSS111222</p>"
+                    }
+                ],
+                "notice": [
+                    {
+                        "type": "html",
+                        "content": "<p>ch&uacute; &yacute; con 1</p>"
+                    }
+                ],
+                "guide_touch": "Câu hỏi điền vào chỗ trống",
+                "question": [
+                    {
+                        "type": "html",
+                        "content": "<p><span style=\"font-weight: 400;\">Cakes are great! You can make them at (0) home or buy them from a bakery. I like chocolate cakes and my sister likes cakes with (1) </span></p>"
+                    }
+                ],
+                "options": [
+                    {
+                        "id": "clcsv33wr000w377aahteavgx",
+                        "content": [
+                            {
+                                "type": "html",
+                                "content": "<p><span style=\"font-weight: 400;\">Cakes are great! You can make them at (0) home or buy them from a bakery. I like chocolate cakes and my sister likes cakes with (1) </span></p>"
+                            }
+                        ],
+                        "case_sensitive": false,
+                        "name": "richText",
+                        "obj_type": "richText",
+                        "question": "clcsv33wr000v377aa079gaf5"
+                    },
+                    {
+                        "id": "clcsv33wr000x377ajasf5pnm",
+                        "content": "fruits",
+                        "case_sensitive": false,
+                        "name": "inputText",
+                        "obj_type": "inputText",
+                        "question": "clcsv33wr000v377aa079gaf5"
+                    }
+                ]
+            },
+            {
+                "id": "clcsv5h2s001a377ac654myv2",
+                "sdk_type": 1,
+                "difficult_level": 1,
+                "solution_suggestion": [],
+                "solution_detail": [],
+                "notice": [],
+                "guide_touch": "Câu hỏi điền vào chỗ trống",
+                "question": [],
+                "options": [
+                    {
+                        "id": "clcsv5h2s001c377ankbrffk2",
+                        "content": [
+                            {
+                                "type": "html",
+                                "content": "<p><span style=\"font-weight: 400;\">such as mangoes, apples or strawberries. Children drink (2)</span></p>"
+                            }
+                        ],
+                        "case_sensitive": false,
+                        "name": "richText",
+                        "obj_type": "richText",
+                        "question": "clcsv5h2s001b377adb7v6zd2"
+                    },
+                    {
+                        "id": "clcsv5h2s001d377al5b6y79c",
+                        "content": "milk",
+                        "case_sensitive": false,
+                        "name": "inputText",
+                        "obj_type": "inputText",
+                        "question": "clcsv5h2s001b377adb7v6zd2"
+                    }
+                ]
+            },
+            {
+                "id": "clcsvmkgo001y377aqrbq4bzb",
+                "sdk_type": 1,
+                "difficult_level": 1,
+                "solution_suggestion": [],
+                "solution_detail": [],
+                "notice": [],
+                "guide_touch": "Câu hỏi điền vào chỗ trống",
+                "question": [],
+                "options": [
+                    {
+                        "id": "clcsvmkgo0020377atjmylwol",
+                        "content": [
+                            {
+                                "type": "html",
+                                "content": "<p><span style=\"font-weight: 400;\">&nbsp;or juice with cakes. People often have a cake on their (3)&nbsp;</span></p>"
+                            }
+                        ],
+                        "case_sensitive": false,
+                        "name": "richText",
+                        "obj_type": "richText",
+                        "question": "clcsvmkgo001z377aakr91ylc"
+                    },
+                    {
+                        "id": "clcsvmkgo0021377aygo9hfwh",
+                        "content": "birthday",
+                        "case_sensitive": false,
+                        "name": "inputText",
+                        "obj_type": "inputText",
+                        "question": "clcsvmkgo001z377aakr91ylc"
+                    }
+                ],
+            },
+            {
+                "id": "clcsvvons000n377a1ky7slgt",
+                "sdk_type": 1,
+                "difficult_level": 1,
+                "solution_suggestion": [],
+                "solution_detail": [],
+                "notice": [],
+                "guide_touch": "Câu hỏi điền vào chỗ trống",
+                "question": [],
+                "options": [
+                    {
+                        "id": "clcsvvons000p377airw7escu",
+                        "content": [
+                            {
+                                "type": "html",
+                                "content": "<p><span style=\"font-weight: 400;\">. On that day, your friends and your (4)</span></p>"
+                            }
+                        ],
+                        "case_sensitive": false,
+                        "name": "richText",
+                        "obj_type": "richText",
+                        "question": "clcsvvons000o377aqa6r3z45"
+                    },
+                    {
+                        "id": "clcsvvons000q377atdna1kyv",
+                        "content": "family",
+                        "case_sensitive": false,
+                        "name": "inputText",
+                        "obj_type": "inputText",
+                        "question": "clcsvvons000o377aqa6r3z45"
+                    }
+                ]
+            },
+            {
+                "id": "clcsvyipw000z377a2isn8l6r",
+                "sdk_type": 1,
+                "difficult_level": 1,
+                "solution_suggestion": [],
+                "solution_detail": [],
+                "notice": [],
+                "guide_touch": "Câu hỏi điền vào chỗ trống",
+                "question": [],
+                "options": [
+                    {
+                        "id": "clcsvyipw0011377a4d02zwf2",
+                        "content": [
+                            {
+                                "type": "html",
+                                "content": "<p><span style=\"font-weight: 400;\">gather, and they (5)</span></p>"
+                            }
+                        ],
+                        "case_sensitive": false,
+                        "name": "richText",
+                        "obj_type": "richText",
+                        "question": "clcsvyipw0010377a6gs8lupw"
+                    },
+                    {
+                        "id": "clcsvyipw0012377a15sb8kmx",
+                        "content": "sing",
+                        "case_sensitive": false,
+                        "name": "inputText",
+                        "obj_type": "inputText",
+                        "question": "clcsvyipw0010377a6gs8lupw"
+                    },
+                    {
+                        "id": "clcsvz8ue0014377atur1d5b2",
+                        "content": [
+                            {
+                                "type": "html",
+                                "content": "<p><span style=\"font-weight: 400;\">&nbsp;the &ldquo;Happy Birthday&rdquo; song for you. It&rsquo;s a lot of fun!</span></p>"
+                            }
+                        ],
+                        "case_sensitive": false,
+                        "name": "richText",
+                        "obj_type": "richText",
+                        "question": "clcsvyipw0010377a6gs8lupw"
+                    }
+                ]
+            }
+        ]
+    }
+}
+
 
 // PENDING
 export const mathQuillQuestion = {

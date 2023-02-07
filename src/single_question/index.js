@@ -20,6 +20,7 @@ import YNQuestion from '../questions/yn-question'
 import MathQuillQuestion from '../questions/mathquill-question'
 import EssayQuestion from '../questions/essay-question'
 import PictureEnglishQuestion from '../questions/picture-english-question'
+import LGHCompoundQuestion from '../questions/lgh-compound-question'
 
 const SingleQuestion = (props) => {
     const { question, globalConfig, globalStyles, customConfig, customStyles } = props;
@@ -184,6 +185,14 @@ const SingleQuestion = (props) => {
         case 21:
             return (
                 <PictureEnglishQuestion
+                    {...props}
+                    customConfig={newConfig}
+                    customStyles={newStyles}
+                />
+            )
+        case 22:
+            return (
+                <LGHCompoundQuestion
                     {...props}
                     customConfig={newConfig}
                     customStyles={newStyles}

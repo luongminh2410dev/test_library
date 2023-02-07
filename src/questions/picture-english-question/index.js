@@ -234,6 +234,12 @@ const PictureEnglishQuestion = (props) => {
         />
     )
 
+    const _renderOptionHint = (item, index) => (
+        <View key={index} style={[styles.option_item, { backgroundColor: 'rgba(242, 234, 217, 0.5)' }]}>
+            <Text style={[styles.option_item_label, { opacity: 0 }]}>{item}</Text>
+        </View>
+    )
+
     const _renderAbsoluteSocket = (item, index) => {
         const onLayout = (e) => {
             refSocketPositions.current[index] = { x: e.nativeEvent.layout.x, y: e.nativeEvent.layout.y }
@@ -329,7 +335,11 @@ const PictureEnglishQuestion = (props) => {
                 />
                 <GestureHandlerRootView style={styles.option_list}>
                     {options.map(_renderOptionItem)}
+
                 </GestureHandlerRootView>
+                <View style={[styles.option_list, { zIndex: 1 }]}>
+                    {options.map(_renderOptionHint)}
+                </View>
             </View>
             <Collapsible
                 style={styles.suggestion_collapsible}

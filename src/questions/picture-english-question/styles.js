@@ -119,7 +119,6 @@ const styles = StyleSheet.create({
     },
     option_item: {
         width: 50,
-        // backgroundColor: '#f2ead9',
         paddingVertical: 4,
         justifyContent: 'center',
         alignItems: 'center',
