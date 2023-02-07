@@ -123,7 +123,7 @@ const EssayQuestion = (props) => {
     } = customStyles;
 
     const {
-        guide_touch, question: _question, items_per_row = 1,
+        guide_touch, question: _question, prefix_input,
         difficult_level, solution_suggestion,
         correct_options, solution_detail
     } = question;
@@ -248,6 +248,9 @@ const EssayQuestion = (props) => {
             <View
                 style={[styles.option_container, optionContainerStyles]}
                 pointerEvents={displayMode == 'result' || questionStep == 2 ? 'none' : 'auto'}>
+                <View style={{ width: '100%', alignItems: 'center', marginTop: 12, }}>
+                    {prefix_input.map(_renderContent)}
+                </View>
                 <PickedImages onUploadImageChange={onUploadImageChange} />
                 <TextInput
                     style={styles.textinput_answer}

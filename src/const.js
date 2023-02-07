@@ -2763,7 +2763,15 @@ export const essayQuestion = {
             "content": "<p>Cho h&igrave;nh hộp chữ nhật c&oacute; diện t&iacute;ch to&agrave;n phần bằng 64, độ d&agrave;i đường ch&eacute;o bằng 8. Gi&aacute; trị lớn nhất của thể t&iacute;ch khối hộp đ&oacute; bằng \\(\\dfrac{{a\\sqrt 2 }}{b}\\), với \\(a,b\\) l&agrave; c&aacute;c số nguy&ecirc;n dương v&agrave; \\(\\dfrac{{a\\sqrt 2 }}{b}\\) l&agrave; ph&acirc;n số tối giản. Khi đ&oacute; \\(a - 2b\\) bằng</p>"
         }
     ],
-    "correct_options": ["458"],
+    "prefix_input": [
+        {
+            "type": "html",
+            "content": "<p><strong>Đ&aacute;p &aacute;n:&nbsp;</strong></p>"
+        }
+    ],
+    "correct_answer": [
+        "458"
+    ],
     "spec_question": 1
 }
 

@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
         width: '100%',
         marginTop: 12,
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     image_picker_label: {
         fontSize: 15,
