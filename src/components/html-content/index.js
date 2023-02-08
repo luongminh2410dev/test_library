@@ -49,7 +49,7 @@ const HtmlContent = (props) => {
             </MathJaxSvg>
             :
             <RenderHTML
-                contentWidth={width}
+                contentWidth={width - 24}
                 source={{ html: content }}
                 renderers={renderers}
                 customHTMLElementModels={customHTMLElementModels}
