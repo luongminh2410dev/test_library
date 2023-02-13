@@ -142,24 +142,20 @@ const styles = StyleSheet.create({
     },
     option_container: {
         // position: 'relative'
-    },
-    display: {
-        alignSelf: 'center',
-    },
-    display_absolute: {
-        position: 'absolute',
         width: '100%',
-        top: 8,
+        paddingHorizontal: 12,
+        zIndex: 1,
     },
-    display_line: {
-        borderBottomWidth: 1,
-        borderBottomColor: 'lightgray'
-    },
+    //
     phrase_list: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: "row",
-        flexWrap: 'wrap',
+        position: 'relative',
+        width: '100%',
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start',
+        zIndex: 2,
+    },
+    absolute_phrase: {
+        position: 'absolute',
     },
     phrase_item: {
         paddingVertical: 8,
@@ -167,19 +163,11 @@ const styles = StyleSheet.create({
         backgroundColor: 'gray',
         marginRight: 8,
         marginBottom: 8,
-        borderRadius: 16,
+        borderRadius: 8,
     },
     phrase_item_txt: {
         fontSize: 15,
         color: 'white'
-    },
-    result_btn: {
-        marginTop: 24,
-        paddingVertical: 8,
-        paddingHorizontal: 12,
-        backgroundColor: 'black',
-        alignSelf: 'center',
-        borderRadius: 4
     },
 })
 export default styles

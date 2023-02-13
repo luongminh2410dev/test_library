@@ -13,12 +13,12 @@
  */
 
 import { AppRegistry } from 'react-native';
-import App from './demo';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import Entypo from 'react-native-vector-icons/Entypo';
+import Feather from 'react-native-vector-icons/Feather';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import { name as appName } from './app.json';
-import AntDesign from 'react-native-vector-icons/AntDesign'
-import Feather from 'react-native-vector-icons/Feather'
-import Entypo from 'react-native-vector-icons/Entypo'
-import Ionicons from 'react-native-vector-icons/Ionicons'
+import App from './demo';
 
 AntDesign.loadFont();
 Feather.loadFont();

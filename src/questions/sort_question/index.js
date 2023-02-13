@@ -1,122 +1,149 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Dimensions, Image, Text, TouchableOpacity, View } from 'react-native';
 import Collapsible from 'react-native-collapsible';
 import { GestureHandlerRootView, PanGestureHandler } from 'react-native-gesture-handler';
-import Animated, { runOnJS, useAnimatedGestureHandler, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
+import Animated, { runOnJS, useAnimatedGestureHandler, useAnimatedReaction, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import Feather from 'react-native-vector-icons/Feather';
 import HtmlContent from '../../components/html-content';
 import styles from './styles';
 
 const { width, height } = Dimensions.get('screen');
 
-const DISPLAY_WIDTH = width - 24;
-const DISPLAY_HEIGHT = 150;
-
-const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
 const PhraseItem = (props) => {
-    const { item, index, selected, findPhrasePosition, updatePhraseSelected, updateSizeOfPhrase } = props;
-    const { id } = item;
-    const getSelectedIndex = selected.findIndex(it => it.id == item.id);
-    const isSelected = getSelectedIndex != -1;
-    const phraseOffset = useRef({ x: 0, y: 0 });
+    const { item, index, positions, questionStep, setQuestionStep, updatePhraseConfigs } = props;
+    const [moving, setMoving] = useState(false);
     const translateX = useSharedValue(0);
     const translateY = useSharedValue(0);
 
-    useEffect(() => {
-        if (isSelected) {
-            const { offsetX, offsetY } = selected[getSelectedIndex];
-            const finalOffsetY = - (phraseOffset.current.y + (DISPLAY_HEIGHT - offsetY));
-            const finalOffsetX = offsetX - phraseOffset.current.x;
-            translateX.value = withTiming(finalOffsetX);
-            translateY.value = withTiming(finalOffsetY);
-        }
-        else {
-            translateX.value = withTiming(0);
-            translateY.value = withTiming(0);
-        }
-    }, [selected])
-
-    const onLayout = (e) => {
-        const { x, y, width, height } = e.nativeEvent.layout;
-        phraseOffset.current = { x, y };
-        updateSizeOfPhrase(id, { width, height })
+    const onLayout = ({ nativeEvent: { layout } }) => {
+        updatePhraseConfigs(item.id, { ...layout, position: index })
     }
 
-    const animatedButtonStyles = useAnimatedStyle(() => {
+    const animatedStyles = useAnimatedStyle(() => {
         return {
-            position: 'absolute',
             top: translateY.value,
-            left: translateX.value
+            left: translateX.value + width,
+            zIndex: moving ? 100 : 1,
         }
     })
+
+    useAnimatedReaction(
+        () => positions.value[item.id]?.x,
+        (currentPosition, previousPosition) => {
+            if (currentPosition !== previousPosition) {
+                if (!positions.value[item.id] || moving) return;
+                translateX.value = withTiming(positions.value[item.id].x);
+                translateY.value = withTiming(positions.value[item.id].y);
+            }
+        }, [moving]
+    );
 
     const onGestureEvent = useAnimatedGestureHandler({
         onStart: (event, context) => {
             context.translateX = translateX.value;
             context.translateY = translateY.value;
+            runOnJS(setMoving)(true);
         },
         onActive: (event, context) => {
             translateX.value = event.translationX + context.translateX;
             translateY.value = event.translationY + context.translateY;
+
+            if (Math.abs(event.velocityX) < 50 && Math.abs(event.velocityY) < 50) return;
+            const getId = Object.keys(positions.value).find(it => {
+                if (it == item.id) return false;
+                if (
+                    Math.abs(positions.value[it].x - translateX.value) < (positions.value[it].width / 2)
+                    &&
+                    Math.abs(positions.value[it].y - translateY.value) < (positions.value[it].height / 2)
+                ) {
+                    return true;
+                }
+                return false;
+            })
+
+            if (getId) {
+                const newObj = { ...positions.value };
+
+                Object.keys(positions.value).map(it => {
+                    if (it == item.id) {
+                        newObj[it] = { ...newObj[it], position: positions.value[getId].position };
+                        return;
+                    };
+                    if (positions.value[getId].position < positions.value[item.id].position) {
+                        if (
+                            positions.value[it].position >= positions.value[getId].position
+                            &&
+                            positions.value[it].position < positions.value[item.id].position
+                        ) {
+                            newObj[it] = { ...newObj[it], position: newObj[it].position + 1 }
+                        }
+                    }
+                    else {
+                        if (
+                            positions.value[it].position > positions.value[item.id].position
+                            &&
+                            positions.value[it].position <= positions.value[getId].position
+                        ) {
+                            newObj[it] = { ...newObj[it], position: newObj[it].position - 1 }
+                        }
+                    }
+                    return;
+                })
+
+                const sortedArray = Object.keys(newObj)
+                    .map(it => { return { ...newObj[it], id: it } })
+                    .sort((a, b) => a.position - b.position);
+
+                sortedArray.map((it, idx) => {
+                    const newOffset = sortedArray.reduce((t, c, cIdx) => {
+                        if (c.position >= it.position) return t;
+                        if (t.x + c.width > (width - 24 - (sortedArray[cIdx + 1]?.width || 0))) {
+                            return { x: 0, y: t.y + c.height }
+                        }
+                        return { x: t.x + c.width, y: t.y }
+                    }, { x: 0, y: 0 });
+
+                    newObj[it.id] = { ...newObj[it.id], x: newOffset.x, y: newOffset.y };
+                    return;
+                })
+
+                positions.value = newObj;
+            }
         },
         onEnd: (event, context) => {
-            runOnJS(findPhrasePosition)(id, getSelectedIndex, {
-                x: event.translationX + selected[getSelectedIndex].offsetX,
-                y: event.translationY + selected[getSelectedIndex].offsetY
-            });
+            translateX.value = withTiming(positions.value[item.id].x);
+            translateY.value = withTiming(positions.value[item.id].y);
+            runOnJS(setMoving)(false);
+            questionStep == 0 && runOnJS(setQuestionStep)(1);
         }
     })
 
-    const onPress = () => updatePhraseSelected(id, getSelectedIndex);
+    const _renderContent = (it, idx) => {
+        switch (it.type) {
+            case 'html':
+                return <HtmlContent key={idx} content={it.content} color={'white'} />
+            case 'image':
+                return (
+                    <Image
+                        key={idx}
+                        resizeMode='contain'
+                        style={{ width: parseInt(it.width), height: parseInt(it.height) }}
+                        source={{ uri: it.url }} />
+                )
+        }
+    }
 
     return (
-        <View onLayout={onLayout}>
-            <GestureHandlerRootView>
-                <View style={[styles.phrase_item, { backgroundColor: 'lightgray' }]}>
-                    <View style={[styles.phrase_item_txt, { opacity: 0 }]}>
-                        {item.content.map((it, idx) => {
-                            switch (it.type) {
-                                case 'html':
-                                    return <HtmlContent key={idx} content={it.content} color={'white'} />
-                                case 'image':
-                                    return (
-                                        <Image
-                                            key={idx}
-                                            resizeMode='contain'
-                                            style={{ width: parseInt(it.width), height: parseInt(it.height) }}
-                                            source={{ uri: it.url }} />
-                                    )
-                            }
-                        })}
-                    </View>
-                </View>
-                <PanGestureHandler
-                    enabled={isSelected}
-                    maxPointers={1}
-                    onGestureEvent={onGestureEvent}>
-                    <AnimatedTouchable
-                        onPress={onPress}
-                        style={[
-                            styles.phrase_item,
-                            animatedButtonStyles
-                        ]}>
-                        {item.content.map((it, idx) => {
-                            switch (it.type) {
-                                case 'html':
-                                    return <HtmlContent key={idx} content={it.content} color={'white'} />
-                                case 'image':
-                                    return (
-                                        <Image
-                                            key={idx}
-                                            resizeMode='contain'
-                                            style={{ width: parseInt(it.width), height: parseInt(it.height) }}
-                                            source={{ uri: it.url }} />
-                                    )
-                            }
-                        })}
-                    </AnimatedTouchable>
-                </PanGestureHandler>
-            </GestureHandlerRootView>
+        <View onLayout={onLayout} style={{ position: 'absolute', left: -width }}>
+            <PanGestureHandler
+                maxPointers={1}
+                minDist={10}
+                onGestureEvent={onGestureEvent}
+            >
+                <Animated.View style={[styles.phrase_item, animatedStyles]}>
+                    {item.content.map(_renderContent)}
+                </Animated.View>
+            </PanGestureHandler>
         </View>
     )
 }
@@ -167,18 +194,11 @@ const SortQuestion = (props) => {
     const [suggestionCollapsed, setSuggestionCollapsed] = useState(true);
     const [solutionCollapsed, setSolutionCollapsed] = useState(true);
     const [questionStep, setQuestionStep] = useState(0);
-    const [selected, setSelected] = useState([]);
-    const refConfigOfPhrases = useRef({});
+    const refPhraseLayout = useRef({});
+    const positions = useSharedValue([]);
 
     const nextButtonLabel = questionStep == 1 && correct_options ? 'Kiểm tra' : btn_skip_text;
     const suggestButtonLabel = questionStep == 2 ? 'Xem lại lý thuyết' : btn_suggestion_text;
-
-    useEffect(() => {
-        if (selected.length > 0 && questionStep != 1) {
-            setQuestionStep(1)
-        }
-    }, [selected])
-
 
     const getDifficultQuestion = () => {
         switch (difficult_level) {
@@ -245,17 +265,30 @@ const SortQuestion = (props) => {
         }
     }
 
-    const _renderPhraseList = (item, index) => (
-        <PhraseItem
-            key={index}
-            item={item}
-            index={index}
-            selected={selected}
-            setSelected={setSelected}
-            findPhrasePosition={findPhrasePosition}
-            updatePhraseSelected={updatePhraseSelected}
-            updateSizeOfPhrase={updateSizeOfPhrase} />
-    )
+    const updatePhraseConfigs = (id, config) => {
+        refPhraseLayout.current[id] = config;
+
+        if (Object.keys(refPhraseLayout.current).length == options.length) {
+            const newObj = {};
+
+            const sortedArray = Object.keys(refPhraseLayout.current)
+                .map(it => { return { ...refPhraseLayout.current[it], id: it } })
+                .sort((a, b) => a.position - b.position);
+
+            sortedArray.map((it, idx) => {
+                const newOffset = sortedArray.reduce((t, c, cIdx) => {
+                    if (c.position >= it.position) return t;
+                    if (t.x + c.width > (width - 24 - (sortedArray[cIdx].width || 0))) {
+                        return { x: 0, y: t.y + c.height }
+                    }
+                    return { x: t.x + c.width, y: t.y }
+                }, { x: 0, y: 0 });
+
+                newObj[it.id] = { ...refPhraseLayout.current[it.id], x: newOffset.x, y: newOffset.y };
+            })
+            positions.value = newObj;
+        }
+    }
 
     const _renderContent = (item, index) => {
         switch (item.type) {
@@ -272,82 +305,17 @@ const SortQuestion = (props) => {
         }
     }
 
-    const updateSizeOfPhrase = (id, layout) => {
-        refConfigOfPhrases.current[id] = { width: layout.width, height: layout.height };
-    }
-
-    const updatePhraseSelected = (id, selectedIndex) => {
-        let newState = [...selected];
-        selectedIndex == -1 ?
-            newState.push({ id, offsetX: 0, offsetY: 0 })
-            :
-            newState.splice(selectedIndex, 1);
-
-        let offsetX = 8;
-        let offsetY = 12;
-        const phraseHeight = refConfigOfPhrases.current[id].height;
-        newState.map((item, index) => {
-            if (index == 0) {
-                newState[index] = { ...item, offsetX: 8, offsetY: 12 };
-            } else {
-                if (offsetX + refConfigOfPhrases.current[item.id].width > (width - 12)) {
-                    offsetX = 8;
-                    offsetY += phraseHeight;
-                }
-                newState[index] = { ...item, offsetX, offsetY }
-            }
-            offsetX += refConfigOfPhrases.current[item.id].width;
-        })
-        setSelected(newState);
-    }
-
-    const findPhrasePosition = (id, selectedIndex, position) => {
-        const { x, y } = position;
-        const positionX = x + (refConfigOfPhrases.current[id].width / 2);
-        const positionY = y + (refConfigOfPhrases.current[id].height / 2);
-        let minDistance = 1000;
-        let minItem = - 1;
-        selected.map((item, index) => {
-            const distance = Math.sqrt(Math.pow((item.offsetX - positionX), 2) + Math.pow((item.offsetY - positionY), 2));
-            if (distance < minDistance) {
-                minDistance = distance;
-                minItem = index;
-            }
-            return null;
-        })
-
-        let offsetX = 8;
-        let offsetY = 12;
-        const phraseHeight = refConfigOfPhrases.current[id].height;
-        let newState = [...selected];
-        if (minDistance > 150) {
-            // DO NOTHING
-        }
-        else if (
-            positionX >= selected[selected.length - 1].offsetX
-            && positionY >= selected[selected.length - 1].offsetY
-        ) {
-            newState.splice(selectedIndex, 1);
-            newState.push(selected[selectedIndex]);
-        }
-        else {
-            newState.splice(selectedIndex, 1);
-            newState.splice(minItem, 0, selected[selectedIndex]);
-        }
-        newState.map((item, index) => {
-            if (index == 0) {
-                newState[index] = { ...item, offsetX: 8, offsetY: 12 };
-            } else {
-                if (offsetX + refConfigOfPhrases.current[item.id].width > (width - 12)) {
-                    offsetX = 8;
-                    offsetY += phraseHeight;
-                }
-                newState[index] = { ...item, offsetX, offsetY }
-            }
-            offsetX += refConfigOfPhrases.current[item.id].width;
-        })
-        setSelected(newState);
-    }
+    const _renderPhraseItem = (item, index) => (
+        <PhraseItem
+            key={index}
+            item={item}
+            index={index}
+            positions={positions}
+            questionStep={questionStep}
+            setQuestionStep={setQuestionStep}
+            updatePhraseConfigs={updatePhraseConfigs}
+        />
+    )
 
     const _renderResult = (item, index) => {
         const data = options.find(it => it.id == item.id);
@@ -386,27 +354,15 @@ const SortQuestion = (props) => {
                 {_question.map(_renderContent)}
             </View>
             <View style={[styles.option_container, optionContainerStyles]} pointerEvents={displayMode == 'result' || questionStep == 2 ? 'none' : 'auto'}>
-                <View style={[styles.display, { width: DISPLAY_WIDTH, height: DISPLAY_HEIGHT }]}>
-                    <View style={styles.display_absolute}>
-                        <View style={styles.display_line}>
-                            <View style={[styles.phrase_item, { opacity: 0 }]}>
-                                <Text style={styles.phrase_item_txt}>test</Text>
-                            </View>
+                <GestureHandlerRootView style={styles.phrase_list}>
+                    {options.map(_renderPhraseItem)}
+                </GestureHandlerRootView>
+                <View style={{ width: '100%', flexDirection: 'row', flexWrap: 'wrap', zIndex: 0 }}>
+                    {options.map((item, index) => (
+                        <View key={index} style={[styles.phrase_item, { opacity: 0 }]}>
+                            {item.content.map(_renderContent)}
                         </View>
-                        <View style={styles.display_line}>
-                            <View style={[styles.phrase_item, { opacity: 0 }]}>
-                                <Text style={styles.phrase_item_txt}>test</Text>
-                            </View>
-                        </View>
-                        <View style={styles.display_line}>
-                            <View style={[styles.phrase_item, { opacity: 0 }]}>
-                                <Text style={styles.phrase_item_txt}>test</Text>
-                            </View>
-                        </View>
-                    </View>
-                </View>
-                <View style={styles.phrase_list}>
-                    {options.map(_renderPhraseList)}
+                    ))}
                 </View>
             </View>
             <Collapsible
