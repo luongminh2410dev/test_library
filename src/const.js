@@ -2870,6 +2870,66 @@ export const pictureEnglishQuestion = {
     "spec_question": 1
 }
 
+export const mathQuillQuestion = {
+    "id": "61f15b2811732e225b0c75da",
+    "analytics": {
+        "correct": 0,
+        "incorrect": 0,
+        "skiped": 0,
+        "total_answer": 0,
+        "percent_false": 0
+    },
+    "solution_detail": [
+        {
+            "type": "html",
+            "content": "<p><img src=\"https://cdn.vungoi.vn/vungoi/2022/0128/1643334087438_image-removebg-preview_(8).png\" alt=\"\" width=\"487\" height=\"87\" /></p>"
+        },
+        {
+            "type": "html",
+            "content": "<p>Vậy 81 &ndash; 53 = 28</p>"
+        }
+    ],
+    "solution_suggestion": [
+        {
+            "type": "html",
+            "content": "<p style=\"text-align: justify;\">Thực hiện t&iacute;nh từ phải qua tr&aacute;i, lần lượt trừ hai số đơn vị, hai số chục.</p>\n<p style=\"text-align: justify;\">Lưu &yacute;: cần phải trả 1 đơn vị v&agrave;o h&agrave;ng chục khi mượn 1 chục từ h&agrave;ng chục sang h&agrave;ng đơn vị.</p>"
+        }
+    ],
+    "sdk_type": 14,
+    "difficult_level": 1,
+    "notice": [],
+    "content_format": "array",
+    "question": [
+        {
+            "type": "html",
+            "content": "<p style=\"text-align: center;\">T&iacute;nh gi&aacute; trị ph&eacute;p t&iacute;nh:</p>"
+        },
+        {
+            "type": "image",
+            "url": "https://cdn.vungoi.vn/vungoi/2022/0126/1643207283266_anh_51_ds_.png",
+            "caption": "",
+            "optUpload": 2,
+            "width": "300",
+            "height": "200",
+            "quantity": 1
+        }
+    ],
+    "mathquill": [
+        {
+            "id": "answer_ckyvn4v2j000h396xzo0bj050",
+            "obj_type": "mInputText",
+            "content": "\\frac{\\stimes{81}{53}}{\\mInputText{1}{28}}"
+        }
+    ],
+    "correct_options": [
+        {
+            "answer": "28",
+            "id": "mInputText_1"
+        }
+    ],
+    "spec_question": 1
+}
+
 // SHOULD UPDATE
 export const lghCompoundQuestion = {
     "id": "63bfccd2a6f8cf396ef66230",
@@ -3144,65 +3204,4 @@ export const lghCompoundQuestion = {
             ]
         }
     ]
-}
-
-// PENDING
-export const mathQuillQuestion = {
-    "id": "61f15b2811732e225b0c75da",
-    "analytics": {
-        "correct": 0,
-        "incorrect": 0,
-        "skiped": 0,
-        "total_answer": 0,
-        "percent_false": 0
-    },
-    "solution_detail": [
-        {
-            "type": "html",
-            "content": "<p><img src=\"https://cdn.vungoi.vn/vungoi/2022/0128/1643334087438_image-removebg-preview_(8).png\" alt=\"\" width=\"487\" height=\"87\" /></p>"
-        },
-        {
-            "type": "html",
-            "content": "<p>Vậy 81 &ndash; 53 = 28</p>"
-        }
-    ],
-    "solution_suggestion": [
-        {
-            "type": "html",
-            "content": "<p style=\"text-align: justify;\">Thực hiện t&iacute;nh từ phải qua tr&aacute;i, lần lượt trừ hai số đơn vị, hai số chục.</p>\n<p style=\"text-align: justify;\">Lưu &yacute;: cần phải trả 1 đơn vị v&agrave;o h&agrave;ng chục khi mượn 1 chục từ h&agrave;ng chục sang h&agrave;ng đơn vị.</p>"
-        }
-    ],
-    "sdk_type": 14,
-    "difficult_level": 1,
-    "notice": [],
-    "content_format": "array",
-    "question": [
-        {
-            "type": "html",
-            "content": "<p style=\"text-align: center;\">T&iacute;nh gi&aacute; trị ph&eacute;p t&iacute;nh:</p>"
-        },
-        {
-            "type": "image",
-            "url": "https://cdn.vungoi.vn/vungoi/2022/0126/1643207283266_anh_51_ds_.png",
-            "caption": "",
-            "optUpload": 2,
-            "width": "300",
-            "height": "200",
-            "quantity": 1
-        }
-    ],
-    "mathquill": [
-        {
-            "id": "answer_ckyvn4v2j000h396xzo0bj050",
-            "obj_type": "mInputText",
-            "content": "\\frac{\\stimes{81}{53}}{\\mInputText{1}{28}}"
-        }
-    ],
-    "correct_options": [
-        {
-            "answer": "28",
-            "id": "mInputText_1"
-        }
-    ],
-    "spec_question": 1
 }

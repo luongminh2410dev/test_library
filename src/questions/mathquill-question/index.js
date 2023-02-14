@@ -1,55 +1,65 @@
-import React, { useRef, useState } from 'react';
-import { Alert, Image, Text, TouchableOpacity, View } from 'react-native';
+import React, { useCallback, useRef, useState } from 'react';
+import { Alert, Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Collapsible from 'react-native-collapsible';
-import Entypo from 'react-native-vector-icons/Entypo';
 import Feather from 'react-native-vector-icons/Feather';
 import HtmlContent from '../../components/html-content';
+import { FracView, NTimes, regex } from '../../components/latexs';
 import styles from './styles';
 
+const SplitInput = (props) => {
+    const { data, inputStyle, updateAnswers } = props;
+    const refAnswer = useRef([]).current;
+    const refInputs = useRef([]).current;
+    const dataParser = regex.exec(data);
 
-const OptionItem = (props) => {
-    const { item, index, textColor, updateAnswers, correct_options } = props;
-    const [isActive, setActive] = useState(() => {
-        if (correct_options) {
-            return correct_options.find(it => {
-                return it.id == item.id
-            })?.answer;
+    const _renderInputItem = (item, index) => {
+        const onKeyPress = ({ nativeEvent: { key } }) => {
+            if (key == 'Backspace') {
+                index != 0 && refInputs[index - 1].focus()
+            }
+            else {
+                index + 1 < dataParser[3].length && refInputs[index + 1].focus();
+            }
         }
-        return false;
-    });
 
-    const _renderContent = (it, idx) => {
-        switch (it.type) {
-            case 'html':
-                return <HtmlContent key={idx} content={it.content} color={textColor} />
-            case 'image':
-                return (
-                    <Image
-                        key={idx}
-                        resizeMode='contain'
-                        style={{ width: parseInt(it.width), height: parseInt(it.height) }}
-                        source={{ uri: it.url }} />
-                )
+        const onChangeText = (text) => {
+            refAnswer.splice(index, 1, text);
+            updateAnswers(`${dataParser[1]}_${dataParser[2]}`, refAnswer.join(''))
         }
-    }
 
-    const toggleCheckbox = () => {
-        setActive(!isActive)
-        updateAnswers(item.id, !isActive);
+        return (
+            <TextInput
+                ref={ref => refInputs[index] = ref}
+                key={index}
+                maxLength={1}
+                selectTextOnFocus
+                keyboardType='number-pad'
+                onKeyPress={onKeyPress}
+                onChangeText={onChangeText}
+                style={[styles.split_input_item, inputStyle]}
+            />
+        )
     }
 
     return (
-        <View style={styles.option_item}>
-            <TouchableOpacity
-                onPress={toggleCheckbox}
-                style={[styles.checkbox, isActive && styles.checkbox_active]}>
-                <Entypo name='check' size={20} color='#6dae41' style={{ opacity: isActive ? 1 : 0 }} />
-            </TouchableOpacity>
-            {item.content.map(_renderContent)}
+        <View style={styles.split_input}>
+            {dataParser[3].split('').map(_renderInputItem)}
         </View>
     )
 }
 
+// /\\[a-zA-Z]+((?:\{[^{}]*\})+)/g
+// const parts = str2.split(/\s?(\+|\-|\*|\/|\(|\))\s?/).filter(i => i.trim() != '');
+const getLatexContent = (target) => {
+    const regex = /\\[a-zA-Z]+((?:\{[^{}]*\})+)/g;
+    const content = [];
+    let match;
+
+    while ((match = regex.exec(target)) != null) {
+        content.push(match[0])
+    }
+    return content;
+}
 const MathQuillQuestion = (props) => {
     const {
         question, customConfig, customStyles, displayMode,
@@ -62,6 +72,7 @@ const MathQuillQuestion = (props) => {
         label_question = 'Câu 1',
         label_suggestion = 'Phương pháp giải',
         label_solution_detail = 'Lời giải của GV Vungoi.vn',
+        label_result_txt = 'Đáp án của GV Vungoi.vn',
         btn_suggestion_text = 'Gợi ý',
         btn_skip_text = 'Câu tiếp theo',
         popup_confirm_skip = {},
@@ -83,7 +94,7 @@ const MathQuillQuestion = (props) => {
     } = customStyles;
 
     const {
-        guide_touch, question: _question, items_per_row = 1,
+        guide_touch, question: _question,
         difficult_level, solution_suggestion,
         mathquill, correct_options, solution_detail
     } = question;
@@ -156,7 +167,7 @@ const MathQuillQuestion = (props) => {
                 setQuestionStep(2)
                 // CHECK RESULT
                 const isCorrect = !correct_options.find(item => {
-                    return item.answer != (!!refAnswers.current[item.id]);
+                    return item.answer != refAnswers.current[item.id];
                 })
                 console.log(isCorrect ? 'Chính xác' : 'Không chính xác');
                 break;
@@ -167,15 +178,6 @@ const MathQuillQuestion = (props) => {
                 break;
         }
     }
-
-    const _renderOptionItem = (item, index) => (
-        <OptionItem
-            key={index}
-            item={item}
-            index={index}
-            textColor={textColor}
-            updateAnswers={updateAnswers} />
-    )
 
     const _renderContent = (item, index) => {
         switch (item.type) {
@@ -192,26 +194,60 @@ const MathQuillQuestion = (props) => {
         }
     }
 
-    const _renderResult = (item, index) => (
-        <OptionItem
-            key={index}
-            item={item}
-            index={index}
-            textColor={textColor}
-            correct_options={correct_options} />
-    )
+    const _renderMathquillItem = (item, index) => {
+        const content = getLatexContent(item.content);
 
-    const _renderMathquillItem = (item, index) => (
-        <HtmlContent key={index} content={item.content} color={textColor} />
-    )
+        const numerator = () => <NTimes content={content[0]} />
+
+        const denominator = useCallback(() => (
+            <SplitInput
+                data={content[1]}
+                updateAnswers={updateAnswers}
+            />
+        ), [])
+
+        return (
+            <FracView
+                key={index}
+                numerator={numerator}
+                denominator={denominator}
+                textStyle={styles.mathquill_text} />
+        )
+    }
+
+    const _renderResult = (item, index) => {
+        const content = getLatexContent(item.content);
+
+        const numerator = () => <NTimes content={content[0]} />
+
+        const denominator = () => {
+            return (
+                <View style={styles.split_input}>
+                    {correct_options[0].answer.split('').map((it, idx) => (
+                        <View style={styles.split_input_item}>
+                            <Text style={styles.split_input_txt}>{it}</Text>
+                        </View>
+                    ))}
+                </View>
+            )
+        }
+
+        return (
+            <FracView
+                key={index}
+                numerator={numerator}
+                denominator={denominator}
+                textStyle={styles.mathquill_text} />
+        )
+    }
 
     const updateAnswers = (id, answer) => {
         answer ?
             refAnswers.current[id] = answer
             :
             delete refAnswers.current[id];
-        setQuestionStep(Object.keys(refAnswers.current).length > 0 ? 1 : 0)
 
+        setQuestionStep(Object.keys(refAnswers.current).length > 0 ? 1 : 0)
     }
 
     if (!question) return null;
@@ -229,7 +265,9 @@ const MathQuillQuestion = (props) => {
             <View style={[styles.question_view, questionTitleStyles]}>
                 {_question.map(_renderContent)}
             </View>
-            <View style={[styles.option_container, optionContainerStyles]} pointerEvents={displayMode == 'result' ? 'none' : 'auto'}>
+            <View
+                style={[styles.option_container, optionContainerStyles]}
+                pointerEvents={(displayMode == 'result' || questionStep == 2) ? 'none' : 'auto'}>
                 {mathquill.map(_renderMathquillItem)}
             </View>
             <Collapsible
@@ -259,8 +297,9 @@ const MathQuillQuestion = (props) => {
             {
                 (questionStep == 2 || displayMode != 'default') &&
                 <View style={[styles.result_container, resultContainerStyles]}>
+                    <Text style={[styles.suggestion_label, { color: subColor }]}>{label_result_txt}</Text>
                     <View style={styles.correct_result}>
-                        {/* {options.map(_renderResult)} */}
+                        {mathquill.map(_renderResult)}
                     </View>
                     <View style={styles.solution_detail_view}>
                         <TouchableOpacity onPress={toggleSolutionDetail} style={[styles.solution_detail_btn, solutionDetailBtnStyles]}>

@@ -7,9 +7,7 @@ import AudioView from '../audio-view';
 
 const { width, height } = Dimensions.get('window')
 
-const RenderAudio = (props) => {
-    const { tnode } = props;
-
+const RenderAudio = ({ tnode }) => {
     let source = '';
     tnode?.init?.domNode?.children.find(it => {
         if (it?.attribs?.type == "audio/mpeg") {
@@ -27,7 +25,7 @@ const customHTMLElementModels = {
     }),
     button: defaultHTMLElementModels.button.extend({
         contentModel: HTMLContentModel.block,
-    })
+    }),
 };
 
 const renderers = {
@@ -37,10 +35,8 @@ const renderers = {
 const HtmlContent = (props) => {
     const { content, color } = props;
 
-    const containMathjax = containsMathjax(content);
-
     return (
-        containMathjax ?
+        containsMathjax(content) ?
             <MathJaxSvg
                 color={color}
                 style={{ marginTop: 12 }}
@@ -52,7 +48,6 @@ const HtmlContent = (props) => {
                 contentWidth={width - 24}
                 source={{ html: content }}
                 renderers={renderers}
-                customHTMLElementModels={customHTMLElementModels}
                 tagsStyles={{
                     p: {
                         padding: 0,
@@ -63,6 +58,7 @@ const HtmlContent = (props) => {
                 defaultTextProps={{
                     style: { color, fontSize: 15 }
                 }}
+                customHTMLElementModels={customHTMLElementModels}
             />
     )
 }

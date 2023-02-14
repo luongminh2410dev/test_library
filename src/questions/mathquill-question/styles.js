@@ -44,6 +44,8 @@ const styles = StyleSheet.create({
     },
     option_container: {
         paddingHorizontal: 12,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     suggestion_collapsible: {
         width: width,
@@ -71,6 +73,9 @@ const styles = StyleSheet.create({
     },
     correct_result: {
         width: '100%',
+        marginTop: 12,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     next_question_btn: {
         flexDirection: "row",
@@ -100,21 +105,28 @@ const styles = StyleSheet.create({
         borderRadius: 4,
     },
     // 
-    option_item: {
+    mathquill_text: {
+        fontSize: 15,
+        textAlign: 'center'
+    },
+    split_input: {
         flexDirection: 'row',
-        alignItems: 'center',
     },
-    checkbox: {
-        padding: 4,
-        borderRadius: 4,
-        marginRight: 4,
+    split_input_item: {
+        minWidth: 24,
+        minHeight: 32,
+        paddingVertical: 4,
+        paddingHorizontal: 4,
         borderWidth: 1,
-        backgroundColor: '#f2ead8',
-        borderColor: '#e0e0e0',
+        borderColor: 'gray',
+        borderRadius: 2,
+        marginHorizontal: 2,
+        textAlign: 'center',
+        fontSize: 15
     },
-    checkbox_active: {
-        backgroundColor: '#d2eac2',
-        borderColor: '#6dae41'
+    split_input_txt: {
+        textAlign: 'center',
+        fontSize: 15
     }
 })
 
