@@ -2895,6 +2895,7 @@ export const mathQuillQuestion = {
             "content": "<p style=\"text-align: justify;\">Thực hiện t&iacute;nh từ phải qua tr&aacute;i, lần lượt trừ hai số đơn vị, hai số chục.</p>\n<p style=\"text-align: justify;\">Lưu &yacute;: cần phải trả 1 đơn vị v&agrave;o h&agrave;ng chục khi mượn 1 chục từ h&agrave;ng chục sang h&agrave;ng đơn vị.</p>"
         }
     ],
+    "guide_touch": "Con hãy điền số hoặc chữ số thích hợp vào ô trống",
     "sdk_type": 14,
     "difficult_level": 1,
     "notice": [],
@@ -3204,4 +3205,119 @@ export const lghCompoundQuestion = {
             ]
         }
     ]
+}
+
+export const mathQuillQuestion2 = {
+    "id": "5d53bf1172c7660022a853ba",
+    "analytics": {
+        "correct": 0,
+        "incorrect": 0,
+        "skiped": 0,
+        "total_answer": 0,
+        "percent_false": 0
+    },
+    "solution_detail": [
+        {
+            "content": "<p>\\(\\dfrac{19}{13}+\\dfrac{14}{6}+\\dfrac{1}{9}\\)&nbsp;\\(+\\dfrac{4}{6}+\\dfrac{7}{13}+\\dfrac{17}{9}\\)</p>\n<p>\\(= \\left( \\dfrac{19}{13}+\\dfrac{7}{13} \\right) \\)&nbsp;\\(+ \\left( \\dfrac{14}{6}+\\dfrac{4}{6} \\right) \\)&nbsp;\\(+ \\left( \\dfrac{1}{9}+\\dfrac{17}{9} \\right) \\)</p>\n<p>\\(=\\dfrac{26}{13} +\\dfrac{18}{6} +\\dfrac{18}{9}\\)</p>\n<p>\\(=2+3+2\\)</p>\n<p>\\(=7\\)</p>\n<p>&nbsp;</p>\n<p>&nbsp;</p>\n<p>&nbsp;</p>\n<p>&nbsp;</p>",
+            "type": "html"
+        }
+    ],
+    "solution_suggestion": [
+        {
+            "content": "<p>&Aacute;p dụng t&iacute;nh chất giao ho&aacute;n v&agrave; kết hợp của ph&eacute;p cộng để nh&oacute;m c&aacute;c ph&acirc;n số c&oacute; c&ugrave;ng mẫu số lại th&agrave;nh một tổng.</p>",
+            "type": "html"
+        }
+    ],
+    "guide_touch": "Con hãy điền số hoặc chữ số thích hợp vào ô trống",
+    "sdk_type": 16,
+    "difficult_level": 1,
+    "notice": [],
+    "content_format": "array",
+    "question": [
+        {
+            "content": "<p style=\"text-align: center;\"><img src=\"https://cdn.vungoi.vn/vungoi/1565768463284_000c1.jpg\" alt=\"\" width=\"167\" height=\"144\" /></p>\n<p style=\"text-align: center;\">T&iacute;nh gi&aacute; trị biểu thức bằng c&aacute;ch hợp l&yacute;.</p>",
+            "type": "html"
+        }
+    ],
+    "mathquill": [
+        {
+            "content": "\\frac{19}{13}+\\frac{14}{6}+\\frac{1}{9}+\\frac{4}{6}+\\frac{7}{13}+\\frac{17}{9}",
+            "id": "answer_cjzay2jid00023b6hpxs8f3tn"
+        },
+        {
+            "content": "=(\\frac{19}{13}+\\frac{\\inputText{1}{}}{\\inputText{2}{}})+(\\frac{14}{6}+\\frac{\\inputText{3}{}}{\\inputText{4}{}})+(\\frac{1}{9}+\\frac{\\inputText{5}{}}{\\inputText{6}{}})",
+            "id": "answer_cjzay2jid00033b6hcocnczhi"
+        },
+        {
+            "content": "=\\frac{\\inputText{7}{}}{\\inputText{8}{}}+\\frac{\\inputText{9}{}}{6}+\\frac{\\inputText{10}{}}{9}",
+            "id": "Nội Dung Theo Từng Dòng_cjzayff7g000f3b6h00ybxkiy"
+        },
+        {
+            "content": "=\\inputText{11}{}+\\inputText{12}{}+\\inputText{13}{}",
+            "id": "Nội Dung Theo Từng Dòng_cjzayhx0l000s3b6hcgsqi5nf"
+        },
+        {
+            "content": "=\\inputText{14}{}",
+            "id": "Nội Dung Theo Từng Dòng_cjzayjben00173b6hdvaeqhw3"
+        }
+    ],
+    "correct_options": [
+        {
+            "id": "inputText_1",
+            "answer": "7"
+        },
+        {
+            "id": "inputText_2",
+            "answer": "13"
+        },
+        {
+            "id": "inputText_3",
+            "answer": "4"
+        },
+        {
+            "id": "inputText_4",
+            "answer": "6"
+        },
+        {
+            "id": "inputText_5",
+            "answer": "17"
+        },
+        {
+            "id": "inputText_6",
+            "answer": "9"
+        },
+        {
+            "id": "inputText_7",
+            "answer": "26"
+        },
+        {
+            "id": "inputText_8",
+            "answer": "13"
+        },
+        {
+            "id": "inputText_9",
+            "answer": "18"
+        },
+        {
+            "id": "inputText_10",
+            "answer": "18"
+        },
+        {
+            "id": "inputText_11",
+            "answer": "2"
+        },
+        {
+            "id": "inputText_12",
+            "answer": "3"
+        },
+        {
+            "id": "inputText_13",
+            "answer": "2"
+        },
+        {
+            "id": "inputText_14",
+            "answer": "7"
+        }
+    ],
+    "spec_question": 1
 }

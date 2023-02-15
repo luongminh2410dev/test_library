@@ -1,56 +1,66 @@
-import { View, Text, StyleSheet } from 'react-native'
-import React from 'react'
 import PropTypes from 'prop-types'
+import React from 'react'
+import { StyleSheet, Text, View } from 'react-native'
+import { getParentRegex } from '.'
+import InputText from './inputText'
 
 const FracView = (props) => {
-    const { numerator: Numerator, denominator: Denominator, textStyle } = props;
+    const { numerator, denominator, textStyle, updateAnswers, correct_options } = props;
+
+    const renderFracContent = (content) => {
+        if (typeof content === 'function') return content();
+        const latex = getParentRegex.exec(content);
+        if (latex) {
+            switch (latex[1]) {
+                case 'inputText':
+                    return (
+                        <InputText
+                            content={content}
+                            updateAnswers={updateAnswers}
+                            correct_options={correct_options}
+                        />
+                    )
+                default:
+                    break;
+            }
+        }
+        return <Text style={textStyle}>{content}</Text>
+    }
 
     return (
         <View style={styles.container}>
-            {
-                typeof Numerator === 'string' ?
-                    <Text style={textStyle}>{Numerator}</Text>
-                    :
-                    <View style={styles.numerator}>
-                        <Numerator />
-                    </View>
-            }
+            <View style={styles.numerator}>
+                {renderFracContent(numerator)}
+            </View>
             <View style={styles.denominator}>
-                {
-                    typeof Denominator === 'string' ?
-                        <Text style={textStyle}>{Denominator}</Text>
-                        :
-                        <Denominator />
-                }
+                {renderFracContent(denominator)}
             </View>
         </View>
     )
 }
 
 FracView.propTypes = {
-    numerator: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.func
-    ]).isRequired,
-    denominator: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.func
-    ]).isRequired,
-    textStyle: PropTypes.object
+    numerator: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+    denominator: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+    textStyle: PropTypes.object,
+    updateAnswers: PropTypes.func,
+    correct_options: PropTypes.array,
 }
 
 FracView.defaultProps = {
     numerator: '',
     denominator: '',
-    textStyle: {}
+    textStyle: {},
+    updateAnswers: () => { },
+    correct_options: [],
 }
 
 export default FracView
 
-
 const styles = StyleSheet.create({
     container: {
         marginRight: 4,
+        marginBottom: 12,
     },
     numerator: {
         minWidth: 40,
@@ -59,6 +69,6 @@ const styles = StyleSheet.create({
         borderBottomColor: 'black',
     },
     denominator: {
-        paddingTop: 8,
+        paddingTop: 4,
     },
 })

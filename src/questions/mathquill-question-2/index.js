@@ -1,64 +1,70 @@
-import React, { useCallback, useRef, useState } from 'react';
-import { Alert, Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import React, { useRef, useState } from 'react';
+import { Alert, Image, Text, TouchableOpacity, View } from 'react-native';
 import Collapsible from 'react-native-collapsible';
 import Feather from 'react-native-vector-icons/Feather';
 import HtmlContent from '../../components/html-content';
-import { FracView, NTimes, regex } from '../../components/latexs';
+import { FracView, InputText, getParentRegex } from '../../components/latexs';
 import styles from './styles';
 
-const SplitInput = (props) => {
-    const { data, inputStyle, updateAnswers } = props;
-    const refAnswer = useRef([]).current;
-    const refInputs = useRef([]).current;
-    const dataParser = regex.exec(data);
+const getChildsOfFrac = (string) => {
+    const childRegex = /\\([a-zA-Z]+)((?:\{[^{}]*\})+)/g;
+    const childRegex2 = /\\([a-zA-Z]+)\{(\w+)?\}\{(\w+)?\}/g;
 
-    const _renderInputItem = (item, index) => {
-        const onKeyPress = ({ nativeEvent: { key } }) => {
-            if (key == 'Backspace') {
-                index != 0 && !refAnswer[index] && refInputs[index - 1].focus()
-            }
-            else {
-                index + 1 < dataParser[3].length && refInputs[index + 1].focus();
-            }
-        }
-
-        const onChangeText = (text) => {
-            refAnswer.splice(index, 1, text);
-            updateAnswers(`${dataParser[1]}_${dataParser[2]}`, refAnswer.join(''))
-        }
-
-        return (
-            <TextInput
-                ref={ref => refInputs[index] = ref}
-                key={index}
-                maxLength={1}
-                selectTextOnFocus
-                keyboardType='number-pad'
-                onKeyPress={onKeyPress}
-                onChangeText={onChangeText}
-                style={[styles.split_input_item, inputStyle]}
-            />
-        )
-    }
-
-    return (
-        <View style={styles.split_input}>
-            {dataParser[3].split('').map(_renderInputItem)}
-        </View>
-    )
-}
-
-const getLatexContent = (target) => {
-    const regex = /\\[a-zA-Z]+((?:\{[^{}]*\})+)/g;
-    const content = [];
     let match;
-
-    while ((match = regex.exec(target)) != null) {
-        content.push(match[0])
+    const childs = [];
+    while ((match = childRegex.exec(string)) != null) {
+        if (match.index == 0) {
+            while ((match = childRegex2.exec(string)) != null) {
+                childs.push(match[2])
+                match[3] && childs.push(match[3])
+            }
+            break;
+        }
+        else {
+            childs.push(match[0])
+        }
     }
-    return content;
+    const regex = /\\.*?\{.*?\}\{(\w+)\}/;
+    if (!childs[1]) {
+        const matchChild = regex.exec(string)
+        childs.push(matchChild ? matchChild[1] : '')
+    }
+    return childs;
 }
-const MathQuillQuestion = (props) => {
+
+const MathQuillItem = (props) => {
+    const { item, index, updateAnswers, correct_options } = props;
+    const parent = getParentRegex.exec(item);
+    if (parent) {
+        switch (parent[1]) {
+            case 'frac':
+                const childs = getChildsOfFrac(item);
+                return (
+                    <FracView
+                        numerator={childs[0]}
+                        denominator={childs[1]}
+                        textStyle={styles.mathquill_text}
+                        updateAnswers={updateAnswers}
+                        correct_options={correct_options} />
+                )
+            case 'inputText':
+                return (
+                    <View style={{ marginRight: 4, marginBottom: 12 }}>
+                        <InputText
+                            content={item}
+                            updateAnswers={updateAnswers}
+                            correct_options={correct_options}
+                        />
+                    </View>
+                )
+            default:
+                return;
+        }
+    }
+    return <Text key={index} style={styles.mathquill_text}>{item}</Text>
+}
+
+const MathQuillQuestion2 = (props) => {
     const {
         question, customConfig, customStyles, displayMode,
         getTopComponent, getMiddleComponent, getBottomComponent, getCornerComponent,
@@ -192,49 +198,42 @@ const MathQuillQuestion = (props) => {
         }
     }
 
-    const _renderMathquillItem = (item, index) => {
-        const content = getLatexContent(item.content);
+    const _renderMathquillRow = (item, index) => {
+        const mathquills = item.content.split(/\s?(\+|\-|\*|\/|\(|\)|\=)\s?/).filter(i => i.trim() != '')
 
-        const numerator = () => <NTimes content={content[0]} />
-
-        const denominator = useCallback(() => (
-            <SplitInput
-                data={content[1]}
+        const _renderMathquillItem = (it, idx) => (
+            <MathQuillItem
+                key={idx}
+                item={it}
+                index={idx}
                 updateAnswers={updateAnswers}
             />
-        ), [])
+        )
 
         return (
-            <FracView
-                key={index}
-                numerator={numerator}
-                denominator={denominator}
-                textStyle={styles.mathquill_text} />
-        )
+            <View key={index} style={styles.mathquill_row}>
+                {mathquills.map(_renderMathquillItem)}
+            </View>
+        );
     }
 
     const _renderResult = (item, index) => {
-        const content = getLatexContent(item.content);
+        const mathquills = item.content.split(/\s?(\+|\-|\*|\/|\(|\)|\=)\s?/).filter(i => i.trim() != '')
 
-        const numerator = () => <NTimes content={content[0]} />
-
-        const denominator = () => (
-            <View style={styles.split_input}>
-                {correct_options[0].answer.split('').map((it, idx) => (
-                    <View key={idx} style={styles.split_input_item}>
-                        <Text style={styles.split_input_txt}>{it}</Text>
-                    </View>
-                ))}
-            </View>
+        const _renderMathquillItem = (it, idx) => (
+            <MathQuillItem
+                key={idx}
+                item={it}
+                index={idx}
+                correct_options={correct_options}
+            />
         )
 
         return (
-            <FracView
-                key={index}
-                numerator={numerator}
-                denominator={denominator}
-                textStyle={styles.mathquill_text} />
-        )
+            <View key={index} style={styles.mathquill_row}>
+                {mathquills.map(_renderMathquillItem)}
+            </View>
+        );
     }
 
     const updateAnswers = (id, answer) => {
@@ -243,7 +242,7 @@ const MathQuillQuestion = (props) => {
             :
             delete refAnswers.current[id];
 
-        setQuestionStep(Object.keys(refAnswers.current).length > 0 ? 1 : 0)
+        setQuestionStep(Object.keys(refAnswers.current).length == correct_options.length ? 1 : 0)
     }
 
     if (!question) return null;
@@ -264,7 +263,7 @@ const MathQuillQuestion = (props) => {
             <View
                 style={[styles.option_container, optionContainerStyles]}
                 pointerEvents={(displayMode == 'result' || questionStep == 2) ? 'none' : 'auto'}>
-                {mathquill.map(_renderMathquillItem)}
+                {mathquill.map(_renderMathquillRow)}
             </View>
             <Collapsible
                 style={styles.suggestion_collapsible}
@@ -294,7 +293,7 @@ const MathQuillQuestion = (props) => {
                 (questionStep == 2 || displayMode != 'default') &&
                 <View style={[styles.result_container, resultContainerStyles]}>
                     <Text style={[styles.suggestion_label, { color: subColor }]}>{label_result_txt}</Text>
-                    <View style={styles.correct_result}>
+                    <View style={styles.correct_result} pointerEvents='none'>
                         {mathquill.map(_renderResult)}
                     </View>
                     <View style={styles.solution_detail_view}>
@@ -321,4 +320,4 @@ const MathQuillQuestion = (props) => {
     )
 }
 
-export default MathQuillQuestion
+export default MathQuillQuestion2

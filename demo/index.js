@@ -1,6 +1,6 @@
 import React from 'react'
 import { ScrollView, Text, View } from 'react-native'
-import { mathQuillQuestion } from '../src/const'
+import { mathQuillQuestion2 } from '../src/const'
 import SingleQuestion from '../src/single_question'
 
 const CustomView = () => {
@@ -15,7 +15,7 @@ const Demo = () => {
         <ScrollView style={{ flex: 1, backgroundColor: 'white', }} contentContainerStyle={{ paddingVertical: 80 }}>
             <Text style={{ fontSize: 26, fontWeight: 'bold', width: '100%', textAlign: 'center' }}>Demo App</Text>
             <SingleQuestion
-                question={mathQuillQuestion}
+                question={mathQuillQuestion2}
             />
         </ScrollView>
     )
