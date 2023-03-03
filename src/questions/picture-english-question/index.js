@@ -20,6 +20,7 @@ const OptionItem = (props) => {
     const refOptionPosition = useRef();
     const refCurrentSocket = useRef(-1);
 
+
     const animatedItemStyles = useAnimatedStyle(() => {
         const bgColor = interpolateColor(
             backgroundColor.value,
@@ -36,11 +37,14 @@ const OptionItem = (props) => {
         }
     })
 
-    const getPosition = ({ translateX: _translateX, translateY: _translateY }) => {
-        const offsetX = refOptionPosition.current.x + _translateX;
-        const offsetY = refOptionPosition.current.y + _translateY;
+    const getPosition = () => {
+        const offsetX = refOptionPosition.current.x + translateX.value;
+        const offsetY = refOptionPosition.current.y + translateY.value;
         const { position, socketIndex } = findOptionPosition({ x: offsetX, y: offsetY });
         if (position) {
+            if (refCurrentSocket.current != -1) {
+                updateAnswers(refCurrentSocket.current)
+            }
             translateX.value = withTiming(position.x - refOptionPosition.current.x)
             translateY.value = withTiming(position.y - refOptionPosition.current.y)
             scale.value = withTiming(1);
@@ -53,6 +57,10 @@ const OptionItem = (props) => {
             translateY.value = withTiming(0);
             scale.value = withTiming(1);
             backgroundColor.value = withTiming(0);
+            if (refCurrentSocket.current != -1) {
+                updateAnswers(refCurrentSocket.current);
+                refCurrentSocket.current = -1;
+            }
         }
     }
 
@@ -67,10 +75,7 @@ const OptionItem = (props) => {
             translateY.value = context.translateY + event.translationY;
         },
         onFinish: (event, context) => {
-            runOnJS(getPosition)({
-                translateX: event.translationX,
-                translateY: event.translationY
-            })
+            runOnJS(getPosition)()
         }
     })
 
@@ -84,7 +89,7 @@ const OptionItem = (props) => {
             translateY.value = withTiming(0);
             scale.value = withTiming(1);
             backgroundColor.value = withTiming(0);
-            updateAnswers(refCurrentSocket.current)
+            updateAnswers(refCurrentSocket.current);
         }
         return null;
     }
