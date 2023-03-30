@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Video from 'react-native-video';
 import styles from '../audio-view/styles';
@@ -46,7 +46,7 @@ const AudioView = ({ source }) => {
 
   return (
     <View style={styles.audio_container}>
-      <TouchableOpacity
+      <Pressable
         onPress={toggleAudio}
         disabled={isError}
         style={styles.play_btn}>
@@ -56,7 +56,7 @@ const AudioView = ({ source }) => {
             :
             <Ionicons name='play' size={24} color='black' />
         }
-      </TouchableOpacity>
+      </Pressable>
       {
         isError ?
           <Text style={styles.error_label}>Error</Text>

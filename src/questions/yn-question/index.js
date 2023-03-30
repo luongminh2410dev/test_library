@@ -152,7 +152,7 @@ const YNQuestion = (props) => {
                 onPress={onPress}
                 disabled={questionStep >= 2}
                 style={[styles.answer_btn, defaultOptionButtonStyles, currentAnswer == idx && activeButtonStyles]}>
-                {i.option_content.map((it, ix) => {
+                {i.content.map((it, ix) => {
                     switch (it.type) {
                         case 'html':
                             return (

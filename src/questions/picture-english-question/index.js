@@ -1,12 +1,12 @@
 import React, { useRef, useState } from 'react';
 import { Dimensions, Image, Pressable, Text, TouchableOpacity, View } from 'react-native';
 import Collapsible from 'react-native-collapsible';
+import { GestureHandlerRootView, PanGestureHandler } from 'react-native-gesture-handler';
+import Animated, { interpolateColor, runOnJS, useAnimatedGestureHandler, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import Feather from 'react-native-vector-icons/Feather';
+import AudioView from '../../components/audio-view';
 import HtmlContent from '../../components/html-content';
 import styles from './styles';
-import Animated, { interpolateColor, runOnJS, runOnUI, useAnimatedGestureHandler, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
-import { GestureHandlerRootView, PanGestureHandler } from 'react-native-gesture-handler';
-import AudioView from '../../components/audio-view';
 
 const { width, height } = Dimensions.get('window')
 

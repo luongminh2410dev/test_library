@@ -281,7 +281,7 @@ const ChooseCorrectestQuestion = (props) => {
                 <View style={[styles.result_container, resultContainerStyles]}>
                     <Text style={[styles.suggestion_label, { color: subColor }]}>{label_result_txt}</Text>
                     <View style={styles.correct_result}>
-                        {options.map(_renderResult)}
+                        {correct_options && options.map(_renderResult)}
                     </View>
                     <View style={styles.solution_detail_view}>
                         <TouchableOpacity onPress={toggleSolutionDetail} style={[styles.solution_detail_btn, solutionDetailBtnStyles]}>

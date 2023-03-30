@@ -165,7 +165,7 @@ const MultiChoice = (props) => {
                     <Image
                         key={index}
                         resizeMode='contain'
-                        style={{ width: parseInt(item.width), height: parseInt(item.height) }}
+                        style={{ width: parseInt(item.width) || width, height: parseInt(item.height) || (width * 9 / 16) }}
                         source={{ uri: item.url }} />
                 )
         }
