@@ -35,21 +35,23 @@ const Options = (props) => {
                 <View style={[styles.checkbox, isActive && { borderColor: primaryColor }]}>
                     <View style={[styles.checkbox_dot, isActive && { backgroundColor: primaryColor }]} />
                 </View>
-                <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center' }}>
-                    <Text style={{ fontSize: 15, color: isActive ? primaryColor : textColor }}>{answerKeys[index]}. </Text>
+                <View style={{ flex: 1 }}>
                     {item.option_content.map((it, idx) => {
                         switch (it.type) {
                             case 'html':
                                 return (
-                                    <HtmlContent key={idx} content={it.content} color={isActive ? primaryColor : textColor} />
+                                    <HtmlContent key={idx} content={`${answerKeys[index]}. ${it.content}`} color={isActive ? primaryColor : textColor} />
                                 )
                             case 'image':
                                 return (
-                                    <Image
-                                        key={idx}
-                                        style={{ width: parseInt(it.width), height: parseInt(it.height) }}
-                                        source={{ uri: it.content }}
-                                    />
+                                    <>
+                                        <Text style={{ fontSize: 15, color: isActive ? primaryColor : textColor }}>{answerKeys[index]}. </Text>
+                                        <Image
+                                            key={idx}
+                                            style={{ width: parseInt(it.width), height: parseInt(it.height) }}
+                                            source={{ uri: it.content }}
+                                        />
+                                    </>
                                 )
                         }
                     })}

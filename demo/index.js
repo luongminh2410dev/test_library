@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { Dimensions, FlatList, KeyboardAvoidingView, ScrollView, Text, TextInput, View } from 'react-native'
-import { mathQuillQuestion2, sampleExam } from '../src/const'
+import { sortQuestion, sampleExam } from '../src/const'
 import SingleQuestion from '../src/single_question'
 import _SingleQuestion from '../src/_singleQuestion'
 
@@ -97,7 +97,7 @@ const formatData = (object) => {
         })
         ||
         object?.question?.quiz?.option?.items?.map(item => {
-            return { id: item.id, content: item.answer }
+            return { id: item.id, option_content: item.answer }
         })
         || [];
     newObject.difficult_level = object.difficult_degree;
@@ -132,7 +132,7 @@ const Demo = () => {
             {/* <KeyboardAvoidingView style={{ flex: 1 }} behavior='position' keyboardVerticalOffset={0}> */}
             <View style={{ flex: 1 }}>
                 <_SingleQuestion
-                    question={mathQuillQuestion2}
+                    question={sortQuestion}
                     onToggleSuggestion={(value) => {
                         console.log('toggle', value);
                     }}

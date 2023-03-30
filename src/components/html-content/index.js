@@ -39,7 +39,6 @@ const HtmlContent = (props) => {
         containsMathjax(content) ?
             <MathJaxSvg
                 color={color}
-                style={{ marginTop: 12 }}
                 fontSize={15}>
                 {content}
             </MathJaxSvg>

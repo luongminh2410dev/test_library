@@ -43,10 +43,12 @@ const styles = StyleSheet.create({
     text_input: {
         width: 60,
         height: 30,
+        paddingVertical: 0,
         paddingHorizontal: 4,
         borderWidth: 1,
         borderRadius: 4,
         borderColor: 'gray',
         textAlign: 'center',
+        textAlignVertical: 'center'
     }
 })

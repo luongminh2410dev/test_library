@@ -173,7 +173,6 @@ const Options = (props) => {
                 />
                 <GestureHandlerRootView style={styles.option_list}>
                     {options.map(_renderOptionItem)}
-
                 </GestureHandlerRootView>
                 <View style={[styles.option_list, { zIndex: 1 }]}>
                     {options.map(_renderOptionHint)}

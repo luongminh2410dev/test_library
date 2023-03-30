@@ -46,9 +46,11 @@ const PickedImages = (props) => {
             width: 300,
             height: 400,
             cropping: true
-        }).then(img => {
-            setImages([...images, img.sourceURL])
-        });
+        })
+            .then(img => {
+                setImages([...images, img.sourceURL])
+            })
+            .catch(error => console.log(error));
     }
 
     const handlePickImageFromCamera = () => {
@@ -56,9 +58,11 @@ const PickedImages = (props) => {
             width: 300,
             height: 400,
             cropping: true,
-        }).then(img => {
-            setImages([...images, img.sourceURL])
-        });
+        })
+            .then(img => {
+                setImages([...images, img.sourceURL])
+            })
+            .catch(error => console.log(error));
     }
 
     return (

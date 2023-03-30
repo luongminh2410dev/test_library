@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Dimensions, Image, View } from 'react-native';
+import { Dimensions, Image, View, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
 import { GestureHandlerRootView, PanGestureHandler } from 'react-native-gesture-handler';
 import Animated, { runOnJS, useAnimatedGestureHandler, useAnimatedReaction, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import HtmlContent from '../../components/html-content';
@@ -132,7 +132,9 @@ const PhraseItem = (props) => {
     }
 
     return (
-        <View onLayout={onLayout} style={{ position: 'absolute', left: -width }}>
+        <View
+            onLayout={onLayout}
+            style={{ position: 'absolute', left: -width }}>
             <PanGestureHandler
                 maxPointers={1}
                 minDist={10}
@@ -158,7 +160,6 @@ const Options = (props) => {
         refPhraseLayout.current[id] = config;
 
         if (Object.keys(refPhraseLayout.current).length == options.length) {
-            console.log('here');
             const newObj = {};
 
             const sortedArray = Object.keys(refPhraseLayout.current)
@@ -207,10 +208,8 @@ const Options = (props) => {
     )
 
     return (
-        <>
-            <GestureHandlerRootView style={styles.phrase_list}>
-                {options.map(_renderPhraseItem)}
-            </GestureHandlerRootView>
+        <GestureHandlerRootView style={styles.phrase_list}>
+            {options.map(_renderPhraseItem)}
             <View style={styles.phrase_list_invisible}>
                 {options.map((item, index) => (
                     <View key={index} style={[styles.phrase_item, { opacity: 0 }]}>
@@ -218,7 +217,8 @@ const Options = (props) => {
                     </View>
                 ))}
             </View>
-        </>
+            <View style={{ height: 300 }} />
+        </GestureHandlerRootView>
     )
 }
 

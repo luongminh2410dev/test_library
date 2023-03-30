@@ -23,7 +23,8 @@ const styles = StyleSheet.create({
     checkbox_dot: {
         width: '100%',
         height: '100%',
-        borderRadius: 20
+        borderRadius: 100,
+        overflow: 'hidden'
     },
     result_container: {
         width: '100%',

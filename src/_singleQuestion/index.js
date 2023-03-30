@@ -625,7 +625,7 @@ const TSingleQuestion = (props) => {
                     <Image
                         key={index}
                         resizeMode='contain'
-                        style={{ width: parseInt(item.width), height: parseInt(item.height) }}
+                        style={{ width: parseInt(item.width) || '100%', height: parseInt(item.height) || undefined }}
                         source={{ uri: item.url }} />
                 )
         }

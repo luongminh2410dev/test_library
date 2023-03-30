@@ -3,6 +3,7 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
     textinput_answer: {
         width: '100%',
+        textAlignVertical: 'top',
         minHeight: 200,
         paddingHorizontal: 8,
         marginTop: 12,

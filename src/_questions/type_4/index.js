@@ -151,7 +151,8 @@ const Options = (props) => {
                     translateY.value = withTiming(
                         targetOffsetY +
                         refOptionLayouts.current[pairedList[getIndex].id].height -
-                        refOptionLayouts.current[item.id].offsetY
+                        refOptionLayouts.current[item.id].offsetY,
+                        { duration: 500 }
                     )
                 }
                 else {
@@ -172,7 +173,7 @@ const Options = (props) => {
 
                         return previous + refOptionLayouts.current[current.id].height + PADDING_VIEW;
                     }, 0)
-                    translateY.value = withTiming(targetOffsetY + sourceOffsetY - refOptionLayouts.current[item.id].offsetY)
+                    translateY.value = withTiming(targetOffsetY + sourceOffsetY - refOptionLayouts.current[item.id].offsetY, { duration: 500 })
                 }
             }
         }, [pairedList])

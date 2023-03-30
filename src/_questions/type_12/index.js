@@ -66,7 +66,7 @@ const Result = (props) => {
     const _renderResult = (item, index) => {
         switch (item.obj_type) {
             case 'richText':
-                return item.content.map((it, idx) => (
+                return item.option_content.map((it, idx) => (
                     <HtmlContent key={`${index}_${idx}`} content={it.content} color={textColor} />
                 ))
             case 'inputText':
@@ -80,7 +80,7 @@ const Result = (props) => {
     }
 
     return (
-        <View style={styles.correct_result} pointerEvents='none'>
+        <View style={styles.correct_result}>
             {options.map(_renderResult)}
         </View>
     )

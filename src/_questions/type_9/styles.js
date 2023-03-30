@@ -10,7 +10,8 @@ const styles = StyleSheet.create({
     correct_result: {
         width: '100%',
         flexDirection: 'row',
-        flexWrap: 'wrap'
+        flexWrap: 'wrap',
+        justifyContent: 'center'
     },
     sentence_item: {
         position: 'relative',
