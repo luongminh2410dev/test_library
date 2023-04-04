@@ -6,7 +6,7 @@ import styles from './styles';
 const { width, height } = Dimensions.get('window');
 
 const SHAFT_NUMBER_WIDTH = width - 24;
-const ITEMS_PER_ROW = width > 350 ? 7 : 6;
+const ITEMS_PER_ROW = width > 600 ? 10 : (width > 350 ? 7 : 6);
 const POINT_DISTANCE = SHAFT_NUMBER_WIDTH / ITEMS_PER_ROW;
 const PointItem = (props) => {
     const { item, index, textColor, updateAnswers } = props;
@@ -42,12 +42,16 @@ const Options = (props) => {
     const _renderShaftNumber = (item, index) => {
         const isLastLine = (index + 1) == lines.length;
         const items = options.slice(index * ITEMS_PER_ROW, ITEMS_PER_ROW * (index + 1));
+        const shaftWidth = options.length <= ITEMS_PER_ROW ?
+            '100%'
+            :
+            `${(items.length / ITEMS_PER_ROW) * 100}%`;
         return (
             <View
                 key={index}
                 style={[
                     styles.shaft_number,
-                    isLastLine && { width: `${(items.length / ITEMS_PER_ROW) * 100}%` }
+                    isLastLine && { width: shaftWidth }
                 ]}>
                 <View style={styles.shaft_line} />
                 {
@@ -56,7 +60,7 @@ const Options = (props) => {
                         name='caretright'
                         size={12}
                         color='black'
-                        style={{ transform: [{ translateX: -4 }] }}
+                        style={{ position: 'absolute', right: 0, top: -6 }}
                     />
                 }
                 {items.map(_renderPointItem)}

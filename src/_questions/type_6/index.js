@@ -217,7 +217,6 @@ const Options = (props) => {
                     </View>
                 ))}
             </View>
-            <View style={{ height: 300 }} />
         </View>
     )
 }

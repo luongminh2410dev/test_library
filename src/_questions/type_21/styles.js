@@ -2,9 +2,8 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     option_container: {
+        width: '100%',
         position: 'relative',
-        paddingBottom: 80,
-        paddingHorizontal: 12,
         marginTop: 12,
     },
     correct_result: {
@@ -17,7 +16,6 @@ const styles = StyleSheet.create({
         left: 0,
         right: 0,
         bottom: 0,
-        paddingHorizontal: 12,
         flexDirection: 'row',
         flexWrap: 'wrap-reverse',
         justifyContent: 'center',

@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
     },
     point_item: {
         position: 'absolute',
+        top: 0,
         maxWidth: 100,
         paddingHorizontal: 4,
         justifyContent: 'center',
@@ -34,8 +35,10 @@ const styles = StyleSheet.create({
     },
     point_content: {
         width: '100%',
+        height: 40,
         textAlign: 'center',
-        paddingVertical: 8,
+        textAlignVertical: 'center',
+        fontSize: 15,
         borderWidth: 1,
         borderRadius: 4,
         borderColor: '#44a500',

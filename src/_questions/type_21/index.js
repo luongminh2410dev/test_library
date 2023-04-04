@@ -63,7 +63,8 @@ const OptionItem = (props) => {
         onStart: (event, context) => {
             context.translateX = translateX.value;
             context.translateY = translateY.value;
-            scale.value = withTiming(1.2)
+            scale.value = withTiming(1.2);
+            backgroundColor.value = withTiming(0);
         },
         onActive: (event, context) => {
             translateX.value = context.translateX + event.translationX;
@@ -165,16 +166,18 @@ const Options = (props) => {
         <View style={{ alignItems: 'center' }}>
             <AudioView source={attachment.audioFile} />
             <View style={styles.option_container}>
-                {picture.coordinates.map(_renderAbsoluteSocket)}
-                <Image
-                    resizeMode='cover'
-                    source={{ uri: picture.url }}
-                    style={{ width: '100%', aspectRatio: picture.width / picture.height, borderRadius: 4 }}
-                />
+                <View style={{ position: 'relative', width: '100%' }}>
+                    {picture.coordinates.map(_renderAbsoluteSocket)}
+                    <Image
+                        resizeMode='cover'
+                        source={{ uri: picture.url }}
+                        style={{ width: '100%', aspectRatio: picture.width / picture.height, borderRadius: 4 }}
+                    />
+                </View>
                 <View style={styles.option_list}>
                     {options.map(_renderOptionItem)}
                 </View>
-                <View style={[styles.option_list, { zIndex: 1 }]}>
+                <View style={[styles.option_list, { zIndex: 1, position: 'relative' }]}>
                     {options.map(_renderOptionHint)}
                 </View>
             </View>

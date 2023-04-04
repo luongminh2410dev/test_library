@@ -50,14 +50,15 @@ const Options = (props) => {
                     item.option_content.map((it, idx) => (
                         <HtmlContent key={`${item.id}_${idx}`} content={it.content} color={textColor} />
                     ))
-
             }
         </View>
     )
 
     const _renderSelectionItem = (item, index) => {
-        const isSelected = refAnswers.current[options[modalDataIndex].id]
-            && refAnswers.current[options[modalDataIndex].id] - 1 == index;
+        const isSelected =
+            refAnswers.current[options[modalDataIndex].id]
+            &&
+            refAnswers.current[options[modalDataIndex].id] - 1 == index;
 
         const onPress = () => {
             refSelectBoxes.current[modalDataIndex].setCurrentSelected(index);

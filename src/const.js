@@ -2307,7 +2307,7 @@ export const shaftNumberQuestion = {
             "x": "3",
             "obj_type": "inputText",
             "id": "answer_cjt43v324002e2y6hz21m30bk"
-        }
+        },
     ],
     "correct_options": [
         {

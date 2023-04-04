@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { Dimensions, FlatList, KeyboardAvoidingView, ScrollView, Text, TextInput, View } from 'react-native'
-import { lghCompoundQuestion, sampleExam } from '../src/const'
+import { multiChoicesData, sampleExam } from '../src/const'
 import SingleQuestion from '../src/single_question'
 import _SingleQuestion from '../src/_singleQuestion'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
@@ -132,9 +132,9 @@ const Demo = () => {
                 contentContainerStyle={{ paddingVertical: 80 }}>
                 <Text style={{ fontSize: 26, fontWeight: 'bold', width: '100%', textAlign: 'center' }}>Demo App</Text>
                 {/* <KeyboardAvoidingView style={{ flex: 1 }} behavior='position' keyboardVerticalOffset={0}> */}
-                {/* <View style={{ flex: 1 }}>
+                <View style={{ flex: 1 }}>
                     <_SingleQuestion
-                        question={lghCompoundQuestion}
+                        question={multiChoicesData}
                         onToggleSuggestion={(value) => {
                             console.log('toggle', value);
                         }}
@@ -142,8 +142,8 @@ const Demo = () => {
                     //     setCurrentQuestion(pre => pre + 1)
                     // }}
                     />
-                </View> */}
-                <FlatList
+                </View>
+                {/* <FlatList
                     ref={refFlatlist}
                     data={test}
                     horizontal
@@ -151,7 +151,7 @@ const Demo = () => {
                     keyExtractor={keyExtractor}
                     scrollEnabled={false}
                     showsHorizontalScrollIndicator={false}
-                />
+                /> */}
                 {/* </KeyboardAvoidingView> */}
             </ScrollView>
         </GestureHandlerRootView>
