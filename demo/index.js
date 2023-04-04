@@ -1,8 +1,9 @@
 import React, { useRef, useState } from 'react'
 import { Dimensions, FlatList, KeyboardAvoidingView, ScrollView, Text, TextInput, View } from 'react-native'
-import { sortQuestion, sampleExam } from '../src/const'
+import { lghCompoundQuestion, sampleExam } from '../src/const'
 import SingleQuestion from '../src/single_question'
 import _SingleQuestion from '../src/_singleQuestion'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
 const { width, height } = Dimensions.get('screen');
 
@@ -118,30 +119,31 @@ const Demo = () => {
 
     const renderItem = ({ item, index }) => (
         <View style={{ width }}>
-            <SingleQuestion
+            <_SingleQuestion
                 question={item}
                 onFinishQuestion={onFinishQuestion}
             />
         </View>
     )
     return (
-        <ScrollView
-            style={{ flex: 1, backgroundColor: 'white', }}
-            contentContainerStyle={{ paddingVertical: 80 }}>
-            <Text style={{ fontSize: 26, fontWeight: 'bold', width: '100%', textAlign: 'center' }}>Demo App</Text>
-            {/* <KeyboardAvoidingView style={{ flex: 1 }} behavior='position' keyboardVerticalOffset={0}> */}
-            <View style={{ flex: 1 }}>
-                <_SingleQuestion
-                    question={sortQuestion}
-                    onToggleSuggestion={(value) => {
-                        console.log('toggle', value);
-                    }}
-                // onFinishQuestion={() => {
-                //     setCurrentQuestion(pre => pre + 1)
-                // }}
-                />
-            </View>
-            {/* <FlatList
+        <GestureHandlerRootView style={{ flex: 1 }}>
+            <ScrollView
+                style={{ flex: 1, backgroundColor: 'white', }}
+                contentContainerStyle={{ paddingVertical: 80 }}>
+                <Text style={{ fontSize: 26, fontWeight: 'bold', width: '100%', textAlign: 'center' }}>Demo App</Text>
+                {/* <KeyboardAvoidingView style={{ flex: 1 }} behavior='position' keyboardVerticalOffset={0}> */}
+                {/* <View style={{ flex: 1 }}>
+                    <_SingleQuestion
+                        question={lghCompoundQuestion}
+                        onToggleSuggestion={(value) => {
+                            console.log('toggle', value);
+                        }}
+                    // onFinishQuestion={() => {
+                    //     setCurrentQuestion(pre => pre + 1)
+                    // }}
+                    />
+                </View> */}
+                <FlatList
                     ref={refFlatlist}
                     data={test}
                     horizontal
@@ -149,9 +151,10 @@ const Demo = () => {
                     keyExtractor={keyExtractor}
                     scrollEnabled={false}
                     showsHorizontalScrollIndicator={false}
-                /> */}
-            {/* </KeyboardAvoidingView> */}
-        </ScrollView>
+                />
+                {/* </KeyboardAvoidingView> */}
+            </ScrollView>
+        </GestureHandlerRootView>
     )
 }
 

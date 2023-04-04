@@ -208,7 +208,7 @@ const Options = (props) => {
     )
 
     return (
-        <GestureHandlerRootView style={styles.phrase_list}>
+        <View style={styles.phrase_list}>
             {options.map(_renderPhraseItem)}
             <View style={styles.phrase_list_invisible}>
                 {options.map((item, index) => (
@@ -218,7 +218,7 @@ const Options = (props) => {
                 ))}
             </View>
             <View style={{ height: 300 }} />
-        </GestureHandlerRootView>
+        </View>
     )
 }
 

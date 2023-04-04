@@ -171,9 +171,9 @@ const Options = (props) => {
                     source={{ uri: picture.url }}
                     style={{ width: '100%', aspectRatio: picture.width / picture.height, borderRadius: 4 }}
                 />
-                <GestureHandlerRootView style={styles.option_list}>
+                <View style={styles.option_list}>
                     {options.map(_renderOptionItem)}
-                </GestureHandlerRootView>
+                </View>
                 <View style={[styles.option_list, { zIndex: 1 }]}>
                     {options.map(_renderOptionHint)}
                 </View>

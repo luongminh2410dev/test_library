@@ -27,6 +27,7 @@ const configHtml = (content, textColor) => {
                 border-width: 1px;
                 border-color: 'lightgray';
                 border-radius: 4px;
+                text-align: center;
             }
             p, span, a, tr, td, strong {
                 color: ${textColor};

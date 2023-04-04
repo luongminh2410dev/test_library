@@ -3,8 +3,6 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
     option_container: {
         width: '100%',
-        // flexDirection: 'row',
-        // flexWrap: 'wrap'
     },
     correct_result: {
         width: '100%',
@@ -33,7 +31,8 @@ const styles = StyleSheet.create({
     checkbox_dot: {
         width: '100%',
         height: '100%',
-        borderRadius: 20
+        borderRadius: 100,
+        overflow: 'hidden'
     },
     active_answer_btn: {
         borderColor: '#aad572',
