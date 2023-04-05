@@ -1,9 +1,8 @@
-import React, { useRef, useState } from 'react'
-import { Dimensions, FlatList, KeyboardAvoidingView, ScrollView, Text, TextInput, View } from 'react-native'
-import { multiChoicesData, sampleExam } from '../src/const'
-import SingleQuestion from '../src/single_question'
-import _SingleQuestion from '../src/_singleQuestion'
+import React, { useRef } from 'react'
+import { Dimensions, ScrollView, Text, View } from 'react-native'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
+import { SingleQuestion } from 'react-native-question-library'
+import { paringQuestion, sampleExam } from './const'
 
 const { width, height } = Dimensions.get('screen');
 
@@ -119,7 +118,7 @@ const Demo = () => {
 
     const renderItem = ({ item, index }) => (
         <View style={{ width }}>
-            <_SingleQuestion
+            <SingleQuestion
                 question={item}
                 onFinishQuestion={onFinishQuestion}
             />
@@ -133,8 +132,8 @@ const Demo = () => {
                 <Text style={{ fontSize: 26, fontWeight: 'bold', width: '100%', textAlign: 'center' }}>Demo App</Text>
                 {/* <KeyboardAvoidingView style={{ flex: 1 }} behavior='position' keyboardVerticalOffset={0}> */}
                 <View style={{ flex: 1 }}>
-                    <_SingleQuestion
-                        question={multiChoicesData}
+                    <SingleQuestion
+                        question={paringQuestion}
                         onToggleSuggestion={(value) => {
                             console.log('toggle', value);
                         }}

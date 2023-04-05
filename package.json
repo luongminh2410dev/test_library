@@ -19,6 +19,7 @@
     "react-native-image-crop-picker": "^0.38.1",
     "react-native-mathjax-html-to-svg": "^1.0.8",
     "react-native-modal": "^13.0.1",
+    "react-native-question-library": "https://github.com/luongminh2410dev/react-native-question-library.git",
     "react-native-reanimated": "^2.13.0",
     "react-native-render-html": "^6.3.4",
     "react-native-svg": "^13.6.0",

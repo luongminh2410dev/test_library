@@ -18,7 +18,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { name as appName } from './app.json';
-import App from './demo';
+import App from './src';
 
 AntDesign.loadFont();
 Feather.loadFont();
