@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import { Dimensions, ScrollView, Text, View } from 'react-native'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { SingleQuestion } from 'react-native-question-library'
-import { paringQuestion, sampleExam } from './const'
+import { essayQuestion, sampleExam } from './const'
 
 const { width, height } = Dimensions.get('screen');
 
@@ -133,7 +133,7 @@ const Demo = () => {
                 {/* <KeyboardAvoidingView style={{ flex: 1 }} behavior='position' keyboardVerticalOffset={0}> */}
                 <View style={{ flex: 1 }}>
                     <SingleQuestion
-                        question={paringQuestion}
+                        question={essayQuestion}
                         onToggleSuggestion={(value) => {
                             console.log('toggle', value);
                         }}
