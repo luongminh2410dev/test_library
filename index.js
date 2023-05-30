@@ -1,13 +1,3 @@
-// import ListQuestion from './src/list_question';
-// import SingleQuestion from './src/single_question';
-
-// export {
-//     ListQuestion,
-//     SingleQuestion
-// };
-
-
-// DEMO
 /**
  * @format
  */
@@ -20,9 +10,9 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { name as appName } from './app.json';
 import App from './src';
 
-AntDesign.loadFont();
-Feather.loadFont();
-Entypo.loadFont();
-Ionicons.loadFont()
+AntDesign.loadFont().catch(e => console.log(e));
+Feather.loadFont().catch(e => console.log(e));
+Entypo.loadFont().catch(e => console.log(e));
+Ionicons.loadFont().catch(e => console.log(e));
 
 AppRegistry.registerComponent(appName, () => App);

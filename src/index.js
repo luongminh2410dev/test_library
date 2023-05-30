@@ -1,17 +1,7 @@
-import React, { useRef } from 'react'
-import { Dimensions, ScrollView, Text, View } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { ScrollView, View } from 'react-native'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
-import { SingleQuestion } from 'react-native-question-library'
-import { essayQuestion, sampleExam } from './const'
-
-const { width, height } = Dimensions.get('screen');
-
-const CustomView = () => {
-    // HANDLE SOMETHING
-    return (
-        <View style={{ width: '100%', height: 100, backgroundColor: 'red' }} />
-    )
-}
+import { DefaultQuestion } from './question-lib'
 
 const formatData = (object) => {
     const newObject = {};
@@ -105,53 +95,33 @@ const formatData = (object) => {
     return newObject;
 }
 
-const keyExtractor = (item, index) => index;
 const Demo = () => {
-    const test = sampleExam.map(it => formatData(it));
-    const refFlatlist = useRef();
-    const refCurrentQuestion = useRef(0);
+    const [questions, setQuestions] = useState([]);
+    const [currentQuestion, setCurrentQuestion] = useState(8);
+    const [answers, setAnswers] = useState({});
 
-    const onFinishQuestion = () => {
-        if (refCurrentQuestion.current == test.length - 1) return;
-        refFlatlist.current.scrollToIndex({ index: ++refCurrentQuestion.current })
-    }
+    useEffect(() => {
+        fetch('https://devapi.loigiaihay.com/v4/tn/exam/summary/5d5c1403ea5cb900220fa32f')
+            .then(data => data.json())
+            .then(data => {
+                setQuestions(data?.list_quiz)
+            })
+    }, [])
 
-    const renderItem = ({ item, index }) => (
-        <View style={{ width }}>
-            <SingleQuestion
-                question={item}
-                onFinishQuestion={onFinishQuestion}
-            />
-        </View>
-    )
+    if (questions.length == 0) return null;
     return (
         <GestureHandlerRootView style={{ flex: 1 }}>
             <ScrollView
                 style={{ flex: 1, backgroundColor: 'white', }}
                 contentContainerStyle={{ paddingVertical: 80 }}>
-                <Text style={{ fontSize: 26, fontWeight: 'bold', width: '100%', textAlign: 'center' }}>Demo App</Text>
-                {/* <KeyboardAvoidingView style={{ flex: 1 }} behavior='position' keyboardVerticalOffset={0}> */}
                 <View style={{ flex: 1 }}>
-                    <SingleQuestion
-                        question={essayQuestion}
-                        onToggleSuggestion={(value) => {
-                            console.log('toggle', value);
+                    <DefaultQuestion
+                        question={formatData(questions[currentQuestion])}
+                        customColors={{
+
                         }}
-                    // onFinishQuestion={() => {
-                    //     setCurrentQuestion(pre => pre + 1)
-                    // }}
                     />
                 </View>
-                {/* <FlatList
-                    ref={refFlatlist}
-                    data={test}
-                    horizontal
-                    renderItem={renderItem}
-                    keyExtractor={keyExtractor}
-                    scrollEnabled={false}
-                    showsHorizontalScrollIndicator={false}
-                /> */}
-                {/* </KeyboardAvoidingView> */}
             </ScrollView>
         </GestureHandlerRootView>
     )
