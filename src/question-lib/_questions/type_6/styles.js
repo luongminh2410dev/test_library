@@ -25,14 +25,14 @@ const styles = StyleSheet.create({
     phrase_item: {
         paddingVertical: 8,
         paddingHorizontal: 12,
-        backgroundColor: 'gray',
+        backgroundColor: '#cccccc',
         marginRight: 8,
         marginBottom: 8,
         borderRadius: 8,
     },
     phrase_item_txt: {
         fontSize: 15,
-        color: 'white'
+        // color: 'white'
     },
 })
 export default styles

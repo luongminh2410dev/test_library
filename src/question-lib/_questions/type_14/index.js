@@ -4,12 +4,14 @@ import { FracView, NTimes, regex } from '../../components/latexs';
 import styles from './styles';
 
 const SplitInput = (props) => {
-    const { data, inputStyle, updateAnswers } = props;
-    const refAnswer = useRef([]).current;
-    const refInputs = useRef([]).current;
+    const { data, inputStyle, updateAnswers, initAnswers } = props;
     const dataParser = regex.exec(data);
+    const inputId = `${dataParser[1]}_${dataParser[2]}`;
+    const refAnswer = useRef(initAnswers?.[inputId].split('') || []).current;
+    const refInputs = useRef([]).current;
 
     const _renderInputItem = (item, index) => {
+        const defaultValue = initAnswers?.[inputId].split('')[index] || '';
         const onKeyPress = ({ nativeEvent: { key } }) => {
             if (key == 'Backspace') {
                 index != 0 && !refAnswer[index] && refInputs[index - 1].focus()
@@ -21,7 +23,7 @@ const SplitInput = (props) => {
 
         const onChangeText = (text) => {
             refAnswer.splice(index, 1, text);
-            updateAnswers(`${dataParser[1]}_${dataParser[2]}`, refAnswer.join(''))
+            updateAnswers(inputId, refAnswer.join(''))
         }
 
         return (
@@ -30,6 +32,7 @@ const SplitInput = (props) => {
                 key={index}
                 maxLength={1}
                 selectTextOnFocus
+                defaultValue={defaultValue}
                 keyboardType='number-pad'
                 onKeyPress={onKeyPress}
                 onChangeText={onChangeText}
@@ -56,9 +59,9 @@ const getLatexContent = (target) => {
     return content;
 }
 const Options = (props) => {
-    const { question, onAnswer } = props;
+    const { question, onAnswer, initAnswers } = props;
     const { mathquill } = question;
-    const refAnswers = useRef({});
+    const refAnswers = useRef(initAnswers || {});
 
     const _renderMathquillItem = (item, index) => {
         const content = getLatexContent(item.content);
@@ -67,6 +70,7 @@ const Options = (props) => {
 
         const denominator = useCallback(() => (
             <SplitInput
+                initAnswers={initAnswers}
                 data={content[1]}
                 updateAnswers={updateAnswers}
             />

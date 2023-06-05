@@ -1,4 +1,4 @@
-import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { Dimensions, Text, TouchableOpacity, View } from 'react-native';
 import Modal from 'react-native-modal';
 import HtmlContent from '../../components/html-content';
@@ -6,15 +6,10 @@ import styles from './styles';
 
 const { width, height } = Dimensions.get('window');
 
-const SelectBoxItem = forwardRef((props, ref) => {
-    const { item, index, textColor, handleShowModal } = props;
-    const [selected, setSelected] = useState(-1);
-    const selectBoxLabel = selected == -1 ? "-- Đáp án --" : item.option_content[selected].value;
-
-    useImperativeHandle(ref, () => ({
-        getCurrentSelected: () => selected,
-        setCurrentSelected: (idx) => setSelected(idx)
-    }))
+const SelectBoxItem = (props) => {
+    const { item, index, selection, textColor, handleShowModal } = props;
+    const _selection = selection - 1;
+    const selectBoxLabel = selection == -1 ? "-- Đáp án --" : item.option_content[_selection]?.value;
 
     const onPress = () => {
         handleShowModal(index);
@@ -25,15 +20,14 @@ const SelectBoxItem = forwardRef((props, ref) => {
             <Text style={{ color: textColor }}>{selectBoxLabel}</Text>
         </TouchableOpacity>
     )
-})
+}
 
 const Options = (props) => {
-    const { question, customStyles, onAnswer } = props;
-    const { primaryColor = '#419e01', textColor = '#000000' } = customStyles;
+    const { question, customStyles, onAnswer, initAnswers } = props;
+    const { primaryColor, textColor } = customStyles;
     const { options } = question;
     const [modalDataIndex, setModalDataIndex] = useState(-1);
-    const refAnswers = useRef({});
-    const refSelectBoxes = useRef([]);
+    const [answer, setAnswer] = useState(initAnswers || {});
     const isModalVisible = modalDataIndex != -1;
 
     const _renderOptions = (item, index) => (
@@ -41,10 +35,10 @@ const Options = (props) => {
             {
                 item.obj_type == 'choiceSelectOption' ?
                     <SelectBoxItem
-                        ref={ref => refSelectBoxes.current[index] = ref}
                         key={index}
                         item={item}
                         index={index}
+                        selection={answer?.[item.id] || - 1}
                         handleShowModal={handleShowModal} />
                     :
                     item.option_content.map((it, idx) => (
@@ -56,17 +50,17 @@ const Options = (props) => {
 
     const _renderSelectionItem = (item, index) => {
         const isSelected =
-            refAnswers.current[options[modalDataIndex].id]
+            answer[options[modalDataIndex].id]
             &&
-            refAnswers.current[options[modalDataIndex].id] - 1 == index;
+            answer[options[modalDataIndex].id] - 1 == index;
 
         const onPress = () => {
-            refSelectBoxes.current[modalDataIndex].setCurrentSelected(index);
-            refAnswers.current[options[modalDataIndex].id] = index + 1;
+            let newAnswer = { ...answer, [options[modalDataIndex].id]: index + 1 };
             setModalDataIndex(-1);
+            setAnswer(newAnswer)
             onAnswer(
-                refAnswers.current,
-                Object.keys(refAnswers.current).length == options.filter(it => it.obj_type == 'choiceSelectOption').length
+                newAnswer,
+                Object.keys(newAnswer).length == options.filter(it => it.obj_type == 'choiceSelectOption').length
             )
         }
         return (
@@ -116,7 +110,7 @@ const Options = (props) => {
 
 const Result = (props) => {
     const { options, correct_options, customStyles } = props;
-    const { textColor = '#000000' } = customStyles;
+    const { textColor } = customStyles;
 
     const _renderResult = (item, index) => {
         switch (item.obj_type) {

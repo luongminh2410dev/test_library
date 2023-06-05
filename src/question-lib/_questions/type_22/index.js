@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { Image, Keyboard, Text, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
 import Webview from 'react-native-autoheight-webview';
 import HtmlContent from '../../components/html-content';
 import styles from './styles';
@@ -55,7 +55,8 @@ const configHtml = (content, textColor) => {
 }
 
 const FillEmptyQuestion = (props) => {
-    const { item, index, textColor, htmlContent, updateAnswers } = props;
+    const { item, index, customStyles, htmlContent, updateAnswers } = props;
+    const { textColor } = customStyles;
 
     const onMessage = event => {
         const message = JSON.parse(event.nativeEvent.data);
@@ -66,7 +67,7 @@ const FillEmptyQuestion = (props) => {
         const simpleInputs = document.getElementsByClassName('simple-text-input');
         for(let i = 0; i < simpleInputs.length; i++)
         {
-            simpleInputs[i].onkeyup = function(e){
+            simpleInputs[i].onblur = function(e){
                 let id = simpleInputs[i].getAttribute("id");
                 const data = JSON.stringify({id, value: e.target.value});
                 window.ReactNativeWebView.postMessage(data);
@@ -99,12 +100,13 @@ const FillEmptyQuestion = (props) => {
 }
 
 const QuizQuestion = (props) => {
-    const { item, index, textColor, primaryColor, updateAnswers, resultMode = false } = props;
+    const { item, index, initValue, customStyles, updateAnswers, resultMode = false } = props;
+    const { textColor, primaryColor } = customStyles;
     const [currentAnswer, setCurrentAnswer] = useState(() => {
         if (resultMode) {
             return item.options.findIndex(it => it.correct)
         }
-        return -1;
+        return initValue;
     });
 
     const _renderOptionItem = (i, idx) => {
@@ -164,10 +166,9 @@ const QuizQuestion = (props) => {
 }
 
 const Options = (props) => {
-    const { question, customStyles, onAnswer } = props;
-    const { primaryColor = '#419e01', textColor = '#000000' } = customStyles;
+    const { question, customStyles, onAnswer, initAnswers = {} } = props;
     const { sub_questions, display_type } = question;
-    const refAnswers = useRef({});
+    const refAnswers = useRef(initAnswers);
 
     const _renderSubQuestion = (item, index) => {
         switch (item.sub_type) {
@@ -177,7 +178,7 @@ const Options = (props) => {
                         case 'richText':
                             return (pre + cur.option_content.reduce((pr, cr) => pr + cr.content, ''));
                         case 'inputText':
-                            return pre + `<input type="text" class="simple-text-input" id="${item.id}">`
+                            return pre + `<input type="text" class="simple-text-input" id="${item.id}" value="${initAnswers?.[item.id] || ''}">`
                     }
                 }, '').replace(/p>/g, 'span>')
                 return (
@@ -185,7 +186,7 @@ const Options = (props) => {
                         key={index}
                         item={item}
                         index={index}
-                        textColor={textColor}
+                        customStyles={customStyles}
                         htmlContent={htmlContent}
                         updateAnswers={updateAnswers} />
                 )
@@ -195,8 +196,8 @@ const Options = (props) => {
                         key={index}
                         item={item}
                         index={index}
-                        textColor={textColor}
-                        primaryColor={primaryColor}
+                        initValue={initAnswers?.[item.id] || -1}
+                        customStyles={customStyles}
                         updateAnswers={updateAnswers} />
                 )
             default:
@@ -223,7 +224,7 @@ const Options = (props) => {
                             case 'richText':
                                 return (pre + cur.option_content.reduce((pr, cr) => pr + cr.content, ''));
                             case 'inputText':
-                                return pre + ` <input type="text" class="simple-text-input" id="${current.id}">`
+                                return pre + ` <input type="text" class="simple-text-input" id="${current.id}" value="${initAnswers?.[current.id] || ''}">`
                         }
                     }, '')
                     if (getIndex != -1) {
@@ -249,7 +250,7 @@ const Options = (props) => {
                         <FillEmptyQuestion
                             key={index}
                             htmlContent={item.content.replace(/p>/g, 'span>')}
-                            textColor={textColor}
+                            customStyles={customStyles}
                             updateAnswers={updateAnswers}
                         />
                     )
@@ -259,8 +260,8 @@ const Options = (props) => {
                             key={index}
                             item={item}
                             index={index}
-                            textColor={textColor}
-                            primaryColor={primaryColor}
+                            initValue={initAnswers?.[item.id] || -1}
+                            customStyles={customStyles}
                             updateAnswers={updateAnswers} />
                     )
                 default:
@@ -283,7 +284,7 @@ const Options = (props) => {
 
 const Result = (props) => {
     const { sub_questions, customStyles, display_type } = props;
-    const { primaryColor = '#419e01', textColor = '#000000' } = customStyles;
+    const { textColor } = customStyles;
 
     const _renderComboSubQuestion = () => {
         const newSubQuestions = sub_questions.reduce((previous, current) => {
@@ -334,8 +335,7 @@ const Result = (props) => {
                             item={item}
                             index={index}
                             resultMode
-                            textColor={textColor}
-                            primaryColor={primaryColor}
+                            customStyles={customStyles}
                         />
                     )
                 default:
@@ -362,8 +362,7 @@ const Result = (props) => {
                         item={item}
                         index={index}
                         resultMode
-                        textColor={textColor}
-                        primaryColor={primaryColor}
+                        customStyles={customStyles}
                     />
                 )
             default:

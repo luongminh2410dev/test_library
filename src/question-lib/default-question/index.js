@@ -2,13 +2,14 @@ import PropTypes from 'prop-types';
 import React, { useRef, useState } from 'react';
 import { Alert, Image, Text, TouchableOpacity, View } from 'react-native';
 import Collapsible from 'react-native-collapsible';
+import Animated, { FadeInUp } from 'react-native-reanimated';
 import Feather from 'react-native-vector-icons/Feather';
 import { OptionView, ResultView, compareAnswer } from '../_questions';
 import QuestionType22 from '../_questions/type_22';
 import CollapseView from '../components/collapse-view';
 import HtmlContent from '../components/html-content';
+import { defaultColors, defaultConfigs } from '../const';
 import styles from './styles';
-import Animated, { FadeInUp } from 'react-native-reanimated';
 
 const CollapseArticle = (props) => {
     const { content, color } = props;
@@ -30,28 +31,26 @@ const CollapseArticle = (props) => {
         </View>
     );
 }
-
 const DefaultQuestion = (props) => {
     const {
-        question, globalConfig, globalStyles, customConfig, customStyles, customColors, displayMode,
+        question, initAnswers, customConfig, customStyles, displayMode,
         getTopComponent, getMiddleComponent, getBottomComponent, getCornerComponent,
         customPrimaryButton, customSecondaryButton, customLevelComponent, onSelectOption,
-        onToggleSuggestion, onSkipQuestion, onFinishQuestion, onToggleSolutionDetail
+        onToggleSuggestion, onSkipQuestion, onFinishQuestion
     } = props;
 
-    const questionConfig = Object.assign({}, globalConfig, customConfig);
-    const questionStyles = Object.assign({}, globalStyles, customStyles);
+    const questionConfigs = { ...defaultConfigs, ...customConfig };
+    const questionStyles = { ...defaultColors, ...customStyles };
 
     const {
-        label_question = 'Câu 1',
-        label_suggestion = 'Phương pháp giải',
-        label_solution_detail = 'Lời giải của GV Vungoi.vn',
-        btn_suggestion_text = 'Gợi ý',
-        btn_skip_text = 'Câu tiếp theo',
-        popup_confirm_skip = {},
-    } = questionConfig;
+        label_question, label_suggestion, label_solution_detail,
+        btn_suggestion_text, btn_skip_text, popup_confirm_skip,
+    } = questionConfigs;
 
     const {
+        primaryColor,
+        secondaryColor,
+        textColor,
         container: containerStyles = {},
         question_type: questionTypeStyles = {},
         question_title: questionTitleStyles = {},
@@ -59,17 +58,7 @@ const DefaultQuestion = (props) => {
         result_container: resultContainerStyles = {},
         solution_detail: solutionDetailStyles = {},
         solution_suggestion: solutionSuggestionStyles = {},
-        // solution_detail_btn: solutionDetailBtnStyles = {},
-        // solution_detail_btn_title: solutionDetailBtnTitleStyles = {},
     } = questionStyles;
-
-    const {
-        primaryColor = '#419e01',
-        secondaryColor = '#e7a22b',
-        activeViewColor = '#419e01',
-        activeLabelColor = '#fff',
-        textColor = '#000000',
-    } = customColors;
 
     const {
         guide_touch, question: _question,
@@ -79,12 +68,10 @@ const DefaultQuestion = (props) => {
 
     const { sdk_type } = question;
 
-    const [questionStep, setQuestionStep] = useState(0);
+    const [questionStep, setQuestionStep] = useState(initAnswers ? 1 : 0);
     const refSuggestionView = useRef();
     const refSuggestionState = useRef(true);
-    // const refSolutionDetail = useRef();
-    // const refSolutionDetailState = useRef(true);
-    const refAnswers = useRef();
+    const refAnswers = useRef(initAnswers);
 
     const nextButtonLabel = questionStep == 1 && (correct_options || sdk_type == 22) ? 'Kiểm tra' : btn_skip_text;
     const suggestButtonLabel = questionStep == 2 ? 'Xem lại lý thuyết' : btn_suggestion_text;
@@ -92,13 +79,13 @@ const DefaultQuestion = (props) => {
     const getDifficultQuestion = () => {
         switch (difficult_level) {
             case 1:
-                return <Text style={{ fontWeight: '400', color: 'green' }}>Cơ bản</Text>
+                return <Text style={{ fontSize: 15, fontWeight: '500', color: '#4cab24' }}>Nhận biết</Text>
             case 2:
-                return <Text style={{ fontWeight: '400', color: 'orange' }}>Trung bình</Text>
+                return <Text style={{ fontSize: 15, fontWeight: '500', color: '#eac003' }}>Thông hiểu</Text>
             case 3:
-                return <Text style={{ fontWeight: '400', color: 'red' }}>Nâng cao</Text>
+                return <Text style={{ fontSize: 15, fontWeight: '500', color: '#db2828' }}>Vận dụng</Text>
             case 4:
-                return <Text style={{ fontWeight: '400', color: 'purple' }}>Siêu khó</Text>
+                return <Text style={{ fontSize: 15, fontWeight: '500', color: '#7d376f' }}>Vận dụng cao</Text>
             default:
                 break;
         }
@@ -114,12 +101,6 @@ const DefaultQuestion = (props) => {
             refSuggestionView.current.toggle(refSuggestionState.current);
         }
     }
-
-    // const toggleSolutionDetail = () => {
-    //     refSolutionDetailState.current = !refSolutionDetailState.current;
-    //     onToggleSolutionDetail(refSolutionDetailState.current)
-    //     refSolutionDetail.current.toggle(refSolutionDetailState.current);
-    // }
 
     const onNextButtonPress = () => {
         const {
@@ -197,7 +178,7 @@ const DefaultQuestion = (props) => {
 
     return (
         <View style={[styles.container, containerStyles]}>
-            <View style={[styles.row, { paddingHorizontal: 12 }]}>
+            <View style={styles.row}>
                 <View style={styles.question_label}>
                     <Text style={[styles.question_label_txt, { color: textColor }]}>{label_question}: </Text>
                     {customLevelComponent(difficult_level) || getDifficultQuestion()}
@@ -218,8 +199,9 @@ const DefaultQuestion = (props) => {
                 pointerEvents={questionStep == 2 ? 'none' : 'auto'}>
                 <OptionView
                     question={question}
-                    customStyles={customStyles}
+                    customStyles={questionStyles}
                     onAnswer={onAnswer}
+                    initAnswers={initAnswers}
                 />
             </View>
             <CollapseView ref={refSuggestionView}>
@@ -255,30 +237,11 @@ const DefaultQuestion = (props) => {
                     <View style={{ paddingHorizontal: 12 }} pointerEvents='none'>
                         <ResultView
                             question={question}
-                            customStyles={customStyles}
+                            customStyles={questionStyles}
                             getAnswers={getAnswer}
                         />
                     </View>
-                    {/* <View style={styles.solution_detail_view}>
-                        <TouchableOpacity onPress={toggleSolutionDetail} style={[styles.solution_detail_btn, solutionDetailBtnStyles]}>
-                            <Text style={[{ fontSize: 15, }, solutionDetailBtnTitleStyles]}>Xem lời giải</Text>
-                        </TouchableOpacity>
-                    </View> */}
                     {getBottomComponent()}
-                    {/* <CollapseView ref={refSolutionDetail}>
-                        <View style={solutionSuggestionStyles}>
-                            <Text style={[styles.suggestion_label, { color: secondaryColor }]}>{label_suggestion}</Text>
-                            <View style={{ marginTop: 12 }}>
-                                {solution_suggestion.map(_renderContent)}
-                            </View>
-                        </View>
-                        <View style={solutionDetailStyles}>
-                            <Text style={[styles.suggestion_label, { color: secondaryColor }]}>{label_solution_detail}</Text>
-                            <View style={{ marginTop: 12 }}>
-                                {solution_detail.map(_renderContent)}
-                            </View>
-                        </View>
-                    </CollapseView> */}
                     <Animated.View entering={FadeInUp} style={{ paddingHorizontal: 12 }} >
                         <View style={solutionSuggestionStyles}>
                             <Text style={[styles.suggestion_label, { color: secondaryColor }]}>{label_suggestion}</Text>
@@ -301,19 +264,7 @@ const DefaultQuestion = (props) => {
 
 DefaultQuestion.propTypes = {
     question: PropTypes.object.isRequired,
-    primaryColor: PropTypes.string,
-    globalConfig: PropTypes.shape({
-        label_question: PropTypes.string,
-        label_suggestion: PropTypes.string,
-        label_solution_detail: PropTypes.string,
-        label_result_txt: PropTypes.string,
-    }),
-    globalStyles: PropTypes.shape({
-        primaryColor: PropTypes.string,
-        secondaryColor: PropTypes.string,
-        textColor: PropTypes.string,
-        container: PropTypes.object,
-    }),
+    initAnswers: PropTypes.any,
     customConfig: PropTypes.shape({
         label_question: PropTypes.string,
         label_suggestion: PropTypes.string,
@@ -324,6 +275,11 @@ DefaultQuestion.propTypes = {
         popup_confirm_skip: PropTypes.string,
     }),
     customStyles: PropTypes.shape({
+        primaryColor: PropTypes.string,
+        secondaryColor: PropTypes.string,
+        activeViewColor: PropTypes.string,
+        activeLabelColor: PropTypes.string,
+        textColor: PropTypes.string,
         container: PropTypes.object,
         question_type: PropTypes.object,
         question_title: PropTypes.object,
@@ -347,13 +303,6 @@ DefaultQuestion.propTypes = {
         solution_detail_btn: PropTypes.object,
         solution_detail_btn_title: PropTypes.object,
     }),
-    customColors: PropTypes.shape({
-        primaryColor: PropTypes.string,
-        secondaryColor: PropTypes.string,
-        activeViewColor: PropTypes.string,
-        activeLabelColor: PropTypes.string,
-        textColor: PropTypes.string,
-    }),
     displayMode: PropTypes.oneOf(['default', 'result', 'preview']),
     getTopComponent: PropTypes.func,
     getMiddleComponent: PropTypes.func,
@@ -371,11 +320,9 @@ DefaultQuestion.propTypes = {
 
 DefaultQuestion.defaultProps = {
     question: {},
-    globalConfig: {},
-    globalStyles: {},
+    initAnswers: undefined,
     customConfig: {},
     customStyles: {},
-    customColors: {},
     displayMode: 'default',
     getTopComponent: () => null,
     getMiddleComponent: () => null,

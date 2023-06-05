@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
         marginRight: 8,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#cccccc'
+        backgroundColor: '#d8d8d8'
     },
     answer_label: {
         fontSize: 15,

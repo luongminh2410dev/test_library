@@ -1,21 +1,19 @@
 import React, { useRef, useState } from 'react';
-import { Alert, Image, Text, TouchableOpacity, View } from 'react-native';
-import Collapsible from 'react-native-collapsible';
+import { Image, TouchableOpacity, View } from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
-import Feather from 'react-native-vector-icons/Feather';
 import HtmlContent from '../../components/html-content';
 import styles from './styles';
 
-
 const OptionItem = (props) => {
-    const { item, index, textColor, updateAnswers, correct_options } = props;
+    const { item, index, customStyles, initValue, updateAnswers, correct_options } = props;
+    const { primaryColor, textColor } = customStyles;
     const [isActive, setActive] = useState(() => {
         if (correct_options) {
             return correct_options.find(it => {
                 return it.id == item.id
             })?.answer;
         }
-        return false;
+        return initValue;
     });
 
     const _renderContent = (it, idx) => {
@@ -43,7 +41,7 @@ const OptionItem = (props) => {
             onPress={toggleCheckbox}
             style={styles.option_item}>
             <View style={[styles.checkbox, isActive && styles.checkbox_active]}>
-                <Entypo name='check' size={20} color='#6dae41' style={{ opacity: isActive ? 1 : 0 }} />
+                <Entypo name='check' size={20} color={primaryColor} style={{ opacity: isActive ? 1 : 0 }} />
             </View>
             {item.option_content.map(_renderContent)}
         </TouchableOpacity>
@@ -51,17 +49,17 @@ const OptionItem = (props) => {
 }
 
 const Options = (props) => {
-    const { question, customStyles, onAnswer } = props;
-    const { textColor = '#000000' } = customStyles;
+    const { question, customStyles, onAnswer, initAnswers } = props;
     const { options } = question;
-    const refAnswers = useRef({});
+    const refAnswers = useRef(initAnswers || {});
 
     const _renderOptionItem = (item, index) => (
         <OptionItem
             key={index}
             item={item}
             index={index}
-            textColor={textColor}
+            initValue={initAnswers?.[item.id] || false}
+            customStyles={customStyles}
             updateAnswers={updateAnswers} />
     )
 
@@ -78,14 +76,13 @@ const Options = (props) => {
 
 const Result = (props) => {
     const { options, correct_options, customStyles } = props;
-    const { textColor = '#000000' } = customStyles;
 
     const _renderResult = (item, index) => (
         <OptionItem
             key={index}
             item={item}
             index={index}
-            textColor={textColor}
+            customStyles={customStyles}
             correct_options={correct_options} />
     )
 

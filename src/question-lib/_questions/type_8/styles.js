@@ -12,16 +12,11 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap'
     },
     sentence_item: {
-        paddingHorizontal: 2,
+        padding: 4,
         marginRight: 4,
-        borderWidth: 1,
-        borderColor: 'transparent',
         borderRadius: 4,
+        marginBottom: 4,
     },
-    sentence_item_active: {
-        backgroundColor: '#d2eac2',
-        borderColor: '#6dae41'
-    }
 })
 
 export default styles;

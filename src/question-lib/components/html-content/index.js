@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Dimensions } from 'react-native';
 import WebView from 'react-native-autoheight-webview';
 import RenderHTML, { HTMLContentModel, defaultHTMLElementModels } from 'react-native-render-html';
@@ -39,7 +39,7 @@ const HtmlContent = (props) => {
         containsMathjax(content) ?
             <WebView
                 source={{
-                    html: configHtml(content),
+                    html: configHtml(content, color),
                     baseUrl: '',
                 }}
                 showsVerticalScrollIndicator={false}
@@ -73,4 +73,4 @@ const HtmlContent = (props) => {
     )
 }
 
-export default HtmlContent
+export default memo(HtmlContent)

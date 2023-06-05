@@ -20,7 +20,7 @@ import QuestionType20 from './type_20'
 import QuestionType21 from './type_21'
 import QuestionType22 from './type_22'
 
-export const OptionView = ({ question, customStyles, onAnswer }) => {
+export const OptionView = ({ question, customStyles, onAnswer, initAnswers }) => {
     const { sdk_type } = question;
     switch (sdk_type) {
         case 1:
@@ -29,6 +29,7 @@ export const OptionView = ({ question, customStyles, onAnswer }) => {
                     question={question}
                     customStyles={customStyles}
                     onAnswer={onAnswer}
+                    initAnswers={initAnswers}
                 />
             )
         case 3:
@@ -37,6 +38,7 @@ export const OptionView = ({ question, customStyles, onAnswer }) => {
                     question={question}
                     customStyles={customStyles}
                     onAnswer={onAnswer}
+                    initAnswers={initAnswers}
                 />
             )
         case 4:
@@ -45,6 +47,7 @@ export const OptionView = ({ question, customStyles, onAnswer }) => {
                     question={question}
                     customStyles={customStyles}
                     onAnswer={onAnswer}
+                    initAnswers={initAnswers}
                 />
             )
         case 5:
@@ -53,6 +56,7 @@ export const OptionView = ({ question, customStyles, onAnswer }) => {
                     question={question}
                     customStyles={customStyles}
                     onAnswer={onAnswer}
+                    initAnswers={initAnswers}
                 />
             );
         case 6:
@@ -61,6 +65,7 @@ export const OptionView = ({ question, customStyles, onAnswer }) => {
                     question={question}
                     customStyles={customStyles}
                     onAnswer={onAnswer}
+                    initAnswers={initAnswers}
                 />
             );
         case 7:
@@ -69,6 +74,7 @@ export const OptionView = ({ question, customStyles, onAnswer }) => {
                     question={question}
                     customStyles={customStyles}
                     onAnswer={onAnswer}
+                    initAnswers={initAnswers}
                 />
             );
         case 8:
@@ -77,6 +83,7 @@ export const OptionView = ({ question, customStyles, onAnswer }) => {
                     question={question}
                     customStyles={customStyles}
                     onAnswer={onAnswer}
+                    initAnswers={initAnswers}
                 />
             );
         case 9:
@@ -85,6 +92,7 @@ export const OptionView = ({ question, customStyles, onAnswer }) => {
                     question={question}
                     customStyles={customStyles}
                     onAnswer={onAnswer}
+                    initAnswers={initAnswers}
                 />
             );
         case 10:
@@ -93,6 +101,7 @@ export const OptionView = ({ question, customStyles, onAnswer }) => {
                     question={question}
                     customStyles={customStyles}
                     onAnswer={onAnswer}
+                    initAnswers={initAnswers}
                 />
             );
         case 11:
@@ -101,6 +110,7 @@ export const OptionView = ({ question, customStyles, onAnswer }) => {
                     question={question}
                     customStyles={customStyles}
                     onAnswer={onAnswer}
+                    initAnswers={initAnswers}
                 />
             );
         case 12:
@@ -109,6 +119,7 @@ export const OptionView = ({ question, customStyles, onAnswer }) => {
                     question={question}
                     customStyles={customStyles}
                     onAnswer={onAnswer}
+                    initAnswers={initAnswers}
                 />
             );
         case 13:
@@ -117,6 +128,7 @@ export const OptionView = ({ question, customStyles, onAnswer }) => {
                     question={question}
                     customStyles={customStyles}
                     onAnswer={onAnswer}
+                    initAnswers={initAnswers}
                 />
             );
         case 14:
@@ -125,6 +137,7 @@ export const OptionView = ({ question, customStyles, onAnswer }) => {
                     question={question}
                     customStyles={customStyles}
                     onAnswer={onAnswer}
+                    initAnswers={initAnswers}
                 />
             );
         case 15:
@@ -133,6 +146,7 @@ export const OptionView = ({ question, customStyles, onAnswer }) => {
                     question={question}
                     customStyles={customStyles}
                     onAnswer={onAnswer}
+                    initAnswers={initAnswers}
                 />
             );
         case 16:
@@ -141,6 +155,7 @@ export const OptionView = ({ question, customStyles, onAnswer }) => {
                     question={question}
                     customStyles={customStyles}
                     onAnswer={onAnswer}
+                    initAnswers={initAnswers}
                 />
             );
         case 17:
@@ -149,6 +164,7 @@ export const OptionView = ({ question, customStyles, onAnswer }) => {
                     question={question}
                     customStyles={customStyles}
                     onAnswer={onAnswer}
+                    initAnswers={initAnswers}
                 />
             );
         case 18:
@@ -157,6 +173,7 @@ export const OptionView = ({ question, customStyles, onAnswer }) => {
                     question={question}
                     customStyles={customStyles}
                     onAnswer={onAnswer}
+                    initAnswers={initAnswers}
                 />
             );
         case 19:
@@ -165,6 +182,7 @@ export const OptionView = ({ question, customStyles, onAnswer }) => {
                     question={question}
                     customStyles={customStyles}
                     onAnswer={onAnswer}
+                    initAnswers={initAnswers}
                 />
             );
         case 20:
@@ -173,6 +191,7 @@ export const OptionView = ({ question, customStyles, onAnswer }) => {
                     question={question}
                     customStyles={customStyles}
                     onAnswer={onAnswer}
+                    initAnswers={initAnswers}
                 />
             );
         case 21:
@@ -181,6 +200,7 @@ export const OptionView = ({ question, customStyles, onAnswer }) => {
                     question={question}
                     customStyles={customStyles}
                     onAnswer={onAnswer}
+                    initAnswers={initAnswers}
                 />
             );
         case 22:
@@ -189,6 +209,7 @@ export const OptionView = ({ question, customStyles, onAnswer }) => {
                     question={question}
                     customStyles={customStyles}
                     onAnswer={onAnswer}
+                    initAnswers={initAnswers}
                 />
             );
         default:

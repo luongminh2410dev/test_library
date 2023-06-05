@@ -3,19 +3,17 @@ import { Image, Text, TouchableOpacity, View } from 'react-native';
 import styles from './styles';
 
 const Options = (props) => {
-    const { question, customStyles, onAnswer } = props;
+    const { question, customStyles, onAnswer, initAnswers } = props;
 
     const {
-        primaryColor = '#419e01',
+        primaryColor,
         active_option_btn = {},
         active_option_txt = {},
         default_option_btn: defaultOptionButtonStyles = {},
         default_option_txt: defaultOptionTitleStyles = {},
     } = customStyles;
-
     const { options } = question;
-
-    const [currentAnswer, setCurrentAnswer] = useState(-1);
+    const [currentAnswer, setCurrentAnswer] = useState(initAnswers || -1);
 
     const activeButtonStyles = Object.assign({}, { borderColor: primaryColor, backgroundColor: primaryColor }, active_option_btn);
     const activeTxtStyles = Object.assign({}, styles.active_answer_btn_txt, active_option_txt);
@@ -23,13 +21,13 @@ const Options = (props) => {
     const _renderOptionItem = (item, index) => {
         const onPress = () => {
             onAnswer(item.id)
-            setCurrentAnswer(index)
+            setCurrentAnswer(item.id)
         }
         return (
             <TouchableOpacity
                 key={index}
                 onPress={onPress}
-                style={[styles.answer_btn, defaultOptionButtonStyles, currentAnswer == index && activeButtonStyles]}>
+                style={[styles.answer_btn, defaultOptionButtonStyles, currentAnswer == item.id && activeButtonStyles]}>
                 {item.option_content.map((it, idx) => {
                     switch (it.type) {
                         case 'html':
@@ -93,7 +91,7 @@ const Result = (props) => {
     )
 }
 
-const compareAnswer = (answers, correct_options, options) => {
+const compareAnswer = (answers, correct_options) => {
     return correct_options.includes(answers);
 }
 

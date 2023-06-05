@@ -4,12 +4,13 @@ import { StyleSheet, TextInput } from 'react-native';
 import { regex } from './index';
 
 const InputText = (props) => {
-    const { content, inputStyle, updateAnswers, correct_options } = props;
+    const { content, inputStyle, initAnswers, updateAnswers, correct_options } = props;
     const contentParser = regex.exec(content);
-    const defaultValue = correct_options.find(i => i.id === `${contentParser[1]}_${contentParser[2]}`)?.answer || '';
+    const inputKey = `${contentParser[1]}_${contentParser[2]}`;
+    const defaultValue = correct_options.find(i => i.id === inputKey)?.answer || (initAnswers?.[inputKey] || '');
 
     const onChangeText = (text) => {
-        updateAnswers(`${contentParser[1]}_${contentParser[2]}`, text)
+        updateAnswers(inputKey, text)
     }
 
     return (

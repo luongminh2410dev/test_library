@@ -4,10 +4,10 @@ import HtmlContent from '../../components/html-content';
 import styles from './styles';
 
 const SentenceEditor = (props) => {
-    const { item, index, sentenceId, textColor, updateAnswering } = props;
+    const { item, index, sentenceId, initValue, textColor, updateAnswering } = props;
     const [focus, setFocus] = useState(false);
-    const [editText, setEditText] = useState('');
-    const refTextInputValue = useRef('');
+    const [editText, setEditText] = useState(initValue);
+    const refTextInputValue = useRef(initValue);
 
     const onPress = () => {
         setFocus(!focus);
@@ -51,10 +51,10 @@ const SentenceEditor = (props) => {
 }
 
 const Options = (props) => {
-    const { question, customStyles, onAnswer } = props;
-    const { textColor = '#000000' } = customStyles;
+    const { question, customStyles, onAnswer, initAnswers } = props;
+    const { textColor } = customStyles;
     const { suggestion_paragraph, options } = question;
-    const refAnswering = useRef({});
+    const refAnswering = useRef(initAnswers || {});
 
     const _renderSentenceItem = (item, index) => {
         switch (item.type) {
@@ -70,6 +70,7 @@ const Options = (props) => {
                                     item={it}
                                     index={idx}
                                     sentenceId={item.id}
+                                    initValue={initAnswers?.[item.id] || ''}
                                     textColor={textColor}
                                     updateAnswering={updateAnswering}
                                 />
@@ -102,7 +103,7 @@ const Options = (props) => {
 
 const Result = (props) => {
     const { options, correct_options, customStyles } = props;
-    const { textColor = '#000000' } = customStyles;
+    const { textColor } = customStyles;
 
     const _renderResult = (item, index) => {
         switch (item.type) {

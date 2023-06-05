@@ -4,13 +4,14 @@ import HtmlContent from '../../components/html-content';
 import styles from './styles';
 
 const SentenceItem = (props) => {
-    const { item, index, textColor, onChooseSelection, correctOptions } = props;
+    const { item, index, initValue, customStyles, onChooseSelection, correctOptions } = props;
+    const { primaryColor, textColor } = customStyles;
     const [isSelected, setSelected] = useState(() => {
         if (correctOptions) {
             const getItem = correctOptions.find(it => it.id == item.id);
             return getItem.answer;
         }
-        return false;
+        return initValue;
     });
 
     const _renderContent = (it, idx) => {
@@ -36,24 +37,27 @@ const SentenceItem = (props) => {
     return (
         <TouchableOpacity
             onPress={onPress}
-            style={[styles.sentence_item, isSelected && styles.sentence_item_active]}>
+            style={[
+                styles.sentence_item,
+                isSelected && { backgroundColor: primaryColor }
+            ]}>
             {item.option_content.map(_renderContent)}
         </TouchableOpacity>
     )
 }
 
 const Options = (props) => {
-    const { question, customStyles, onAnswer } = props;
+    const { question, customStyles, onAnswer, initAnswers } = props;
     const { options } = question;
-    const { textColor = '#000000' } = customStyles;
-    const refSelected = useRef({});
+    const refSelected = useRef(initAnswers || {});
 
     const _renderSentenceItem = (item, index) => (
         <SentenceItem
             key={index}
             item={item}
             index={index}
-            textColor={textColor}
+            initValue={initAnswers?.[item.id] || false}
+            customStyles={customStyles}
             onChooseSelection={onChooseSelection}
         />
     )
@@ -75,14 +79,13 @@ const Options = (props) => {
 
 const Result = (props) => {
     const { options, correct_options, customStyles } = props;
-    const { textColor = '#000000' } = customStyles;
 
     const _renderResult = (item, index) => (
         <SentenceItem
             key={index}
             item={item}
             index={index}
-            textColor={textColor}
+            customStyles={customStyles}
             correctOptions={correct_options}
         />
     )

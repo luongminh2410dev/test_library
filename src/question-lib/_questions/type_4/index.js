@@ -6,10 +6,10 @@ import styles from './styles';
 
 const PADDING_VIEW = 12;
 const Options = (props) => {
-    const { question, customStyles, onAnswer } = props;
+    const { question, customStyles, onAnswer, initAnswers } = props;
 
     const {
-        primaryColor = '#419e01',
+        primaryColor,
         default_target_option: defaultTargetOptionStyles = {},
         default_source_option: defaultSourceOptionStyles = {},
         default_option_txt: defaultOptionTextStyles = {},
@@ -26,6 +26,13 @@ const Options = (props) => {
 
     const activeButtonStyles = Object.assign({}, { borderColor: primaryColor, }, active_option_btn);
     const activeTxtStyles = Object.assign({}, styles.active_answer_btn_txt, active_option_txt);
+
+    const updateOptionLayouts = (id, layout) => {
+        refOptionLayouts.current[id] = layout;
+        if (initAnswers && Object.keys(refOptionLayouts.current).length == targets.length + sources.length) {
+            setPairedList(initAnswers);
+        }
+    }
 
     const getItemOffsetY = (targetIndex) => {
         return targets.reduce((previous, current, currentIndex) => {
@@ -74,7 +81,6 @@ const Options = (props) => {
                     setCurrentTarget(item.id)
                 }
                 else {
-                    // sortOptions(item.id, currentSource, true);
                     const newArray = [...pairedList, { id: item.id, answer: currentSource }];
                     onAnswer(newArray, newArray.length == targets.length)
                     setPairedList(newArray);
@@ -85,10 +91,10 @@ const Options = (props) => {
         }
 
         const onLayout = e => {
-            refOptionLayouts.current[item.id] = {
+            updateOptionLayouts(item.id, {
                 height: e.nativeEvent.layout.height,
                 offsetY: e.nativeEvent.layout.y
-            }
+            })
         }
 
         return (
@@ -203,10 +209,10 @@ const Options = (props) => {
         }
 
         const onLayout = e => {
-            refOptionLayouts.current[item.id] = {
+            updateOptionLayouts(item.id, {
                 height: e.nativeEvent.layout.height,
                 offsetY: e.nativeEvent.layout.y
-            }
+            })
         }
 
         return (

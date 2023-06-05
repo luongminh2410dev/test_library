@@ -5,28 +5,35 @@ const styles = StyleSheet.create({
         width: '100%',
         flexDirection: "row",
         justifyContent: 'center',
-        alignItems: 'flex-start',
+        alignItems: 'center',
         marginBottom: 12,
     },
     item_content: {
         flex: 1,
     },
-    answer_container: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-    },
     checkbox: {
-        padding: 4,
+        width: 32,
+        height: 32,
+        justifyContent: 'center',
+        alignItems: 'center',
         borderRadius: 4,
         marginLeft: 4,
-        borderWidth: 1,
         backgroundColor: '#f2ead8',
-        borderColor: '#e0e0e0',
     },
     checkbox_active: {
-        backgroundColor: '#d2eac2',
-        borderColor: '#6dae41'
+        // backgroundColor: '#d2eac2',
+    },
+    row: {
+        flexDirection: 'row'
+    },
+    col_title: {
+        width: 32,
+        textAlign: 'center',
+        textAlignVertical: 'center',
+        fontWeight: 'bold',
+        fontSize: 15,
+        marginLeft: 4,
+        marginBottom: 4,
     }
 })
 

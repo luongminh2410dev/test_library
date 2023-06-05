@@ -5,7 +5,7 @@ import { getParentRegex } from '.'
 import InputText from './inputText'
 
 const FracView = (props) => {
-    const { numerator, denominator, textStyle, updateAnswers, correct_options } = props;
+    const { numerator, denominator, initAnswers, textStyle, updateAnswers, correct_options } = props;
 
     const renderFracContent = (content) => {
         if (typeof content === 'function') return content();
@@ -16,6 +16,7 @@ const FracView = (props) => {
                     return (
                         <InputText
                             content={content}
+                            initAnswers={initAnswers}
                             updateAnswers={updateAnswers}
                             correct_options={correct_options}
                         />

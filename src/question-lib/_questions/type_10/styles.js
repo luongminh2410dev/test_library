@@ -16,8 +16,8 @@ const styles = StyleSheet.create({
         borderColor: '#e0e0e0',
     },
     checkbox_active: {
-        backgroundColor: '#d2eac2',
-        borderColor: '#6dae41'
+        // backgroundColor: '#d2eac2',
+        // borderColor: '#6dae41'
     }
 })
 

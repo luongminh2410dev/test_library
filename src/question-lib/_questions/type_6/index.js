@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
-import { Dimensions, Image, View, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
-import { GestureHandlerRootView, PanGestureHandler } from 'react-native-gesture-handler';
+import { Dimensions, Image, View } from 'react-native';
+import { PanGestureHandler } from 'react-native-gesture-handler';
 import Animated, { runOnJS, useAnimatedGestureHandler, useAnimatedReaction, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import HtmlContent from '../../components/html-content';
 import styles from './styles';
@@ -8,7 +8,8 @@ import styles from './styles';
 const { width, height } = Dimensions.get('screen');
 
 const PhraseItem = (props) => {
-    const { item, index, onAnswer, positions, updatePhraseConfigs } = props;
+    const { item, index, updateAnswers, positions, customStyles, updatePhraseConfigs } = props;
+    const { primaryColor, textColor } = customStyles;
     const [moving, setMoving] = useState(false);
     const translateX = useSharedValue(0);
     const translateY = useSharedValue(0);
@@ -108,18 +109,18 @@ const PhraseItem = (props) => {
                 positions.value = newObj;
             }
         },
-        onEnd: (event, context) => {
+        onEnd: () => {
             translateX.value = withTiming(positions.value[item.id].x);
             translateY.value = withTiming(positions.value[item.id].y);
             runOnJS(setMoving)(false);
-            runOnJS(onAnswer)(positions.value)
+            runOnJS(updateAnswers)(positions.value)
         }
     })
 
     const _renderContent = (it, idx) => {
         switch (it.type) {
             case 'html':
-                return <HtmlContent key={idx} content={it.content} color={'white'} />
+                return <HtmlContent key={idx} content={it.content} color={textColor} />
             case 'image':
                 return (
                     <Image
@@ -149,16 +150,22 @@ const PhraseItem = (props) => {
 }
 
 const Options = (props) => {
-    const { question, customStyles, onAnswer } = props;
-    const { textColor = '#000000' } = customStyles;
+    const { question, customStyles, onAnswer, initAnswers } = props;
     const { options } = question;
 
     const refPhraseLayout = useRef({});
-    const positions = useSharedValue([]);
+    const positions = useSharedValue({});
+
+    const updateAnswers = (_positions) => {
+        onAnswer(_positions);
+    }
 
     const updatePhraseConfigs = (id, config) => {
         refPhraseLayout.current[id] = config;
-
+        if (initAnswers) {
+            positions.value = initAnswers;
+            return;
+        }
         if (Object.keys(refPhraseLayout.current).length == options.length) {
             const newObj = {};
 
@@ -184,7 +191,7 @@ const Options = (props) => {
     const _renderContent = (item, index) => {
         switch (item.type) {
             case 'html':
-                return <HtmlContent key={index} content={item.content} color={textColor} />
+                return <HtmlContent key={index} content={item.content} color={customStyles.textColor} />
             case 'image':
                 return (
                     <Image
@@ -201,15 +208,18 @@ const Options = (props) => {
             key={index}
             item={item}
             index={index}
-            onAnswer={onAnswer}
+            updateAnswers={updateAnswers}
             positions={positions}
             updatePhraseConfigs={updatePhraseConfigs}
+            customStyles={customStyles}
         />
     )
 
     return (
-        <View style={styles.phrase_list}>
-            {options.map(_renderPhraseItem)}
+        <>
+            <View style={styles.phrase_list}>
+                {options.map(_renderPhraseItem)}
+            </View>
             <View style={styles.phrase_list_invisible}>
                 {options.map((item, index) => (
                     <View key={index} style={[styles.phrase_item, { opacity: 0 }]}>
@@ -217,7 +227,7 @@ const Options = (props) => {
                     </View>
                 ))}
             </View>
-        </View>
+        </>
     )
 }
 

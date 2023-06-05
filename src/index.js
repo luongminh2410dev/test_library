@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { ScrollView, View } from 'react-native'
+import { KeyboardAvoidingView, ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
+import { findFaultQuestion2, pictureEnglishQuestion, multiCorrectQuestion } from './const'
 import { DefaultQuestion } from './question-lib'
-
+import AutoHeightWebView from 'react-native-autoheight-webview'
 const formatData = (object) => {
     const newObject = {};
     newObject.id = object._id;
@@ -97,33 +98,53 @@ const formatData = (object) => {
 
 const Demo = () => {
     const [questions, setQuestions] = useState([]);
-    const [currentQuestion, setCurrentQuestion] = useState(8);
+    const [currentQuestion, setCurrentQuestion] = useState(0);
     const [answers, setAnswers] = useState({});
+    const [padding, setPadding] = useState(80);
 
     useEffect(() => {
         fetch('https://devapi.loigiaihay.com/v4/tn/exam/summary/5d5c1403ea5cb900220fa32f')
             .then(data => data.json())
             .then(data => {
-                setQuestions(data?.list_quiz)
+                // setQuestions(data?.list_quiz)
+                setQuestions([pictureEnglishQuestion, multiCorrectQuestion, findFaultQuestion2,])
             })
     }, [])
 
     if (questions.length == 0) return null;
     return (
-        <GestureHandlerRootView style={{ flex: 1 }}>
-            <ScrollView
-                style={{ flex: 1, backgroundColor: 'white', }}
-                contentContainerStyle={{ paddingVertical: 80 }}>
-                <View style={{ flex: 1 }}>
-                    <DefaultQuestion
-                        question={formatData(questions[currentQuestion])}
-                        customColors={{
-
-                        }}
-                    />
-                </View>
-            </ScrollView>
-        </GestureHandlerRootView>
+        <KeyboardAvoidingView style={{ flex: 1, }} behavior='height'>
+            <GestureHandlerRootView style={{ flex: 1 }}>
+                <ScrollView
+                    style={{ flex: 1, backgroundColor: 'white', }}
+                    contentContainerStyle={{ paddingVertical: padding }}>
+                    <View style={{ flex: 1 }}>
+                        <TouchableOpacity onPress={() => {
+                            setPadding(40)
+                            setCurrentQuestion(currentQuestion - 1)
+                        }}>
+                            <Text>Back</Text>
+                        </TouchableOpacity>
+                        <DefaultQuestion
+                            key={questions[currentQuestion].id}
+                            question={questions[currentQuestion]}
+                            initAnswers={answers[questions[currentQuestion].id]}
+                            // key={questions[currentQuestion]._id}
+                            // question={formatData(questions[currentQuestion])}
+                            // initAnswers={answers[questions[currentQuestion]._id]}
+                            onSelectOption={(answer) => {
+                                setAnswers({ ...answers, [questions[currentQuestion].id]: answer })
+                            }}
+                            customConfig={{
+                                label_question: `Câu ${currentQuestion + 1}`,
+                            }}
+                            onSkipQuestion={() => setCurrentQuestion(currentQuestion + 1)}
+                            onFinishQuestion={() => setCurrentQuestion(currentQuestion + 1)}
+                        />
+                    </View>
+                </ScrollView>
+            </GestureHandlerRootView>
+        </KeyboardAvoidingView>
     )
 }
 

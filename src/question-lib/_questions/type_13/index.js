@@ -7,7 +7,8 @@ import styles from './styles';
 const boxColors = ['#e39001', '#8ac53e', 'gray'];
 
 const OptionItem = (props) => {
-    const { item, index, currentOption, setCurrentOption, pairedList, textColor } = props;
+    const { item, index, currentOption, setCurrentOption, pairedList, customStyles } = props;
+    const { primaryColor, textColor } = customStyles;
     const isPaired = pairedList[item.id] != undefined;
     const isPairing = !isPaired && currentOption == item.id;
     const animated = useSharedValue(1);
@@ -43,7 +44,7 @@ const OptionItem = (props) => {
         <AnimatedTouchable
             onPress={onPress}
             disabled={isPaired}
-            style={[animatedButtonStyles, styles.option_item, isPairing && { borderColor: '#6dae41' }]}>
+            style={[animatedButtonStyles, styles.option_item, isPairing && { borderColor: primaryColor }]}>
             {item.option_content.map(_renderContent)}
         </AnimatedTouchable>
     )
@@ -51,14 +52,13 @@ const OptionItem = (props) => {
 
 const AnimatedTouchable = Animated.createAnimatedComponent(Pressable);
 const Options = (props) => {
-    const { question, customStyles, onAnswer } = props;
-
-    const { textColor = '#000000' } = customStyles;
+    const { question, customStyles, onAnswer, initAnswers } = props;
+    const { textColor } = customStyles;
 
     const { boxList, options } = question;
 
     const [currentOption, setCurrentOption] = useState(null);
-    const [pairedList, setPairedList] = useState({});
+    const [pairedList, setPairedList] = useState(initAnswers || {});
 
     useEffect(() => {
         onAnswer(pairedList, Object.keys(pairedList).length == options.length)
@@ -71,7 +71,7 @@ const Options = (props) => {
             index={index}
             currentOption={currentOption}
             setCurrentOption={setCurrentOption}
-            textColor={textColor}
+            customStyles={customStyles}
             pairedList={pairedList}
         />
     )
@@ -153,7 +153,7 @@ const Options = (props) => {
 
 const Result = (props) => {
     const { options, correct_options, boxList, customStyles } = props;
-    const { textColor = '#000000' } = customStyles;
+    const { textColor } = customStyles;
 
     const _renderContent = (item, index) => {
         switch (item.type) {
@@ -201,8 +201,8 @@ const Result = (props) => {
 }
 
 const compareAnswer = (answers, correct_options) => {
-    return !correct_options.find(item => {
-        return !answers[item.id] || item.answer.index != answers[item.id];
+    return !correct_options.some(item => {
+        return item.answer.index != answers[item.id];
     })
 }
 

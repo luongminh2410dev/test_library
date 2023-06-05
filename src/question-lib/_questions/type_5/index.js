@@ -41,7 +41,7 @@ const PhraseItem = (props) => {
 }
 
 const Options = (props) => {
-    const { question, customStyles, onAnswer } = props;
+    const { question, customStyles, onAnswer, initAnswers } = props;
     const { options } = question;
     const {
         primaryColor = '#419e01',
@@ -54,7 +54,7 @@ const Options = (props) => {
     const { phrases, sentences } = options;
 
     const [currentPhrase, setCurrentPhrase] = useState(null);
-    const [pairedList, setPairedList] = useState({});
+    const [pairedList, setPairedList] = useState(initAnswers || {});
 
     const activeButtonStyles = Object.assign({}, { borderColor: primaryColor, }, active_option_btn);
     const activeTxtStyles = Object.assign({}, styles.active_answer_btn_txt, active_option_txt);

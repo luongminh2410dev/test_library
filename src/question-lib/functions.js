@@ -32,7 +32,7 @@ const mathJax = `
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 `
-export const configHtml = (content) => {
+export const configHtml = (content, color) => {
     const styles = `
         <style>
             html, body {
@@ -44,6 +44,9 @@ export const configHtml = (content) => {
             .formula{
                 font-family: Arial, Helvetica, sans-serif;
                 font-size: 15px;
+            }
+            p, span, a, tr, td, strong {
+                color: ${color};
             }
             img{
                 max-width: 100%;

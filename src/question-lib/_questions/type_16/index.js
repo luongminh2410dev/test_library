@@ -30,7 +30,7 @@ const getChildsOfFrac = (string) => {
 }
 
 const MathQuillItem = (props) => {
-    const { item, index, updateAnswers, correct_options } = props;
+    const { item, index, initAnswers, updateAnswers, correct_options } = props;
     const parent = getParentRegex.exec(item);
     if (parent) {
         switch (parent[1]) {
@@ -40,6 +40,7 @@ const MathQuillItem = (props) => {
                     <FracView
                         numerator={childs[0]}
                         denominator={childs[1]}
+                        initAnswers={initAnswers}
                         textStyle={styles.mathquill_text}
                         updateAnswers={updateAnswers}
                         correct_options={correct_options} />
@@ -49,6 +50,7 @@ const MathQuillItem = (props) => {
                     <View style={{ marginRight: 4, marginBottom: 12 }}>
                         <InputText
                             content={item}
+                            initAnswers={initAnswers}
                             updateAnswers={updateAnswers}
                             correct_options={correct_options}
                         />
@@ -62,9 +64,9 @@ const MathQuillItem = (props) => {
 }
 
 const Options = (props) => {
-    const { question, onAnswer } = props;
+    const { question, onAnswer, initAnswers } = props;
     const { mathquill } = question;
-    const refAnswers = useRef({});
+    const refAnswers = useRef(initAnswers || {});
     const sizeOfInput = (
         mathquill
             .reduce((pre, cur) => {
@@ -81,6 +83,7 @@ const Options = (props) => {
                 key={idx}
                 item={it}
                 index={idx}
+                initAnswers={initAnswers}
                 updateAnswers={updateAnswers}
             />
         )

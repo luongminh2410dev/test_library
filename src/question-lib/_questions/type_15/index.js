@@ -9,7 +9,8 @@ const SHAFT_NUMBER_WIDTH = width - 24;
 const ITEMS_PER_ROW = width > 600 ? 10 : (width > 350 ? 7 : 6);
 const POINT_DISTANCE = SHAFT_NUMBER_WIDTH / ITEMS_PER_ROW;
 const PointItem = (props) => {
-    const { item, index, textColor, updateAnswers } = props;
+    const { item, index, initValue, customStyles, updateAnswers } = props;
+    const { primaryColor, textColor } = customStyles;
     const offsetX = index * POINT_DISTANCE;
 
     const onChangeText = (text) => {
@@ -18,26 +19,29 @@ const PointItem = (props) => {
 
     return (
         <View style={[styles.point_item, { width: POINT_DISTANCE, left: offsetX }]}>
-            <View style={styles.point_beacon} />
-            {
-                item.obj_type == 'inputText' ?
-                    <TextInput
-                        onChangeText={onChangeText}
-                        keyboardType='decimal-pad'
-                        style={[styles.point_content, { backgroundColor: '#f2ead8', borderColor: 'lightgray' }]} />
-                    :
-                    <Text style={styles.point_content}>{item.content}</Text>
-            }
+            <View style={[styles.point_beacon, { backgroundColor: textColor }]} />
+            <View style={styles.point_border}>
+                {
+                    item.obj_type == 'inputText' ?
+                        <TextInput
+                            defaultValue={initValue}
+                            onChangeText={onChangeText}
+                            keyboardType='decimal-pad'
+                            style={[styles.point_content, { backgroundColor: '#f2ead8' }]} />
+                        :
+                        <Text style={styles.point_content}>{item.content}</Text>
+                }
+            </View>
         </View>
     )
 }
 
 const Options = (props) => {
-    const { question, customStyles, onAnswer } = props;
-    const { textColor = '#000000' } = customStyles;
+    const { question, customStyles, onAnswer, initAnswers } = props;
+    const { textColor } = customStyles;
     const { options } = question;
     const lines = new Array(Math.ceil(options.length / ITEMS_PER_ROW)).fill(null);
-    const refAnswers = useRef({});
+    const refAnswers = useRef(initAnswers || {});
 
     const _renderShaftNumber = (item, index) => {
         const isLastLine = (index + 1) == lines.length;
@@ -53,13 +57,13 @@ const Options = (props) => {
                     styles.shaft_number,
                     isLastLine && { width: shaftWidth }
                 ]}>
-                <View style={styles.shaft_line} />
+                <View style={[styles.shaft_line, { backgroundColor: textColor }]} />
                 {
                     isLastLine &&
                     <AntDesign
                         name='caretright'
                         size={12}
-                        color='black'
+                        color={textColor}
                         style={{ position: 'absolute', right: 0, top: -6 }}
                     />
                 }
@@ -73,7 +77,8 @@ const Options = (props) => {
             key={index}
             item={item}
             index={index}
-            textColor={textColor}
+            initValue={initAnswers?.[item.id] || ''}
+            customStyles={customStyles}
             updateAnswers={updateAnswers}
         />
     )
@@ -97,7 +102,39 @@ const Options = (props) => {
 }
 
 const Result = (props) => {
-    const { options, correct_options, } = props;
+    const { options, correct_options, customStyles: { textColor } } = props;
+    const lines = new Array(Math.ceil(options.length / ITEMS_PER_ROW)).fill(null);
+
+    const _renderShaftNumber = (item, index) => {
+        const isLastLine = (index + 1) == lines.length;
+        const items = options.slice(index * ITEMS_PER_ROW, ITEMS_PER_ROW * (index + 1));
+        const shaftWidth = options.length <= ITEMS_PER_ROW ?
+            '100%'
+            :
+            `${(items.length / ITEMS_PER_ROW) * 100}%`;
+        return (
+            <View
+                key={index}
+                style={[
+                    styles.shaft_number,
+                    { paddingBottom: 0 },
+                    isLastLine && { width: shaftWidth }
+                ]}>
+                <View style={[styles.shaft_line, { backgroundColor: textColor }]} />
+                {
+                    isLastLine &&
+                    <AntDesign
+                        name='caretright'
+                        size={12}
+                        color={textColor}
+                        style={{ position: 'absolute', right: 0, top: -6 }}
+                    />
+                }
+                {items.map(_renderResult)}
+            </View>
+        )
+    }
+
     const _renderResult = (item, index) => {
         const offsetX = (SHAFT_NUMBER_WIDTH / 2) + POINT_DISTANCE * item.x - (POINT_DISTANCE / 2);
         const isTextInput = item.obj_type == 'inputText';
@@ -105,17 +142,20 @@ const Result = (props) => {
 
         return (
             <View key={index} style={[styles.point_item, { width: POINT_DISTANCE, left: offsetX }]}>
-                <View style={styles.point_beacon} />
-                <Text style={styles.point_content}>{content}</Text>
+                <View style={[
+                    styles.point_beacon,
+                    { backgroundColor: textColor }
+                ]} />
+                <View style={styles.point_border}>
+                    <Text style={styles.point_content}>{content}</Text>
+                </View>
             </View>
         )
     }
 
     return (
         <View style={styles.shaft_number}>
-            <View style={styles.shaft_line} />
-            <AntDesign name='caretright' size={12} color={'black'} style={{ transform: [{ translateX: -4 }] }} />
-            {options.map(_renderResult)}
+            {lines.map(_renderShaftNumber)}
         </View>
     )
 }

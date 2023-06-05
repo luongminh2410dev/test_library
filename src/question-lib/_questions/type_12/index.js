@@ -5,8 +5,8 @@ import styles from './styles';
 
 const WORD_WIDTH = 15;
 const SentenceEditor = (props) => {
-    const { item, index, updateAnswers, correct_options } = props;
-    const defaultValue = correct_options ? correct_options.find(it => it.id == item.id)?.answer : '';
+    const { item, index, initValue, updateAnswers, correct_options } = props;
+    const defaultValue = correct_options ? correct_options.find(it => it.id == item.id)?.answer : initValue;
 
     const onChangeText = (text) => {
         updateAnswers(item.id, text)
@@ -21,9 +21,8 @@ const SentenceEditor = (props) => {
 }
 
 const Options = (props) => {
-    const { question, customStyles, onAnswer } = props;
-
-    const { textColor = '#000000' } = customStyles;
+    const { question, customStyles, onAnswer, initAnswers } = props;
+    const { textColor } = customStyles;
     const { options } = question;
 
     const refAnswers = useRef({});
@@ -35,7 +34,12 @@ const Options = (props) => {
                     <HtmlContent key={`${index}_${idx}`} content={it.content} color={textColor} />
                 ))
             case 'inputText':
-                return <SentenceEditor key={index} item={item} updateAnswers={updateAnswers} />
+                return <SentenceEditor
+                    key={index}
+                    item={item}
+                    initValue={initAnswers?.[item.id] || ''}
+                    updateAnswers={updateAnswers}
+                />
             case 'breakDown':
                 return <View key={index} style={{ width: '100%' }} />;
         }

@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     },
     question_label_txt: {
+        fontSize: 15,
         textAlign: 'left',
         fontWeight: "bold"
     },
@@ -31,7 +32,8 @@ const styles = StyleSheet.create({
     question_view: {
         width: '100%',
         paddingHorizontal: 12,
-        marginTop: 12
+        marginTop: 12,
+        alignItems: 'center',
     },
     question: {
         fontSize: 16,
@@ -47,6 +49,7 @@ const styles = StyleSheet.create({
     row: {
         width: '100%',
         marginTop: 12,
+        paddingHorizontal: 12,
         flexDirection: "row",
         justifyContent: 'center',
         alignItems: 'center'
@@ -101,17 +104,6 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         padding: 8,
         fontSize: 15,
-    },
-    solution_detail_view: {
-        // marginVertical: 12,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    solution_detail_btn: {
-        paddingHorizontal: 36,
-        paddingVertical: 12,
-        backgroundColor: '#ebeff1',
-        borderRadius: 4,
     },
     collapse_view: {
         width: '100%',

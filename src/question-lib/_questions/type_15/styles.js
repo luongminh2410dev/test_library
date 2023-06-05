@@ -16,7 +16,6 @@ const styles = StyleSheet.create({
     shaft_line: {
         flex: 1,
         height: 1,
-        backgroundColor: 'black'
     },
     point_item: {
         position: 'absolute',
@@ -29,19 +28,20 @@ const styles = StyleSheet.create({
     point_beacon: {
         width: 1,
         height: 8,
-        backgroundColor: 'black',
         marginBottom: 8,
-        transform: [{ translateY: -4 }]
+        transform: [{ translateY: -4 }],
+    },
+    point_border: {
+        borderRadius: 4,
+        width: '100%',
+        overflow: 'hidden'
     },
     point_content: {
         width: '100%',
-        height: 40,
+        paddingVertical: 8,
         textAlign: 'center',
         textAlignVertical: 'center',
         fontSize: 15,
-        borderWidth: 1,
-        borderRadius: 4,
-        borderColor: '#44a500',
         backgroundColor: '#d2eac3',
     }
 })

@@ -4,22 +4,29 @@ import HtmlContent from '../../components/html-content';
 import styles from './styles';
 
 const Options = (props) => {
-    const { question, customStyles, onAnswer } = props;
-    const { primaryColor = '#419e01', subColor = '#e7a22b', textColor = '#000000' } = customStyles;
+    const { question, customStyles, onAnswer, initAnswers = -1 } = props;
+    const { primaryColor, textColor } = customStyles;
     const { options } = question;
-    const [currentAnswer, setCurrentAnswer] = useState(-1);
+    const [currentAnswer, setCurrentAnswer] = useState(() => {
+        if (initAnswers) {
+            return options.findIndex(it => !!initAnswers?.[it.id])
+        }
+        return -1;
+    });
 
     const _renderOptionItem = (i, idx) => {
         const isActive = currentAnswer == idx;
+
         const onPress = () => {
             onAnswer({ [i.id]: true });
             setCurrentAnswer(idx);
         }
+
         return (
             <TouchableOpacity
                 key={idx}
                 onPress={onPress}
-                style={[styles.answer_btn, { backgroundColor: isActive ? '#aad575' : '#f3ead8' }]}>
+                style={[styles.answer_btn, { backgroundColor: isActive ? primaryColor : '#f3ead8' }]}>
                 {i.option_content.map((it, ix) => {
                     switch (it.type) {
                         case 'html':

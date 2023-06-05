@@ -6,23 +6,17 @@ import styles from './styles';
 const answerKeys = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
 
 const Options = (props) => {
-    const { question, customStyles, onAnswer } = props;
-
-    const {
-        primaryColor = '#419e01',
-        subColor = '#e7a22b',
-        textColor = '#000000',
-    } = customStyles;
-
+    const { question, customStyles, onAnswer, initAnswers } = props;
+    const { primaryColor, textColor } = customStyles;
     const { items_per_row = 1, options } = question;
-    const [currentAnswer, setCurrentAnswer] = useState(-1);
+    const [currentAnswer, setCurrentAnswer] = useState(initAnswers || -1);
 
     const _renderOptionItem = (item, index) => {
-        const isActive = currentAnswer == index;
+        const isActive = currentAnswer == item.id;
 
         const onPress = () => {
             onAnswer(item.id)
-            setCurrentAnswer(index)
+            setCurrentAnswer(item.id)
         }
 
         return (
@@ -66,7 +60,7 @@ const Options = (props) => {
 
 const Result = (props) => {
     const { getAnswers, options, correct_options, customStyles } = props;
-    const { primaryColor = '#419e01' } = customStyles;
+    const { primaryColor } = customStyles;
 
     const correctAnswer = answerKeys[options.findIndex(i => correct_options.includes(i.id))];
     const isCorrect = correct_options.includes(getAnswers());

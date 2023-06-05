@@ -1,20 +1,19 @@
 import React, { useRef } from 'react';
 import { Image, Pressable, Text, View } from 'react-native';
-import { GestureHandlerRootView, PanGestureHandler } from 'react-native-gesture-handler';
+import { PanGestureHandler } from 'react-native-gesture-handler';
 import Animated, { interpolateColor, runOnJS, useAnimatedGestureHandler, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import AudioView from '../../components/audio-view';
 import styles from './styles';
 
 const AnimatedButton = Animated.createAnimatedComponent(Pressable)
 const OptionItem = (props) => {
-    const { item, index, findOptionPosition, updateAnswers } = props;
+    const { item, index, initOptionPosition, findOptionPosition, updateAnswers } = props;
     const translateX = useSharedValue(0);
     const translateY = useSharedValue(0);
     const scale = useSharedValue(1);
     const backgroundColor = useSharedValue(0);
     const refOptionPosition = useRef();
     const refCurrentSocket = useRef(-1);
-
 
     const animatedItemStyles = useAnimatedStyle(() => {
         const bgColor = interpolateColor(
@@ -77,6 +76,11 @@ const OptionItem = (props) => {
 
     const onLayout = ({ nativeEvent }) => {
         refOptionPosition.current = { x: nativeEvent.layout.x, y: nativeEvent.layout.y }
+        const position = initOptionPosition(item);
+        if (position) {
+            translateX.value = withTiming(position.x - refOptionPosition.current.x)
+            translateY.value = withTiming(position.y - refOptionPosition.current.y)
+        }
     }
 
     const onPress = () => {
@@ -87,7 +91,6 @@ const OptionItem = (props) => {
             backgroundColor.value = withTiming(0);
             updateAnswers(refCurrentSocket.current);
         }
-        return null;
     }
 
     return (
@@ -103,11 +106,11 @@ const OptionItem = (props) => {
 }
 
 const Options = (props) => {
-    const { question, customStyles, onAnswer } = props;
-    const { textColor = '#000000' } = customStyles;
+    const { question, customStyles, onAnswer, initAnswers } = props;
+    const { textColor } = customStyles;
     const { attachment, picture, options } = question;
-    const refAnswers = useRef({});
-    const refSocketPositions = useRef({});
+    const refAnswers = useRef(initAnswers?.value || {});
+    const refSocketPositions = useRef(initAnswers?.socketLayout || {});
 
     const _renderOptionItem = (item, index) => (
         <OptionItem
@@ -115,6 +118,7 @@ const Options = (props) => {
             item={item}
             index={index}
             textColor={textColor}
+            initOptionPosition={initOptionPosition}
             updateAnswers={updateAnswers}
             findOptionPosition={findOptionPosition}
         />
@@ -154,12 +158,26 @@ const Options = (props) => {
         return { position, socketIndex }
     }
 
+    const initOptionPosition = (option) => {
+        const getKey = Object.keys(refAnswers.current).find(key => refAnswers.current[key] == option);
+        if (getKey) {
+            return refSocketPositions.current[getKey]
+        }
+        return null;
+    }
+
     const updateAnswers = (socketIndex, option = false) => {
         option ?
             refAnswers.current[socketIndex] = option
             :
             delete refAnswers.current[socketIndex];
-        onAnswer(refAnswers.current, Object.keys(refAnswers.current).length == options.length)
+        onAnswer(
+            {
+                value: refAnswers.current,
+                socketLayout: refSocketPositions.current,
+            },
+            Object.keys(refAnswers.current).length == options.length
+        )
     }
 
     return (
@@ -209,7 +227,7 @@ const Result = ({ picture, correct_options }) => {
 
 const compareAnswer = (answers, correct_options) => {
     return !correct_options.find((item, index) => {
-        return answers[index]?.trim() != item.trim();
+        return answers.value[index]?.trim() != item.trim();
     })
 }
 

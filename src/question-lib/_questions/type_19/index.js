@@ -8,8 +8,8 @@ import HtmlContent from '../../components/html-content';
 import styles from './styles';
 
 const PickedImages = (props) => {
-    const { onUploadImageChange } = props;
-    const [images, setImages] = useState([]);
+    const { initValue, onUploadImageChange } = props;
+    const [images, setImages] = useState(initValue);
 
     useEffect(() => {
         onUploadImageChange(images)
@@ -91,11 +91,11 @@ const PickedImages = (props) => {
 }
 
 const Options = (props) => {
-    const { question, customStyles, onAnswer } = props;
-    const { textColor = '#000000' } = customStyles;
+    const { question, customStyles, onAnswer, initAnswers = { content: '', images: [] } } = props;
+    const { textColor } = customStyles;
 
     const { prefix_input } = question;
-    const refAnswering = useRef({ content: '', images: [] })
+    const refAnswering = useRef(initAnswers)
 
     const _renderContent = (item, index) => {
         switch (item.type) {
@@ -133,8 +133,9 @@ const Options = (props) => {
             <View style={{ width: '100%', alignItems: 'center' }}>
                 {prefix_input.map(_renderContent)}
             </View>
-            <PickedImages onUploadImageChange={onUploadImageChange} />
+            <PickedImages initValue={initAnswers.images} onUploadImageChange={onUploadImageChange} />
             <TextInput
+                defaultValue={initAnswers.content}
                 style={styles.textinput_answer}
                 multiline
                 onChangeText={onTextInputChange}
@@ -145,7 +146,7 @@ const Options = (props) => {
 
 const Result = (props) => {
     const { correct_options, customStyles } = props;
-    const { textColor = '#000000' } = customStyles;
+    const { textColor } = customStyles;
 
     const _renderResult = (item, index) => (
         <Text key={index} style={{ fontSize: 15, color: textColor }}>{item}</Text>

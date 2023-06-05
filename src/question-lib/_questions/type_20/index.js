@@ -3,12 +3,12 @@ import { Text, TextInput, View } from 'react-native';
 import styles from './styles';
 
 const Options = (props) => {
-    const { customStyles, onAnswer } = props;
+    const { customStyles, onAnswer, initAnswers = '' } = props;
     const {
         text_input_label: inputLabelStyles = {},
         text_input_item: textInputStyles = {},
     } = customStyles;
-    const refAnswering = useRef();
+    const refAnswering = useRef(initAnswers);
 
     const onInputChange = (text) => {
         refAnswering.current = text;
@@ -19,6 +19,7 @@ const Options = (props) => {
         <View style={styles.row}>
             <Text style={[styles.result_input_label, inputLabelStyles]}>Đáp án:</Text>
             <TextInput
+                defaultValue={initAnswers}
                 style={[styles.result_input, textInputStyles]}
                 onChangeText={onInputChange}
             />
@@ -27,7 +28,7 @@ const Options = (props) => {
 }
 
 const Result = ({ getAnswers, correct_options, customStyles }) => {
-    const { primaryColor = '#419e01' } = customStyles;
+    const { primaryColor } = customStyles;
     const isCorrect = correct_options[0] == getAnswers();
     return (
         <View style={[styles.result_view, { borderColor: isCorrect ? primaryColor : 'red', }]}>
